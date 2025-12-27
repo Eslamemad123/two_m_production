@@ -27,14 +27,31 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
     });
   }
 
-  int _quantityToAdd = 0;
-  final TextEditingController _qtyController = TextEditingController(text: '1');
-  void _updateQty(int change) {
+  void _removeItem(int index) {
+    if (_items.length > 1) {
+      setState(() {
+        _items[index].dispose();
+        _items.removeAt(index);
+      });
+    }
+  }
+
+  void _updateQty(SaleItemModel item, int change) {
     setState(() {
-      _quantityToAdd += change;
-      if (_quantityToAdd < 1) _quantityToAdd = 1;
-      _qtyController.text = _quantityToAdd.toString();
+      int currentQty = int.tryParse(item.qtyController.text) ?? 0;
+      int newQty = currentQty + change;
+      if (newQty < 1) newQty = 1;
+      item.quantity = newQty;
+      item.qtyController.text = newQty.toString();
     });
+  }
+
+  @override
+  void dispose() {
+    for (var item in _items) {
+      item.dispose();
+    }
+    super.dispose();
   }
 
   @override
@@ -142,9 +159,21 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
       children: [
         if (index > 0) Divider(height: 30.h),
 
-        Text(
-          '${LocaleKeys.common_item.tr()} ${index + 1}', // Assuming common_item is "Item"
-          style: TextStyle(color: AppColors.textSecondary, fontSize: 12.sp),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '${LocaleKeys.common_item.tr()} ${index + 1}',
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 12.sp),
+            ),
+            if (_items.length > 1)
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                icon: Icon(Icons.close, color: AppColors.error, size: 18.sp),
+                onPressed: () => _removeItem(index),
+              ),
+          ],
         ),
         SizedBox(height: 8.h),
 
@@ -188,7 +217,7 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
             conterOnTapAddToStock(
               context: context,
               icon: Icons.remove,
-              onTap: () => _updateQty(-10),
+              onTap: () => _updateQty(item, -1),
               isOutlined: true,
             ),
             SizedBox(width: 16.w),
@@ -201,9 +230,12 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
                   color: isDark ? AppColors.darkSurfaceAlt : Colors.white,
                 ),
                 child: TextField(
-                  controller: _qtyController,
+                  controller: item.qtyController,
                   keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
+                  onChanged: (val) {
+                    item.quantity = int.tryParse(val) ?? 1;
+                  },
                   style: AppFontStyles.getSize18(
                     fontWeight: FontWeight.bold,
                     fontColor: isDark ? Colors.white : AppColors.textPrimary,
@@ -216,7 +248,7 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
             conterOnTapAddToStock(
               context: context,
               icon: Icons.add,
-              onTap: () => _updateQty(10),
+              onTap: () => _updateQty(item, 1),
               isOutlined: false,
             ),
           ],

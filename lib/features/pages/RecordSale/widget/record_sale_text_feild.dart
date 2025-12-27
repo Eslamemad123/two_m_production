@@ -10,36 +10,30 @@ import 'package:two_m_production/features/pages/addToStock/widget/date_text_form
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class RecordSaleTextFeild extends StatelessWidget {
-  const RecordSaleTextFeild({
-    super.key,
-  });
+  const RecordSaleTextFeild({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.only(start: 8.0),
+          padding: EdgeInsetsDirectional.only(start: 8.0.w),
           child: Text(
             LocaleKeys.add_stock_date_received.tr(),
-            style: AppFontStyles.getSize14(
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppFontStyles.getSize14(fontWeight: FontWeight.w600),
           ),
         ),
-        Gap(5),
+        Gap(5.h),
         DateTextForm(),
-        Gap(15),
+        Gap(15.h),
         Padding(
-          padding: const EdgeInsetsDirectional.only(start: 8.0),
+          padding: EdgeInsetsDirectional.only(start: 8.0.w),
           child: Text(
             LocaleKeys.add_client_client_name.tr(),
-            style: AppFontStyles.getSize14(
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppFontStyles.getSize14(fontWeight: FontWeight.w600),
           ),
         ),
-        Gap(10),
+        Gap(10.h),
         MainTextFormField(
           ispassword: false,
           colorFill: AppColors.gray100,
@@ -47,26 +41,24 @@ class RecordSaleTextFeild extends StatelessWidget {
           hint: LocaleKeys.add_client_client_name_hint.tr(),
           label: LocaleKeys.add_client_client_name.tr(),
         ),
-        Gap(15),
+        Gap(15.h),
         Padding(
-          padding: const EdgeInsetsDirectional.only(start: 8.0),
+          padding: EdgeInsetsDirectional.only(start: 8.0.w),
           child: Text(
             LocaleKeys.record_sale_phone_number.tr(),
-            style: AppFontStyles.getSize14(
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppFontStyles.getSize14(fontWeight: FontWeight.w600),
           ),
         ),
-        Gap(10),
+        Gap(10.h),
         MainTextFormField(
           ispassword: false,
           colorFill: AppColors.gray100,
           prefixIcon: AppAssets.phoneSVG,
           hint: LocaleKeys.add_client_phone_number_hint.tr(),
-        
+
           label: LocaleKeys.record_sale_phone_number.tr(),
         ),
-        
+
         SizedBox(height: 24.h),
       ],
     );
