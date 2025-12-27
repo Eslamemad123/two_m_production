@@ -1,0 +1,166 @@
+{
+  "common": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "search": "Search",
+    "submit": "Submit",
+    "next": "Next",
+    "back": "Back",
+    "items": "items",
+    "date": "Date",
+    "time": "Time",
+    "quantity": "Quantity",
+    "size": "Size",
+    "notes": "Notes",
+    "optional": "Optional",
+    "see_all": "See All >",
+    "stock": "Stock",
+    "item": "Item",
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+  },
+  "nav_bar": {
+    "home": "Home",
+    "profit": "Profit",
+    "orders": "Orders",
+    "settings": "Settings"
+  },
+  "home": {
+    "welcome": "Welcome!",
+    "welcome_back": "Welcome Back!",
+    "store_name": "Rexodus Gaming Store",
+    "search_products": "Search products...",
+    "search_hint": "Search products, orders...",
+    "all_products": "All Products",
+    "low_stock": "Low Stock",
+    "inventory_overview": "Inventory Overview",
+        "clickToSelctDate":" Click To Select Date",
+    "addAnyDetails":"Add any details about this batch...",
+    "categories": {
+      "all_items": "All Items",
+      "new_arrivals": "New Arrivals",
+      "low_stock": "Low Stock"
+    }
+
+  },
+  "product_details": {
+    "available_sizes": "Available Sizes",
+    "in_stock": "In Stock",
+    "qty": "qty",
+    "description": "Description",
+    "sell_product": "Sell Product",
+    "premium_sportswear": "Premium Sportswear Set",
+    "sportswear_desc": "Sportswear is no longer under culture, it is no longer just for the gym. This premium set features..."
+  },
+  "settings": {
+    "title": "Settings",
+    "app_preferences": "APP PREFERENCES",
+    "dark_mode": "Dark Mode",
+    "language": "Language",
+    "notifications": "Notifications",
+    "management": "MANAGEMENT",
+    "product_categories": "Product Categories",
+    "add_product": "Add Product",
+    "staff_access": "Staff Access",
+    "support": "SUPPORT",
+    "help_center": "Help Center",
+    "about_app": "About App",
+    "log_out": "Log Out",
+    "copyright": "Rexus Gaming Inventory System © 2024"
+  },
+  "profile": {
+    "edit_profile": "Edit Profile",
+    "full_name": "Full Name",
+    "save_changes": "Save Changes",
+    "store_manager": "Store Manager"
+  },
+  "record_sale": {
+    "title": "Record Sale",
+    "customer_name": "Customer Name",
+    "phone_number": "Phone Number",
+    "add_another_item": "Add Another Item",
+    "estimated_total": "Estimated Total",
+    "date": "Date",
+    "customer": "Customer",
+    "customer_hint": "Enter customer name (optional)",
+    "confirm_sale": "Confirm Sale",
+    "select_size": "Select Size",
+    "add_another": "Add Another Item"
+  },
+  "add_stock": {
+    "title": "Add Stock",
+    "date_received": "Date Received",
+    "source_supplier": "Source / Supplier"
+  },
+  "add_product": {
+    "title": "Add Product",
+    "product_name": "Product Name",
+    "description": "Description",
+    "stock_quantity": "Stock Quantity",
+    "price": "Price",
+    "enter_product_name": "Enter product name",
+    "enter_description": "Enter product description",
+    "upload_image": "Upload product image",
+    "select_image": "Select Image"
+  },
+  "add_client": {
+    "title": "Add Client",
+    "client_name": "Client Name",
+    "address": "Address",
+    "client_name_hint": "Enter client name",
+    "phone_number_hint": "Enter phone number",
+    "address_hint": "Enter address",
+    "order_details": "Order Details",
+    "save_client": "Save Client"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "mark_all_read": "Mark all as read",
+    "empty": "No notifications"
+  },
+  "profits": {
+    "add_sale": "Add Sale",
+    "reports": "Reports",
+    "staff": "Staff",
+    "top_selling": "Top Selling",
+    "total_orders": "Total Orders",
+    "new_customers": "New Customers",
+    "total_profit": "Total Profit",
+    "revenue": "Revenue",
+    "expenses": "Expenses",
+    "sales_overview": "Sales Overview",
+    "weekly_abbr": "W",
+    "monthly_abbr": "M",
+    "yearly_abbr": "Y"
+  },
+  "orders": {
+    "order_id": "Order #",
+    "tracking_number": "Tracking number",
+    "subtotal": "Subtotal",
+    "details": "Details",
+    "client": "Client",
+    "phone": "Phone"
+  },
+  "auth": {
+    "welcome_back": "Welcome Back!",
+    "welcome_back_subtitle": "Sign in to continue",
+    "or_login_with": "Or login with",
+    "email": "Email",
+    "enter_email": "Enter your email",
+    "password": "Password",
+    "enter_password": "Enter your password",
+    "forget_password": "Forgot Password?",
+    "login": "Login"
+  },
+  "splash": {
+    "text": "Manage your inventory with ease"
+  }
+}

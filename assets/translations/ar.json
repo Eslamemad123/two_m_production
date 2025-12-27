@@ -1,0 +1,165 @@
+{
+  "common": {
+    "add": "إضافة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "search": "بحث",
+    "submit": "إرسال",
+    "next": "التالي",
+    "back": "رجوع",
+    "items": "عناصر",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "quantity": "الكمية",
+    "size": "المقاس",
+    "notes": "ملاحظات",
+    "optional": "اختياري",
+    "see_all": "المزيد >",
+    "stock": "المخزون",
+    "item": "عنصر",
+    "mon": "إثنين",
+    "tue": "ثلاثاء",
+    "wed": "أربعاء",
+    "thu": "خميس",
+    "fri": "جمعة",
+    "sat": "سبت",
+    "sun": "أحد"
+  },
+  "nav_bar": {
+    "home": "الرئيسية",
+    "profit": "الأرباح",
+    "orders": "الطلبات",
+    "settings": "الإعدادات"
+  },
+  "home": {
+    "welcome": "مرحباً!",
+    "welcome_back": "مرحباً بعودتك!",
+    "store_name": "متجر ريكساس للألعاب",
+    "search_products": "البحث عن المنتجات...",
+    "search_hint": "البحث عن منتجات، طلبات...",
+    "all_products": "كل المنتجات",
+    "low_stock": "منخفض المخزون",
+    "inventory_overview": "نظرة عامة على المخزون",
+    "clickToSelctDate": "اضغط لاختيار التاريخ",
+    "addAnyDetails": "...أضافة اي تفاصيل؟",
+    "categories": {
+      "all_items": "كل العناصر",
+      "new_arrivals": "وصل حديثاً",
+      "low_stock": "منخفض المخزون"
+    }
+  },
+  "product_details": {
+    "available_sizes": "المقاسات المتاحة",
+    "in_stock": "متوفر",
+    "qty": "كمية",
+    "description": "الوصف",
+    "sell_product": "بيع المنتج",
+    "premium_sportswear": "طقم رياضي مميز",
+    "sportswear_desc": "الملابس الرياضية لم تعد مقتصرة على الصالات الرياضية فقط. هذا الطقم المميز يتميز..."
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "app_preferences": "تفضيلات التطبيق",
+    "dark_mode": "الوضع الداكن",
+    "language": "اللغة",
+    "notifications": "الإشعارات",
+    "management": "الإدارة",
+    "product_categories": "فئات المنتجات",
+    "add_product": "إضافة منتج",
+    "staff_access": "صلاحيات الموظفين",
+    "support": "الدعم",
+    "help_center": "مركز المساعدة",
+    "about_app": "عن التطبيق",
+    "log_out": "تسجيل الخروج",
+    "copyright": "نظام إدارة مخزون ريكساس للألعاب © 2024"
+  },
+  "profile": {
+    "edit_profile": "تعديل الملف الشخصي",
+    "full_name": "الاسم الكامل",
+    "save_changes": "حفظ التغييرات",
+    "store_manager": "مدير المتجر"
+  },
+  "record_sale": {
+    "title": "تسجيل بيع",
+    "customer_name": "اسم العميل",
+    "phone_number": "رقم الهاتف",
+    "add_another_item": "إضافة عنصر آخر",
+    "estimated_total": "المجموع المقدر",
+    "date": "التاريخ",
+    "customer": "العميل",
+    "customer_hint": "أدخل اسم العميل (اختياري)",
+    "confirm_sale": "تأكيد البيع",
+    "select_size": "اختر المقاس",
+    "add_another": "إضافة عنصر آخر"
+  },
+  "add_stock": {
+    "title": "إضافة مخزون",
+    "date_received": "تاريخ الاستلام",
+    "source_supplier": "المصدر / المورد"
+  },
+  "add_product": {
+    "title": "إضافة منتج",
+    "product_name": "اسم المنتج",
+    "description": "الوصف",
+    "stock_quantity": "كمية المخزون",
+    "price": "السعر",
+    "enter_product_name": "أدخل اسم المنتج",
+    "enter_description": "أدخل وصف المنتج",
+    "upload_image": "تحميل صورة المنتج",
+    "select_image": "اختر صورة"
+  },
+  "add_client": {
+    "title": "إضافة عميل",
+    "client_name": "اسم العميل",
+    "address": "العنوان",
+    "client_name_hint": "أدخل اسم العميل",
+    "phone_number_hint": "أدخل رقم الهاتف",
+    "address_hint": "أدخل العنوان",
+    "order_details": "تفاصيل الطلب",
+    "save_client": "حفظ العميل"
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "mark_all_read": "تحديد الكل كمقروء",
+    "empty": "لا توجد إشعارات"
+  },
+  "profits": {
+    "add_sale": "إضافة بيع",
+    "reports": "التقارير",
+    "staff": "الموظفين",
+    "top_selling": "الأكثر مبيعاً",
+    "total_orders": "إجمالي الطلبات",
+    "new_customers": "عملاء جدد",
+    "total_profit": "إجمالي الربح",
+    "revenue": "الإيرادات",
+    "expenses": "المصاريف",
+    "sales_overview": "نظرة عامة على المبيعات",
+    "weekly_abbr": "أ",
+    "monthly_abbr": "ش",
+    "yearly_abbr": "س"
+  },
+  "orders": {
+    "order_id": "طلب رقم",
+    "tracking_number": "رقم التتبع",
+    "subtotal": "المجموع الفرعي",
+    "details": "التفاصيل",
+    "client": "العميل",
+    "phone": "الهاتف"
+  },
+  "auth": {
+    "welcome_back": "مرحباً بعودتك!",
+    "welcome_back_subtitle": "سجل الدخول للمتابعة",
+    "or_login_with": "أو سجل الدخول باستخدام",
+    "email": "البريد الإلكتروني",
+    "enter_email": "أدخل بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "enter_password": "أدخل كلمة المرور",
+    "forget_password": "نسيت كلمة المرور؟",
+    "login": "تسجيل الدخول"
+  },
+  "splash": {
+    "text": "إدارة مخزونك بسهولة"
+  }
+}
