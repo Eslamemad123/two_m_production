@@ -75,6 +75,8 @@ abstract class  LocaleKeys {
   static const settings = 'settings';
   static const profile_edit_profile = 'profile.edit_profile';
   static const profile_full_name = 'profile.full_name';
+  static const profile_edit_name = 'profile.edit_name';
+  static const profile_edit_image = 'profile.edit_image';
   static const profile_save_changes = 'profile.save_changes';
   static const profile_store_manager = 'profile.store_manager';
   static const profile = 'profile';

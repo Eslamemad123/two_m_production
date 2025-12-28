@@ -16,7 +16,7 @@ class LoginFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: cubit.KeyLogin,
+      key: cubit.keyLogin,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

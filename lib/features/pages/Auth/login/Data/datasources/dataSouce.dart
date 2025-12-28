@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:two_m_production/core/error/failer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 abstract class AuthDataSourc {
@@ -19,6 +20,11 @@ class AuthDataSourcImp implements AuthDataSourc {
         email: email,
         password: password,
       );
+      Localhelper.setString(
+        Localhelper.kUserEmail,
+        FirebaseAuth.instance.currentUser?.email ?? '',
+      );
+      Localhelper.setBool(Localhelper.kUserIsLogin, true);
       return Right(true);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email') {

@@ -22,6 +22,7 @@ class AddProductScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: Text(
           LocaleKeys.add_product_title.tr(),
           style: AppFontStyles.getSize18(fontWeight: FontWeight.bold),

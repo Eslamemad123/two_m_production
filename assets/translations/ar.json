@@ -78,6 +78,8 @@
   "profile": {
     "edit_profile": "تعديل الملف الشخصي",
     "full_name": "الاسم الكامل",
+        "edit_name": "تعديل الأسم",
+    "edit_image":   "* اضغط علي الدائرة لتغير الصورة ",
     "save_changes": "حفظ التغييرات",
     "store_manager": "مدير المتجر"
   },

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_m_production/core/routes/routes.dart';
 import 'package:two_m_production/core/utils/colors.dart';
-import 'package:two_m_production/features/pages/Setting/widget/settings_tile.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/settings_tile.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class SettingManagerCard extends StatelessWidget {

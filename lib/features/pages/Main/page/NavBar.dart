@@ -9,7 +9,7 @@ import 'package:two_m_production/features/pages/Main/widget/nav_item.dart';
 import 'package:two_m_production/features/pages/Main/widget/nav_item_model.dart';
 import 'package:two_m_production/features/pages/Profits/pages/ProfitsScreen.dart';
 import 'package:two_m_production/features/pages/RecordSale/page/record_sale_sheet.dart';
-import 'package:two_m_production/features/pages/Setting/pages/setingScreen.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/pages/setingScreen.dart';
 import 'package:two_m_production/features/pages/oreder/pages/ordersScreen.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
@@ -45,61 +45,65 @@ class _NavBarState extends State<NavBar> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: screens[currentIndex],
-      bottomNavigationBar: Container(
-        height: 60.h,
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.r),
-            topRight: Radius.circular(20.r),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.08),
-              blurRadius: 10.r,
-              offset: Offset(0, -3.h),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          // height: 70.h,
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.r),
+              topRight: Radius.circular(20.r),
             ),
-          ],
-        ),
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.08),
+                blurRadius: 10.r,
+                offset: Offset(0, -3.h),
+              ),
+            ],
           ),
-          child: BottomNavigationBar(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            type: BottomNavigationBarType.fixed,
-            currentIndex: currentIndex,
-            onTap: (index) {
-              setState(() => currentIndex = index);
-            },
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            selectedItemColor: AppColors.primary,
-            unselectedItemColor: isDark ? AppColors.gray500 : AppColors.gray400,
-            items: List.generate(navItems.length, (index) {
-              final bool isSelected = currentIndex == index;
-              final bool isAddItem = index == 2;
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: BottomNavigationBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              type: BottomNavigationBarType.fixed,
+              currentIndex: currentIndex,
+              onTap: (index) {
+                setState(() => currentIndex = index);
+              },
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              selectedItemColor: AppColors.primary,
+              unselectedItemColor: isDark
+                  ? AppColors.gray500
+                  : AppColors.gray400,
+              items: List.generate(navItems.length, (index) {
+                final bool isSelected = currentIndex == index;
+                final bool isAddItem = index == 2;
 
-              return BottomNavigationBarItem(
-                label: '',
-                icon: isAddItem
-                    ? CenterAddButton(
-                        icon: navItems[index].selectedIcon,
-                        isSelected: isSelected,
-                        onTap: () {
-                          setState(() => currentIndex = index);
-                        },
-                      )
-                    : NavItem(
-                        selectedIcon: navItems[index].selectedIcon,
-                        unselectedIcon: navItems[index].unselectedIcon,
-                        label: navItems[index].label,
-                        isSelected: isSelected,
-                      ),
-              );
-            }),
+                return BottomNavigationBarItem(
+                  label: '',
+                  icon: isAddItem
+                      ? CenterAddButton(
+                          icon: navItems[index].selectedIcon,
+                          isSelected: isSelected,
+                          onTap: () {
+                            setState(() => currentIndex = index);
+                          },
+                        )
+                      : NavItem(
+                          selectedIcon: navItems[index].selectedIcon,
+                          unselectedIcon: navItems[index].unselectedIcon,
+                          label: navItems[index].label,
+                          isSelected: isSelected,
+                        ),
+                );
+              }),
+            ),
           ),
         ),
       ),

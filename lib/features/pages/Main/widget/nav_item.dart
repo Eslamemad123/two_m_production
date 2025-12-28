@@ -23,8 +23,8 @@ class NavItem extends StatelessWidget {
       children: [
         SvgPicture.asset(
           isSelected ? selectedIcon : unselectedIcon,
-          width: isSelected ? 22.w : 18.w,
-          height: isSelected ? 20.w : 18.w,
+          width: isSelected ? 20.w : 20.w,
+          height: isSelected ? 24.w : 20.w,
           colorFilter: ColorFilter.mode(
             isSelected ? AppColors.primary : AppColors.gray500,
             BlendMode.srcIn,
@@ -35,7 +35,11 @@ class NavItem extends StatelessWidget {
         if (!isSelected)
           Text(
             label,
-            style: TextStyle(fontSize: 12.sp, color: AppColors.gray500),
+            style: TextStyle(
+              fontSize: 11.sp,
+              color: AppColors.gray500,
+              fontWeight: FontWeight.w600,
+            ),
           ),
 
         if (isSelected) ...[

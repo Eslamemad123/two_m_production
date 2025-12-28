@@ -4,6 +4,8 @@ class Localhelper {
   static late SharedPreferences pref;
   static String kUserEmail = 'user_email';
   static String kUserIsLogin = 'user_isLogin';
+  static String kUserImage = 'user_image';
+  static String kUserName = 'user_name';
 
 
   static init() async {

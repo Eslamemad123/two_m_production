@@ -26,6 +26,7 @@ dependencies:
   lottie: ^3.3.2
   shared_preferences: ^2.5.4
   smooth_page_indicator: ^1.2.1
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   build_runner: ^2.10.4
@@ -33,7 +34,15 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^5.6.1
+flutter_native_splash:
+  color: "#FFe64a19"   # شفاف تمامًا
+  image: null          # مفيش صورة
 
+  android_12:
+    color: "#FFe64a19"
+    image: null
+
+  fullscreen: true
 flutter:
   uses-material-design: true
   assets:

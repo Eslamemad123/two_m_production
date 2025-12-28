@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {
                       if (context
                           .read<AuthCubit>()
-                          .KeyLogin
+                          .keyLogin
                           .currentState!
                           .validate()) {
                         context.read<AuthCubit>().login();

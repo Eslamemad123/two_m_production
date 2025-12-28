@@ -1,3 +1,4 @@
+
 {
   "common": {
     "add": "Add",
@@ -79,6 +80,8 @@
   "profile": {
     "edit_profile": "Edit Profile",
     "full_name": "Full Name",
+    "edit_name": "Edit Name",
+    "edit_image": "click icon to edit photo *",
     "save_changes": "Save Changes",
     "store_manager": "Store Manager"
   },

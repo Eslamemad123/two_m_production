@@ -1,35 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:two_m_production/core/constatnts/images.dart';
-import 'package:two_m_production/core/routes/navigation.dart';
-import 'package:two_m_production/core/routes/routes.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:gap/gap.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    Future.delayed(Duration(seconds: 3), () {
-      pushTo(context, Routes.login);
-    });
-    super.initState();
-  }
+class SplashUI extends StatelessWidget {
+  const SplashUI({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Center(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -70,17 +57,6 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Lottie.asset(AppAssets.loadingSplashJSON),
           ),
         ],
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Text(
-          ' By Eslam Emad ',
-          style: AppFontStyles.getSize14(
-            fontWeight: FontWeight.w400,
-            fontColor: AppColors.gray500,
-          ),
-          textAlign: TextAlign.center,
-        ),
       ),
     );
   }

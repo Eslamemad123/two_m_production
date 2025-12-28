@@ -6,8 +6,9 @@ import 'package:two_m_production/features/pages/Auth/login/Presentation/cubit/au
 import 'package:two_m_production/features/pages/Auth/login/Presentation/page/loginScreen.dart';
 import 'package:two_m_production/features/pages/Main/page/NavBar.dart';
 import 'package:two_m_production/features/pages/ProductDetails/pages/product_details_screen.dart';
-import 'package:two_m_production/features/pages/Setting/pages/edit_profile_screen.dart';
-import 'package:two_m_production/features/pages/intro/splash/splashScreen.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/cubit/settingCubit.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/pages/edit_profile_screen.dart';
+import 'package:two_m_production/features/pages/intro/splash/page/splashScreen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -49,7 +50,10 @@ class Routes {
 
       GoRoute(
         path: editProfile,
-        builder: (context, state) => const EditProfileScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => SettingCubit(),
+          child: const EditProfileScreen(),
+        ),
       ),
     ],
   );

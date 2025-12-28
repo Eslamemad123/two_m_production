@@ -1,14 +1,26 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:two_m_production/core/routes/navigation.dart';
 import 'package:two_m_production/core/routes/routes.dart';
+import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/cubit/settingCubit.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/editProfile/photo_edit_profile.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/editProfile/setting_image_and_name.dart';
 
-class SettingProfileCart extends StatelessWidget {
-  const SettingProfileCart({super.key});
+class SettingProfileCart extends StatefulWidget {
+  const SettingProfileCart({super.key, required this.cubit});
+  final SettingCubit cubit;
+  @override
+  State<SettingProfileCart> createState() => _SettingProfileCartState();
+}
+
+class _SettingProfileCartState extends State<SettingProfileCart> {
+  String name = Localhelper.getString(Localhelper.kUserName) ?? 'ES';
+  String path = Localhelper.getString(Localhelper.kUserImage) ?? '';
 
   @override
   Widget build(BuildContext context) {
@@ -27,28 +39,18 @@ class SettingProfileCart extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 28.r,
-            backgroundColor: AppColors.primarySoft,
-            child: Text(
-              'JD',
-              style: AppFontStyles.getSize18(
-                fontWeight: FontWeight.bold,
-                fontColor: AppColors.primary,
-              ),
-            ),
-          ),
+          SettingImageAndName(radius: 26,),
           SizedBox(width: 16.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'John Doe',
+                  Localhelper.getString(Localhelper.kUserName) ?? '',
                   style: AppFontStyles.getSize16(fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  LocaleKeys.profile_store_manager.tr(),
+                  Localhelper.getString(Localhelper.kUserEmail) ?? '',
                   style: AppFontStyles.getSize12(
                     fontColor: AppColors.textSecondary,
                   ),
@@ -57,8 +59,10 @@ class SettingProfileCart extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {
-              GoRouter.of(context).push(Routes.editProfile);
+            onPressed: () async {
+              pushTo(context, Routes.editProfile).then((value) {
+                setState(() {});
+              });
             },
             icon: Icon(Icons.edit, color: AppColors.primary, size: 20.sp),
           ),

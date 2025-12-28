@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
@@ -11,7 +10,7 @@ import 'package:two_m_production/features/pages/Auth/login/Presentation/cubit/au
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitState());
   final AuthUseCase authUseCase = gi<AuthUseCase>();
-  var KeyLogin = GlobalKey<FormState>();
+  var keyLogin = GlobalKey<FormState>();
   var email = TextEditingController();
   var password = TextEditingController();
 
@@ -25,11 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
       },
       (bool) {
         emit(AuthSuccessState());
-        Localhelper.setString(
-          Localhelper.kUserEmail,
-          FirebaseAuth.instance.currentUser?.email ?? '',
-        );
-        Localhelper.setBool(Localhelper.kUserIsLogin, true);
+       
       },
     );
   }
