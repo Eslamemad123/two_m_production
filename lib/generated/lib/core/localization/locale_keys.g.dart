@@ -150,5 +150,9 @@ abstract class  LocaleKeys {
   static const auth = 'auth';
   static const splash_text = 'splash.text';
   static const splash = 'splash';
+  static const firebase_emailPassError = 'firebase.emailPassError';
+  static const firebase_invalidEmail = 'firebase.invalidEmail';
+  static const firebase_authError = 'firebase.authError';
+  static const firebase = 'firebase';
 
 }

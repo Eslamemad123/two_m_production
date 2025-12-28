@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:two_m_production/features/pages/Auth/login/widget/logo_login.dart';
+import 'package:two_m_production/features/pages/Auth/login/Presentation/widget/logo_login.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class LoginWithOther extends StatelessWidget {

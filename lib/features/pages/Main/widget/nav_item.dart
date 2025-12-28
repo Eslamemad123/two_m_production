@@ -23,20 +23,23 @@ class NavItem extends StatelessWidget {
       children: [
         SvgPicture.asset(
           isSelected ? selectedIcon : unselectedIcon,
-          width: isSelected ? 24.w : 18.w,
-          height: isSelected ? 24.w : 18.w,
+          width: isSelected ? 22.w : 18.w,
+          height: isSelected ? 20.w : 18.w,
           colorFilter: ColorFilter.mode(
             isSelected ? AppColors.primary : AppColors.gray500,
             BlendMode.srcIn,
           ),
         ),
-         SizedBox(height: 4.h),
 
+        SizedBox(height: 2.h),
         if (!isSelected)
-          Text(label, style: TextStyle(fontSize: 12.sp, color: AppColors.gray500)),
+          Text(
+            label,
+            style: TextStyle(fontSize: 12.sp, color: AppColors.gray500),
+          ),
 
         if (isSelected) ...[
-          const SizedBox(height: 5),
+          const SizedBox(height: 3),
           Container(
             width: 5.w,
             height: 5.w,

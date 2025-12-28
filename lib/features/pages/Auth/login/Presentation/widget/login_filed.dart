@@ -6,15 +6,17 @@ import 'package:two_m_production/components/inputs/main_text_form_field.dart';
 import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
+import 'package:two_m_production/features/pages/Auth/login/Presentation/cubit/auth_cubit.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class LoginFiled extends StatelessWidget {
-  const LoginFiled({super.key});
+  const LoginFiled({super.key, required this.cubit});
+  final AuthCubit cubit;
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: key,
+      key: cubit.KeyLogin,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,6 +35,13 @@ class LoginFiled extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: MainTextFormField(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your Email';
+                }
+                return null;
+              },
+              controller: cubit.email,
               ispassword: false,
               prefixIcon: AppAssets.emailSVG,
               hint: LocaleKeys.auth_enter_email.tr(),
@@ -57,6 +66,13 @@ class LoginFiled extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: MainTextFormField(
+              controller: cubit.password,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your Password';
+                }
+                return null;
+              },
               ispassword: true,
               prefixIcon: AppAssets.lock2SVG,
               hint: LocaleKeys.auth_enter_password.tr(),

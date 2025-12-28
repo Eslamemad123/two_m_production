@@ -13,7 +13,7 @@ class AppColors {
   static const Color primaryDark = Color(0xFFB3121D);
   static const Color primarySoft = Color(0xFFFFE5E7);
   static const Color primaryOpacity = Color(0x33E51C2A);
-  static const Color black = Color.fromARGB(51, 0, 0, 0);
+  static const Color black = Color.fromARGB(255, 0, 0, 0);
 
   // ==================================================
   // SECONDARY / ACCENT
@@ -62,10 +62,10 @@ class AppColors {
   // STATUS COLORS
   // ==================================================
 
-  static const Color success = Color(0xFF2ECC71);
+  static const Color success = Color(0xFF34d058);
   static const Color successSoft = Color(0xFFE8F8F0);
 
-  static const Color warning = Color(0xFFFFC107);
+  static const Color warning = Color.fromARGB(255, 231, 173, 0);
   static const Color warningSoft = Color(0xFFFFF4D6);
 
   static const Color error = Color(0xFFD32F2F);

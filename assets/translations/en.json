@@ -162,5 +162,10 @@
   },
   "splash": {
     "text": "Manage your inventory with ease"
+  },
+    "firebase":{
+    "emailPassError":"Email or password is incorrect",
+    "invalidEmail":"Email format is not valid",
+    "authError":"Authentication error"
   }
 }

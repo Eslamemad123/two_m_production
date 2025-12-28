@@ -8,9 +8,9 @@ import 'package:two_m_production/features/pages/Main/widget/add_button.dart';
 import 'package:two_m_production/features/pages/Main/widget/nav_item.dart';
 import 'package:two_m_production/features/pages/Main/widget/nav_item_model.dart';
 import 'package:two_m_production/features/pages/Profits/pages/ProfitsScreen.dart';
-import 'package:two_m_production/features/pages/oreder/pages/ordersScreen.dart';
-import 'package:two_m_production/features/pages/Setting/pages/setingScreen.dart';
 import 'package:two_m_production/features/pages/RecordSale/page/record_sale_sheet.dart';
+import 'package:two_m_production/features/pages/Setting/pages/setingScreen.dart';
+import 'package:two_m_production/features/pages/oreder/pages/ordersScreen.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class NavBar extends StatefulWidget {
@@ -46,7 +46,7 @@ class _NavBarState extends State<NavBar> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: screens[currentIndex],
       bottomNavigationBar: Container(
-        height: 75.h,
+        height: 60.h,
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.only(
