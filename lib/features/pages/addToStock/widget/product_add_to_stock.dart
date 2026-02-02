@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:two_m_production/features/pages/addToStock/page/add_stock_sheet.dart';
+import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 
 class productAddToStock extends StatelessWidget {
   const productAddToStock({
     super.key,
     required this.isDark,
-    required this.widget,
+    required this.product,
   });
-
+  final ProductModel product;
   final bool isDark;
-  final AddStockSheet widget;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class productAddToStock extends StatelessWidget {
               color: AppColors.white,
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Image.asset(AppAssets.smallRed),
+            child: Image.asset(product.imagePath![0]),
           ),
           SizedBox(width: 16.w),
           Expanded(
@@ -40,12 +38,12 @@ class productAddToStock extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.initialProductName ?? 'Nike Air Zoom ...',
+                  product.name,
                   style: AppFontStyles.getSize14(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  'Size: 10.5 \u2022 Red/Black',
+                  '${product.subName} \u2022 ${product.code}',
                   style: AppFontStyles.getSize12(
                     fontColor: AppColors.textSecondary,
                   ),
@@ -61,17 +59,12 @@ class productAddToStock extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(
-                  Icons.warning_amber_rounded,
-                  size: 14.sp,
-                  color: const Color(0xFFE53935),
-                ),
                 SizedBox(width: 4.w),
                 Text(
-                  '250  Stock',
+                  '${product.stock} In Stock',
                   style: TextStyle(
                     color: const Color(0xFFE53935),
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -7,8 +7,13 @@ import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.d
 
 class ProductDetailsSize extends StatelessWidget {
   final int selectedSizeIndex;
+  final int stockCount;
 
-  const ProductDetailsSize({super.key, required this.selectedSizeIndex});
+  const ProductDetailsSize({
+    super.key,
+    required this.selectedSizeIndex,
+    required this.stockCount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +30,14 @@ class ProductDetailsSize extends StatelessWidget {
               style: AppFontStyles.getSize16(fontWeight: FontWeight.bold),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
               decoration: BoxDecoration(
                 color: AppColors.success.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                '${LocaleKeys.product_details_in_stock.tr()}: 42',
-                style: AppFontStyles.getSize12(
+                '${LocaleKeys.product_details_in_stock.tr()}: ${stockCount}',
+                style: AppFontStyles.getSize16(
                   fontColor: AppColors.success,
                   fontWeight: FontWeight.bold,
                 ),

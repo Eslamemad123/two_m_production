@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
+import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 import 'package:two_m_production/features/pages/ProductDetails/widget/product_details_buttons.dart';
 import 'package:two_m_production/features/pages/ProductDetails/widget/product_details_size.dart';
 import 'package:two_m_production/features/pages/ProductDetails/widget/product_details_title_and_price.dart';
 import 'package:two_m_production/features/pages/ProductDetails/widget/product_detials_description.dart';
 
 class ProductDetailsImage extends StatelessWidget {
-  const ProductDetailsImage({super.key, required this.selectedSizeIndex});
-
-  final int selectedSizeIndex;
+  const ProductDetailsImage({super.key, required this.product});
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +49,16 @@ class ProductDetailsImage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24.h),
-              const ProductDetailsTitleAndPrice(),
-              SizedBox(height: 30.h),
-              ProductDetailsSize(selectedSizeIndex: selectedSizeIndex),
-              SizedBox(height: 24.h),
-              const ProductDetialsDescription(),
-              const ProductDetailsButtons(),
+              ProductDetailsTitleAndPrice(product: product),
+              Spacer(flex: 1),
+              ProductDetailsSize(
+                selectedSizeIndex: product.size ?? 1,
+                stockCount: product.stock,
+              ),
+              Spacer(flex: 1),
+              ProductDetialsDescription(product: product),
+              Spacer(flex: 1),
+              ProductDetailsButtons(product: product),
             ],
           ),
         ),

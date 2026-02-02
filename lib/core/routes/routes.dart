@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:two_m_production/features/pages/AddProduct/pages/add_product_screen.dart';
 import 'package:two_m_production/features/pages/Auth/login/Presentation/cubit/auth_cubit.dart';
 import 'package:two_m_production/features/pages/Auth/login/Presentation/page/loginScreen.dart';
+import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 import 'package:two_m_production/features/pages/Main/page/NavBar.dart';
 import 'package:two_m_production/features/pages/ProductDetails/pages/product_details_screen.dart';
 import 'package:two_m_production/features/pages/Setting/Presentation/cubit/settingCubit.dart';
@@ -41,7 +42,11 @@ class Routes {
       GoRoute(path: main, builder: (context, state) => const NavBar()),
       GoRoute(
         path: productDetails,
-        builder: (context, state) => const ProductDetailsScreen(),
+        builder: (context, state) {
+          final extra = state.extra as Map<String, ProductModel>;
+          final product = extra['product'];
+          return ProductDetailsScreen(product: product!);
+        },
       ),
       GoRoute(
         path: addProduct,

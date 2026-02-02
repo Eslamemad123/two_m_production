@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/routes/navigation.dart';
@@ -8,7 +6,6 @@ import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/features/pages/Setting/Presentation/cubit/settingCubit.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/widget/editProfile/photo_edit_profile.dart';
 import 'package:two_m_production/features/pages/Setting/Presentation/widget/editProfile/setting_image_and_name.dart';
 
 class SettingProfileCart extends StatefulWidget {

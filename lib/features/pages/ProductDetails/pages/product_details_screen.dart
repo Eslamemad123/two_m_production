@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:two_m_production/core/constatnts/images.dart';
+import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
+import 'package:two_m_production/features/pages/ProductDetails/widget/home__slider.dart';
 import 'package:two_m_production/features/pages/ProductDetails/widget/product_details_image.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key});
-
+  const ProductDetailsScreen({super.key, required this.product});
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     // Fixed size index: 0=S, 1=M, 2=L, 3=XL
-    const int selectedSizeIndex = 1; // M is selected (red border)
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -39,15 +38,17 @@ class ProductDetailsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.r),
               ),
               child: Center(
-                child: Image.asset(
-                  AppAssets.large1,
-                  width: 300.w,
-                  height: 300.w,
+                child: PhotosProductDetails(
+                  images:
+                      product.imagePath ??
+                      [
+                        'https://assets.tracegains.net/resources/img/global/no_image.jpg',
+                      ],
                 ),
               ),
             ),
           ),
-          ProductDetailsImage(selectedSizeIndex: selectedSizeIndex),
+          ProductDetailsImage(product: product),
         ],
       ),
     );

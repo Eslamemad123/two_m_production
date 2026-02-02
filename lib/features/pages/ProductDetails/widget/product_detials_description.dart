@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
+import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class ProductDetialsDescription extends StatelessWidget {
-  const ProductDetialsDescription({super.key});
-
+  const ProductDetialsDescription({super.key, required this.product});
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,12 +20,34 @@ class ProductDetialsDescription extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         Text(
-          LocaleKeys.product_details_sportswear_desc.tr(),
+          product.description,
           style: AppFontStyles.getSize12(fontColor: AppColors.textSecondary),
-          maxLines: 2,
+          maxLines: 3,
           overflow: TextOverflow.ellipsis,
         ),
-        SizedBox(height: 16.h),
+        SizedBox(height: 26.h),
+        if (product.note != null) ...[
+          Row(
+            children: [
+              Text(
+                'Note :',
+                style: AppFontStyles.getSize16(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(width: 8.h),
+
+              Expanded(
+                child: Text(
+                  product.note!,
+                  style: AppFontStyles.getSize12(
+                    fontColor: AppColors.textSecondary,
+                  ),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        ],
       ],
     );
   }

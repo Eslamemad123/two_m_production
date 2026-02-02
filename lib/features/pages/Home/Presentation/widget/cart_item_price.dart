@@ -9,7 +9,7 @@ class cartItemPrice extends StatelessWidget {
   const cartItemPrice({super.key, required this.stock, required this.price});
 
   final int stock;
-  final double price;
+  final int price;
 
   @override
   Widget build(BuildContext context) {

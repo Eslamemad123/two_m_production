@@ -42,6 +42,7 @@ class SettingDataSourceImp extends SettingdataSource {
       }
       return Right(true);
     } on Exception catch (e) {
+      log(e.toString());
       return Left(Failure(message: 'Wrong'));
     }
   }

@@ -1,24 +1,18 @@
-import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:two_m_production/core/extentions/imagePicker.dart';
-import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/core/utils/colors.dart';
-import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/features/pages/Setting/Presentation/cubit/settingCubit.dart';
 import 'package:two_m_production/features/pages/Setting/Presentation/widget/editProfile/setting_image_and_name.dart';
 
-class photoEditProfile extends StatefulWidget {
-  photoEditProfile({super.key, required this.cubit});
+class PhotoEditProfile extends StatefulWidget {
+  PhotoEditProfile({super.key, required this.cubit});
   SettingCubit cubit;
 
   @override
-  State<photoEditProfile> createState() => _photoEditProfileState();
+  State<PhotoEditProfile> createState() => _PhotoEditProfileState();
 }
 
-class _photoEditProfileState extends State<photoEditProfile> {
+class _PhotoEditProfileState extends State<PhotoEditProfile> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -31,7 +25,7 @@ class _photoEditProfileState extends State<photoEditProfile> {
                 widget.cubit.patImage = image ?? '';
               });
             },
-            child: SettingImageAndName(radius: 60,),
+            child: SettingImageAndName(radius: 60),
           ),
           Positioned(
             bottom: 2,

@@ -7,7 +7,7 @@ environment:
   sdk: ^3.9.2
 
 dependencies:
-  cloud_firestore: ^6.0.3
+  cloud_firestore: ^6.1.1
   dartz: ^0.10.1
   device_preview: ^1.2.0
   easy_localization: ^3.0.8
@@ -16,6 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.0
+  flutter_native_splash: ^2.4.1
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.9
   gap: ^3.0.1
@@ -26,8 +27,7 @@ dependencies:
   lottie: ^3.3.2
   shared_preferences: ^2.5.4
   smooth_page_indicator: ^1.2.1
-  flutter_native_splash: ^2.4.1
-
+  carousel_slider: ^5.1.1
 dev_dependencies:
   build_runner: ^2.10.4
   flutter_lints: ^5.0.0
@@ -35,8 +35,8 @@ dev_dependencies:
     sdk: flutter
   mockito: ^5.6.1
 flutter_native_splash:
-  color: "#FFe64a19"   # شفاف تمامًا
-  image: null          # مفيش صورة
+  color: "#FFe64a19" # شفاف تمامًا
+  image: null # مفيش صورة
 
   android_12:
     color: "#FFe64a19"

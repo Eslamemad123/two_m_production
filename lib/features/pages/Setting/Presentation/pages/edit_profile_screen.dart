@@ -55,7 +55,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 const SizedBox(height: 20),
 
                 // Profile Picture
-                photoEditProfile(cubit: cubit),
+                PhotoEditProfile(cubit: cubit),
                 const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 10.0),

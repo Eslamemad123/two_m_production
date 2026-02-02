@@ -2,11 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
+import 'package:two_m_production/features/pages/Home/Presentation/cubit/homeCubit.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class ButtonsAddToStock extends StatelessWidget {
-  const ButtonsAddToStock({super.key});
-
+  ButtonsAddToStock({super.key, required this.cubit,required this.idProduct});
+  HomeCubit cubit;
+  String idProduct;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,7 +16,9 @@ class ButtonsAddToStock extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              cubit.addProductStock(context, idProduct);
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFE53935),
               padding: EdgeInsets.symmetric(vertical: 16.h),

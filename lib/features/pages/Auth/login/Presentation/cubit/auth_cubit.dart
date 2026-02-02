@@ -1,9 +1,7 @@
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_m_production/core/GetIt/gi.dart';
-import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/features/pages/Auth/login/Domain/usecases/login_useCase.dart';
 import 'package:two_m_production/features/pages/Auth/login/Presentation/cubit/auth_state.dart';
 

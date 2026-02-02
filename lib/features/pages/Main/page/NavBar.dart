@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
-import 'package:two_m_production/features/pages/Home/pages/homeScreen.dart';
+import 'package:two_m_production/features/pages/Home/Presentation/pages/homeScreen.dart';
 import 'package:two_m_production/features/pages/Main/widget/add_button.dart';
 import 'package:two_m_production/features/pages/Main/widget/nav_item.dart';
 import 'package:two_m_production/features/pages/Main/widget/nav_item_model.dart';

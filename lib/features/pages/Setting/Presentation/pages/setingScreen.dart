@@ -200,7 +200,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 activeColor: AppColors.primary,
                 onChanged: (val) {
                   if (val != null) {
-                    context.setLocale(const Locale('en'));
+                    context.setLocale(Locale('en'));
                     Navigator.pop(context);
                   }
                 },
@@ -217,7 +217,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 activeColor: AppColors.primary,
                 onChanged: (val) {
                   if (val != null) {
-                    context.setLocale(const Locale('ar'));
+                    context.setLocale(Locale('ar'));
                     Navigator.pop(context);
                   }
                 },
