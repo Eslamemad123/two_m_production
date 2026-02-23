@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: BlocProvider(
-          create: (_) => HomeCubit()..getHomeSection(),
+          create: (_) => HomeCubit()..getHomeSection('2M Covers'),
           child: Builder(
             builder: (context) {
               return SingleChildScrollView(

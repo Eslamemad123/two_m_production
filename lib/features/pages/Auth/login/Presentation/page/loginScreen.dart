@@ -7,12 +7,12 @@ import 'package:two_m_production/core/routes/navigation.dart';
 import 'package:two_m_production/core/routes/routes.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:gap/gap.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/features/pages/Auth/login/Presentation/cubit/auth_cubit.dart';
 import 'package:two_m_production/features/pages/Auth/login/Presentation/cubit/auth_state.dart';
 import 'package:two_m_production/features/pages/Auth/login/Presentation/widget/login_filed.dart';
 import 'package:two_m_production/features/pages/Auth/login/Presentation/widget/login_header.dart';
 import 'package:two_m_production/features/pages/Auth/login/Presentation/widget/login_with_other.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class LoginScreen extends StatelessWidget {

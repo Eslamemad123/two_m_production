@@ -21,6 +21,7 @@ class MainTextFormField extends StatefulWidget {
     this.sufixIcon,
     this.textColor,
     this.textInputNext,
+    this.ketboardType,
     this.onFieldSubmitted,
   });
   bool ispassword = false;
@@ -33,6 +34,7 @@ class MainTextFormField extends StatefulWidget {
   final String? prefixIcon;
   final String? sufixIcon;
   final Color? textColor;
+  final TextInputType? ketboardType;
   final TextInputAction? textInputNext;
   final void Function(String)? onFieldSubmitted;
   @override
@@ -54,7 +56,7 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
         maxLines: widget.maxTextLines,
         onFieldSubmitted: widget.onFieldSubmitted,
         style: AppFontStyles.getSize18(),
-
+        keyboardType: widget.ketboardType,
         decoration: InputDecoration(
           label: Text(
             widget.label ?? "",
@@ -62,6 +64,7 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
               fontColor: widget.textColor ?? AppColors.gray400,
             ),
           ),
+
           filled: true,
           fillColor: widget.colorFill ?? AppColors.gray200,
           suffixIcon: widget.ispassword
@@ -99,7 +102,7 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
 
           hint: Text(
             widget.hint ?? "",
-            style: AppFontStyles.getSize18(fontColor: AppColors.gray400),
+            style: AppFontStyles.getSize14(fontColor: AppColors.gray400),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),

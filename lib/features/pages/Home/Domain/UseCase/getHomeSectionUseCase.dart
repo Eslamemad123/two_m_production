@@ -6,7 +6,7 @@ import 'package:two_m_production/features/pages/Home/Domain/Repo/homeRepo.dart';
 class GetHomeSectionUseCase {
   final HomeRepo homeRepo;
   GetHomeSectionUseCase({required this.homeRepo});
-  Future<Either<Failure, List<ProductModel>>> call(String section) {
+  Stream<Either<Failure, List<ProductModel>>> call(String section) {
     return homeRepo.getHomeSection(section);
   }
 }

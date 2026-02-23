@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:two_m_production/features/pages/oreder/model/order_model.dart';
-import 'package:two_m_production/features/pages/oreder/widget/order_item_expanded.dart';
-import 'package:two_m_production/features/pages/oreder/widget/order_item_header.dart';
-import 'package:two_m_production/features/pages/oreder/widget/order_item_price_and_quantity.dart';
+import 'package:two_m_production/features/pages/oreder/presentation/widget/order_item_expanded.dart';
+import 'package:two_m_production/features/pages/oreder/presentation/widget/order_item_header.dart';
+import 'package:two_m_production/features/pages/oreder/presentation/widget/order_item_price_and_quantity.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class OrderCard extends StatefulWidget {
-  final OrderModel order;
+  final order;
 
   const OrderCard({super.key, required this.order});
 

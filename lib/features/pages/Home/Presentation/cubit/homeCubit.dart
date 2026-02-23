@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,17 +23,24 @@ class HomeCubit extends Cubit<HomeState> {
   TextEditingController? dateController = TextEditingController();
   TextEditingController noteController = TextEditingController();
   List<ProductModel> products = [];
+  StreamSubscription? _homeSubscription;
 
-  getHomeSection() async {
+  void getHomeSection(String? section) {
     emit(HomeLoadingState());
-    var response = await homeSection.call(categoryHomeKet ?? '2M Covers');
-    response.fold(
-      (Failure) {
-        emit(HomeErrorState(Failure.message));
-      },
-      (List<ProductModel> p) {
-        products = p;
-        emit(HomeSuccessState());
+    if (section != null) categoryHomeKet = section;
+    _homeSubscription?.cancel();
+
+    _homeSubscription = homeSection.call(categoryHomeKet ?? '2M Covers').listen(
+      (response) {
+        response.fold(
+          (failure) {
+            emit(HomeErrorState(failure.message));
+          },
+          (List<ProductModel> p) {
+            products = p;
+            emit(HomeSuccessState());
+          },
+        );
       },
     );
   }

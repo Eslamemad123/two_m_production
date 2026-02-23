@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -7,7 +5,7 @@ import 'package:two_m_production/core/error/failer.dart';
 import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 
 abstract class HomeDataSource {
-  Future<Either<Failure, List<ProductModel>>> getHomeSection(String section);
+  Stream<Either<Failure, List<ProductModel>>> getHomeSection(String section);
   Future<Either<Failure, bool>> addProducStock(
     int count,
     String id,
@@ -41,56 +39,31 @@ class HomeDataSourceImp extends HomeDataSource {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getHomeSection(
-    String section,
-  ) async {
-    /*final docRef = FirebaseFirestore.instance.collection('products').doc();
-    ProductModel pro = ProductModel(
-      id: docRef.id,
-      description: 'Covers 2m MG in Sock',
-      name: 'X Larg ',
-      price: 350,
-      section: 'All',
-      size: 1,
-      stock: 80,
-      code: '2003lx',
-      date: DateTime.now(),
-      imagePath: AppAssets.large2,
-      injectionMolding: '1',
-      state: 'inStock',
-      subName: '2M Cover',
-    );
-    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-    final CollectionReference _patientCollection = _firestore.collection(
-      'Products',
-    );
-    _patientCollection.doc(pro.id).set(pro.toJson());
-*/
-    log(section);
+  Stream<Either<Failure, List<ProductModel>>> getHomeSection(String section) {
     try {
-      QuerySnapshot<Map<String, dynamic>> querySnapshot;
+      Query<Map<String, dynamic>> query;
+
       if (section == 'All products 2M') {
-        querySnapshot = await firestore.collection('Products').get();
+        query = firestore.collection('Products');
       } else if (section == 'Low Stock') {
-        querySnapshot = await firestore
+        query = firestore
             .collection('Products')
-            .where('stock', isLessThan: 200)
-            .get();
+            .where('stock', isLessThan: 200);
       } else {
-        querySnapshot = await firestore
+        query = firestore
             .collection('Products')
-            .where('section', isEqualTo: section)
-            .get();
+            .where('section', isEqualTo: section);
       }
 
-      final products = querySnapshot.docs
-          .map((doc) => ProductModel.fromJson(doc.data()))
-          .toList();
+      return query.snapshots().map((snapshot) {
+        final products = snapshot.docs
+            .map((doc) => ProductModel.fromJson(doc.data()))
+            .toList();
 
-      return Right(products);
+        return Right(products);
+      });
     } catch (e) {
-      return Left(Failure(message: e.toString()));
+      return Stream.value(Left(Failure(message: e.toString())));
     }
   }
 }

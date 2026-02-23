@@ -4,6 +4,7 @@ import 'package:two_m_production/features/pages/Home/Data/DataSource/homeDataSou
 import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 import 'package:two_m_production/features/pages/Home/Domain/Repo/homeRepo.dart';
 
+
 class HomeRepoImp extends HomeRepo {
   final HomeDataSource homeDataSource;
   HomeRepoImp({required this.homeDataSource});
@@ -14,7 +15,7 @@ class HomeRepoImp extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getHomeSection(String section) {
+  Stream<Either<Failure, List<ProductModel>>> getHomeSection(String section) {
     return homeDataSource.getHomeSection(section);
   }
 }

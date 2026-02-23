@@ -7,9 +7,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 import 'package:two_m_production/features/pages/Home/Presentation/cubit/homeCubit.dart';
 import 'package:two_m_production/features/pages/Home/Presentation/cubit/homeState.dart';
-import 'package:two_m_production/features/pages/addToStock/widget/date_text_form.dart';
 import 'package:two_m_production/features/pages/addToStock/widget/buttons_add_to_stock.dart';
 import 'package:two_m_production/features/pages/addToStock/widget/conter_on_tap_add_to_stock.dart';
+import 'package:two_m_production/features/pages/addToStock/widget/date_text_form.dart';
 import 'package:two_m_production/features/pages/addToStock/widget/notes_filed_add_to_stock.dart';
 import 'package:two_m_production/features/pages/addToStock/widget/product_add_to_stock.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
@@ -159,7 +159,7 @@ class _AddStockSheetState extends State<AddStockSheet> {
                       ),
                     ),
                     SizedBox(height: 12.h),
-                    DateTextForm(cubit: cubit),
+                    DateTextForm(homeCubit: cubit),
                     SizedBox(height: 16.h),
                     NotesFiledAddToStock(cubit: cubit),
 

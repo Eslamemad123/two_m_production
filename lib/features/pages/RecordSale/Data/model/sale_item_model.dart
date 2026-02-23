@@ -5,7 +5,7 @@ class SaleItemModel {
   int quantity;
   final TextEditingController qtyController;
 
-  SaleItemModel({this.size = 'M', this.quantity = 1})
+  SaleItemModel({this.size = 'Medium', this.quantity = 0})
     : qtyController = TextEditingController(text: quantity.toString());
 
   void dispose() {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:two_m_production/features/pages/oreder/widget/order_card.dart';
+import 'package:two_m_production/features/pages/oreder/presentation/widget/order_card.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class OrderItemExpanded extends StatelessWidget {

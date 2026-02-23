@@ -3,22 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/features/pages/Home/Presentation/cubit/homeCubit.dart';
+import 'package:two_m_production/features/pages/RecordSale/presentation/cubit/order_cubit.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class DateTextForm extends StatefulWidget {
-  DateTextForm({super.key, this.cubit});
-  HomeCubit? cubit;
+  DateTextForm({super.key, this.homeCubit, this.orderCubit});
+  HomeCubit? homeCubit;
+  OrderCubit? orderCubit;
 
   @override
   State<DateTextForm> createState() => _DateTextFormState();
 }
 
 class _DateTextFormState extends State<DateTextForm> {
-  TextEditingController ff = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: widget.cubit?.dateController ?? ff,
+      controller: (widget.homeCubit != null)
+          ? widget.homeCubit?.dateController
+          : widget.orderCubit?.dateController,
       onTap: () async {
         var selectDate = await showDatePicker(
           context: context,
@@ -29,7 +32,11 @@ class _DateTextFormState extends State<DateTextForm> {
         if (selectDate != null) {
           setState(() {
             String formattedDate = DateFormat('yyyy-MM-dd').format(selectDate);
-            widget.cubit!.dateController!.text = formattedDate;
+            if (widget.homeCubit != null) {
+              widget.homeCubit!.dateController!.text = formattedDate;
+            } else {
+              widget.orderCubit!.dateController.text = formattedDate;
+            }
           });
         }
       },
