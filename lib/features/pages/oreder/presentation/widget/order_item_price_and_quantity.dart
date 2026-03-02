@@ -2,16 +2,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:two_m_production/features/pages/oreder/presentation/widget/order_card.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class OrderItemPriceAndQuantity extends StatelessWidget {
   const OrderItemPriceAndQuantity({
     super.key,
-    required this.widget,
+    required this.price,
+    required this.sizes,
   });
 
-  final OrderCard widget;
+  final Map<String, int> sizes;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +29,8 @@ class OrderItemPriceAndQuantity extends StatelessWidget {
               ),
             ),
             Text(
-              '${widget.order.quantity} ${LocaleKeys.common_items.tr()}',
-              style: AppFontStyles.getSize14(
-                fontWeight: FontWeight.w600,
-              ),
+              '${price} ${LocaleKeys.common_items.tr()}',
+              style: AppFontStyles.getSize14(fontWeight: FontWeight.w600),
             ),
           ],
         ),
@@ -45,7 +44,8 @@ class OrderItemPriceAndQuantity extends StatelessWidget {
               ),
             ),
             Text(
-              '\$${widget.order.subtotal.toStringAsFixed(2)}',
+              //'\$${widget.order.subtotal.toStringAsFixed(2)}',
+              '1200',
               style: AppFontStyles.getSize18(
                 fontWeight: FontWeight.bold,
                 fontColor: AppColors.primary,

@@ -25,6 +25,8 @@ class HomeCubit extends Cubit<HomeState> {
   List<ProductModel> products = [];
   StreamSubscription? _homeSubscription;
 
+  var sizePriority = {'Middle': 0, 'Small Red': 1, 'Large': 2, 'X Large': 3};
+
   void getHomeSection(String? section) {
     emit(HomeLoadingState());
     if (section != null) categoryHomeKet = section;
@@ -37,7 +39,18 @@ class HomeCubit extends Cubit<HomeState> {
             emit(HomeErrorState(failure.message));
           },
           (List<ProductModel> p) {
-            products = p;
+            p.sort((a, b) {
+              final aSize = (a.name).trim();
+              final bSize = (b.name).trim();
+
+              final aPriority = sizePriority[aSize] ?? 999;
+              final bPriority = sizePriority[bSize] ?? 999;
+
+              return aPriority.compareTo(bPriority);
+            });
+
+            products = List.from(p);
+
             emit(HomeSuccessState());
           },
         );
@@ -58,9 +71,11 @@ class HomeCubit extends Cubit<HomeState> {
     );
     response.fold(
       (Failure) {
+        showMyDialog(context, type: DialogType.error, 'error');
         emit(HomeErrorState(Failure.message));
       },
       (bool b) {
+        Pop(context);
         Pop(context);
         showMyDialog(
           context,

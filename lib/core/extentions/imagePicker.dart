@@ -8,3 +8,8 @@ Future<String?> UploadImage(bool isCamera) async {
     return imagePicker.path;
   }
 }
+
+Future<List<XFile>> UploadMultiImages() async {
+  final List<XFile> medias = await ImagePicker().pickMultipleMedia();
+  return medias;
+}

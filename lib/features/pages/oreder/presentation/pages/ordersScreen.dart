@@ -1,10 +1,16 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
+import 'package:two_m_production/features/pages/RecordSale/presentation/cubit/order_cubit.dart';
+import 'package:two_m_production/features/pages/RecordSale/presentation/cubit/order_state.dart';
 import 'package:two_m_production/features/pages/oreder/presentation/widget/order_card.dart';
+import 'package:two_m_production/features/pages/oreder/presentation/pages/search_orders_screen.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class OrdersScreen extends StatelessWidget {
@@ -13,9 +19,6 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Dummy Data
-    final List orders = [
-      
-    ];
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -34,7 +37,13 @@ class OrdersScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 10.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const SearchOrdersScreen(),
+                  ),
+                );
+              },
               child: CircleAvatar(
                 backgroundColor: AppColors.gray300,
                 radius: 21,
@@ -48,12 +57,29 @@ class OrdersScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(20),
-        itemCount: orders.length,
-        itemBuilder: (context, index) {
-          return OrderCard(order: orders[index]);
-        },
+      body: BlocProvider(
+        create: (context) => OrderCubit()..getOrders(),
+        child: BlocBuilder<OrderCubit, OrderState>(
+          builder: (context, state) {
+            var cubit = context.watch<OrderCubit>();
+            log('{cubit.orders.length}    {cubit.orders[0].name}');
+            if (state is OrderLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (cubit.orders.isEmpty) {
+              return const Center(child: Text('No Orders'));
+            }
+
+            return ListView.builder(
+              padding: const EdgeInsets.all(20),
+              itemCount: cubit.orders.length,
+              itemBuilder: (context, index) {
+                return OrderCard(order: cubit.orders[index]);
+              },
+            );
+          },
+        ),
       ),
     );
   }

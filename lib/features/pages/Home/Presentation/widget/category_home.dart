@@ -89,6 +89,7 @@ class _CategoryHomeState extends State<CategoryHome> {
               ),
             );
           }),
+          
         ),
       ),
     );

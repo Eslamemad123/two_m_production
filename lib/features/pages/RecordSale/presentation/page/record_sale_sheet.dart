@@ -1,9 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:two_m_production/components/buttons/main_button.dart';
+import 'package:two_m_production/core/extentions/show_dialoges.dart';
+import 'package:two_m_production/core/routes/navigation.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,17 +12,22 @@ import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dar
     show ProductModel;
 import 'package:two_m_production/features/pages/Home/Presentation/cubit/homeCubit.dart';
 import 'package:two_m_production/features/pages/Home/Presentation/cubit/homeState.dart';
-import 'package:two_m_production/features/pages/RecordSale/Data/model/oredeModel.dart';
 import 'package:two_m_production/features/pages/RecordSale/Data/model/sale_item_model.dart';
 import 'package:two_m_production/features/pages/RecordSale/presentation/cubit/order_cubit.dart';
 import 'package:two_m_production/features/pages/RecordSale/presentation/cubit/order_state.dart';
 import 'package:two_m_production/features/pages/RecordSale/presentation/widget/record_sale_text_feild.dart';
-import 'package:two_m_production/features/pages/addToStock/widget/conter_on_tap_add_to_stock.dart';
+import 'package:two_m_production/features/pages/RecordSale/presentation/widget/record_sale_item_row.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class RecordSaleSheet extends StatefulWidget {
-  const RecordSaleSheet({super.key});
+  const RecordSaleSheet({
+    super.key,
+    this.ispathFromDetailsProduct = true,
+    this.nameProduct,
+  });
 
+  final bool? ispathFromDetailsProduct;
+  final String? nameProduct;
   @override
   State<RecordSaleSheet> createState() => _RecordSaleSheetState();
 }
@@ -71,9 +77,16 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
   }
 
   void _updateQty(SaleItemModel item, int change) {
-    final current = int.tryParse(item.qtyController.text) ?? 10;
+    final current = int.tryParse(item.qtyController.text) ?? 0;
 
-    final updated = (current + change * 10).clamp(0, 100000);
+    final currentProduct = _allProducts.firstWhere(
+      (p) => p.name == item.size,
+      orElse: () => _allProducts.first,
+    );
+
+    final maxStock = currentProduct.stock;
+
+    final updated = (current + change * 10).clamp(0, maxStock);
 
     setState(() {
       item.quantity = updated;
@@ -85,11 +98,13 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
     final map = <String, int>{};
 
     for (var item in _items) {
-      map.update(
-        item.size,
-        (value) => value + item.quantity,
-        ifAbsent: () => item.quantity,
-      );
+      if (item.quantity > 0) {
+        map.update(
+          item.size,
+          (value) => value + item.quantity,
+          ifAbsent: () => item.quantity,
+        );
+      }
     }
 
     return map;
@@ -152,21 +167,35 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
                           (entry) => _buildItemRow(entry.value, entry.key),
                         ),
                         SizedBox(height: 16.h),
-                        _buildAddButton(),
+                        if (widget.ispathFromDetailsProduct ?? true) ...[
+                          _buildAddButton(),
+                        ],
                         const Divider(),
                         SizedBox(height: 24.h),
-                        Form(
-                          key: orderCubit.formKey,
-                          child: RecordSaleTextFeild(cubit: orderCubit),
-                        ),
+                        RecordSaleTextFeild(cubit: orderCubit),
                         BlocListener<OrderCubit, OrderState>(
                           listener: (context, state) {
                             if (state is OrderSuccessState) {
-                              orderCubit.isLoading = false;
+                              Pop(context);
+                              if (!widget.ispathFromDetailsProduct!) {
+                                Pop(context);
+                                Pop(context);
+                              } else {
+                                // Reset state
+                                setState(() {
+                                  _items.clear();
+                                  _items.add(SaleItemModel());
+                                  orderCubit.nameController.clear();
+                                  orderCubit.priceController.clear();
+                                  orderCubit.dateController.clear();
+                                  orderCubit.phoneController.clear();
+                                  orderCubit.formKey.currentState?.reset();
+                                });
+                              }
                             } else if (state is OrderErrorState) {
-                              orderCubit.isLoading = false;
-                            } else {
-                              orderCubit.isLoading = true;
+                              Pop(context);
+                            } else if (state is OrderLoadingState) {
+                              showLoadingDialog(context);
                             }
                           },
                           child: MainButton(
@@ -175,18 +204,10 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
                                 .tr(),
                             onPressed: () {
                               if (orderCubit.formKey.currentState!.validate()) {
-                                final order = OrderModel(
-                                  name: orderCubit.nameController.text,
-                                  price: double.parse(
-                                    orderCubit.priceController.text,
-                                  ),
-                                  Phone: orderCubit.phoneController.text,
-                                  orderId: '10',
-                                  date: orderCubit.dateController.text,
-                                  sizes: _buildProductsMap(),
+                                orderCubit.addOrder(
+                                  _buildProductsMap(),
+                                  context,
                                 );
-
-                                orderCubit.addOrder(order, context);
                               }
                             },
                           ),
@@ -225,6 +246,11 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
   }
 
   Widget _buildItemRow(SaleItemModel item, int index) {
+    if (!(widget.ispathFromDetailsProduct ?? true) &&
+        widget.nameProduct != null) {
+      item.size = widget.nameProduct!;
+    }
+
     final availableProducts = _getAvailableProductNames(item);
 
     if (!availableProducts.contains(item.size) &&
@@ -232,95 +258,23 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
       item.size = availableProducts.first;
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (index > 0) Divider(height: 30.h),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              '${LocaleKeys.common_item.tr()} ${index + 1}',
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
-            ),
-
-            SizedBox(width: 16.w),
-
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                decoration: BoxDecoration(
-                  color: AppColors.gray100,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<String>(
-                    isExpanded: true,
-                    value: item.size,
-                    items: availableProducts
-                        .map(
-                          (name) =>
-                              DropdownMenuItem(value: name, child: Text(name)),
-                        )
-                        .toList(),
-                    onChanged: (val) {
-                      if (val != null) {
-                        setState(() => item.size = val);
-                      }
-                    },
-                  ),
-                ),
-              ),
-            ),
-
-            if (_items.length > 1)
-              Padding(
-                padding: EdgeInsets.only(left: 8.w),
-                child: IconButton(
-                  icon: Icon(Icons.close, size: 18.sp, color: AppColors.error),
-                  onPressed: () => _removeItem(index),
-                ),
-              ),
-          ],
-        ),
-        SizedBox(height: 16.h),
-        Row(
-          children: [
-            conterOnTapAddToStock(
-              context: context,
-              icon: Icons.remove,
-              onTap: () => _updateQty(item, -1),
-              isOutlined: true,
-            ),
-            SizedBox(width: 16.w),
-            Expanded(
-              child: Container(
-                height: 48.h,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.borderLight),
-                  borderRadius: BorderRadius.circular(12.r),
-                  color: Colors.white,
-                ),
-                child: TextField(
-                  controller: item.qtyController,
-                  textAlign: TextAlign.center,
-                  keyboardType: TextInputType.number,
-                  onChanged: (val) => item.quantity = int.tryParse(val) ?? 10,
-                  decoration: const InputDecoration(border: InputBorder.none),
-                ),
-              ),
-            ),
-            SizedBox(width: 16.w),
-            conterOnTapAddToStock(
-              context: context,
-              icon: Icons.add,
-              onTap: () => _updateQty(item, 1),
-              isOutlined: false,
-            ),
-          ],
-        ),
-        SizedBox(height: 16.h),
-      ],
+    return RecordSaleItemRow(
+      item: item,
+      index: index,
+      allProducts: _allProducts,
+      availableProducts: availableProducts,
+      ispathFromDetailsProduct: widget.ispathFromDetailsProduct ?? true,
+      nameProduct: widget.nameProduct,
+      onRemove: () => _removeItem(index),
+      onQuantityChanged: (change) => _updateQty(item, change),
+      onProductChanged: (val) {
+        setState(() {
+          item.size = val;
+          item.quantity = 0;
+          item.qtyController.text = "0";
+        });
+      },
+      showRemoveIcon: _items.length > 1,
     );
   }
 }

@@ -73,7 +73,12 @@ class AppAssets {
   static const facebookLogoSVG = 'assets/icon/facebook_logo.svg';
   static const appleLogoSVG = 'assets/icon/apple_logo.svg';
   static const googleLogoSVG = 'assets/icon/google_logo.svg';
-
+  static const inDriveSVG = 'assets/icon/inDrive.svg';
+  static const vodafoneSVG = 'assets/icon/vodafon.svg';
+  static const lableSVG = 'assets/icon/lable.svg';
+  static const lableFillSVG = 'assets/icon/lableFill.svg';
+  static const subLableSVG = 'assets/icon/subLable.svg';
+  static const subLableFillSVG = 'assets/icon/subLableFill.svg';
   // ================== PNG IMAGES ==================
   static const String large1 = 'assets/image/large1.png';
   static const String large2 = 'assets/image/large2.png';
@@ -83,7 +88,8 @@ class AppAssets {
   static const String smallGreen = 'assets/image/smallGreen.png';
   static const String smallRed = 'assets/image/smallRed.png';
   static const String smallYellow = 'assets/image/smallYellow.png';
-
+  static const inDrive = 'assets/image/inDrive.png';
+  static const vodafone = 'assets/image/vodafon.png';
   // ================== LOTTIE JSON ==================
   static const String doneJSON = 'assets/lottie/done.json';
   static const String emptyNotificationsJSON =

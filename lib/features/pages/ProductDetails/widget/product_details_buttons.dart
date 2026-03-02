@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
+import 'package:two_m_production/features/pages/RecordSale/presentation/page/record_sale_sheet.dart';
 import 'package:two_m_production/features/pages/addToStock/page/add_stock_sheet.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class ProductDetailsButtons extends StatelessWidget {
   const ProductDetailsButtons({super.key, required this.product});
-final ProductModel product;
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,9 +21,7 @@ final ProductModel product;
                 context: context,
                 isScrollControlled: true,
                 backgroundColor: AppColors.transparent,
-                builder: (context) => AddStockSheet(
-                  product: product
-                ),
+                builder: (context) => AddStockSheet(product: product),
               );
             },
             icon: const Icon(Icons.edit, color: AppColors.textPrimary),
@@ -44,7 +43,18 @@ final ProductModel product;
         Expanded(
           flex: 2,
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (_) {
+                  return RecordSaleSheet(
+                    ispathFromDetailsProduct: false,
+                    nameProduct: product.name, // المنتج نفسه
+                  );
+                },
+              );
+            },
             icon: Icon(Icons.sell, color: AppColors.white),
             label: Text(
               LocaleKeys.product_details_sell_product.tr(),

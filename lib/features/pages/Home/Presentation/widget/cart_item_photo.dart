@@ -4,7 +4,11 @@ import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/features/pages/Home/Presentation/widget/low_stock_card.dart';
 
 class CartItemPhoto extends StatelessWidget {
-  const CartItemPhoto({super.key, required this.isLowStock,required this.photo});
+  const CartItemPhoto({
+    super.key,
+    required this.isLowStock,
+    required this.photo,
+  });
 
   final bool isLowStock;
   final String photo;
@@ -23,7 +27,14 @@ class CartItemPhoto extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.r),
               // image: DecorationImage(image: AssetImage(imagePath)) // Uncomment when assets exist
             ),
-            child: Center(child: Image.asset(photo)),
+            child: Center(
+              child: Image.asset(
+                photo,
+                opacity: (isLowStock)
+                    ? AlwaysStoppedAnimation(0.35)
+                    : AlwaysStoppedAnimation(1),
+              ),
+            ),
           ),
           if (isLowStock) LowStockCard(),
         ],

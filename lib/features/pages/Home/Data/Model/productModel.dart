@@ -12,7 +12,7 @@ class ProductModel {
   final String? state;
   final String? note;
   final List<dynamic>? imagePath;
-  final DateTime? date;
+  final String? date;
 
   const ProductModel({
     required this.id,
@@ -47,7 +47,40 @@ class ProductModel {
       state: json['state'],
       note: json['note'],
       imagePath: json['imagePath'],
-      date: DateTime.parse(json['date']),
+      date: json['date'],
+    );
+  }
+  ProductModel copyWith({
+    String? id,
+    String? code,
+    String? name,
+    String? subName,
+    String? description,
+    String? section,
+    String? injectionMolding,
+    int? size,
+    int? stock,
+    int? price,
+    String? state,
+    String? note,
+    List<dynamic>? imagePath,
+    String? date,
+  }) {
+    return ProductModel(
+      name: name ?? this.name,
+      price: price ?? this.price,
+      id: id ?? this.id,
+      code: code ?? this.code,
+      date: date ?? this.date,
+      subName: subName ?? this.subName,
+      description: description ?? this.description,
+      section: section ?? this.section,
+      injectionMolding: injectionMolding ?? this.injectionMolding,
+      stock: stock ?? this.stock,
+      size: size ?? this.size,
+      state: state ?? this.state,
+      note: note ?? this.note,
+      imagePath: imagePath ?? this.imagePath,
     );
   }
 
@@ -67,7 +100,8 @@ class ProductModel {
       'state': state,
       'note': note,
       'imagePath': imagePath,
-      if (date != null) 'date': date!.toIso8601String(),
+      'date': date,
+      // if (date != null) 'date': date!.toIso8601String(),
     };
   }
 }

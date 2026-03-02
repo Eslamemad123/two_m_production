@@ -34,19 +34,30 @@ class ItemCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image Stack
-            CartItemPhoto(isLowStock: false, photo: model.imagePath![0] ),
+            CartItemPhoto(
+              isLowStock: (model.stock == 0),
+              photo: model.imagePath![0],
+            ),
             Gap(10.h),
             Text(
               model.name,
+
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: AppFontStyles.getSize14(fontWeight: FontWeight.w700),
+              style: AppFontStyles.getSize14(
+                fontWeight: FontWeight.w700,
+                fontColor: (model.stock == 0)
+                    ? AppColors.gray400
+                    : AppColors.black,
+              ),
             ),
             Gap(4.h),
             Text(
               model.subName ?? '',
               style: AppFontStyles.getSize12(
-                fontColor: AppColors.textSecondary,
+                fontColor: (model.stock == 0)
+                    ? AppColors.gray400
+                    : AppColors.textSecondary,
               ),
             ),
             Gap(8.h),

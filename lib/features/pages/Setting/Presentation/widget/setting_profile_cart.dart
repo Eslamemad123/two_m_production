@@ -36,7 +36,7 @@ class _SettingProfileCartState extends State<SettingProfileCart> {
       ),
       child: Row(
         children: [
-          SettingImageAndName(radius: 26,),
+          SettingImageAndName(radius: 26),
           SizedBox(width: 16.w),
           Expanded(
             child: Column(

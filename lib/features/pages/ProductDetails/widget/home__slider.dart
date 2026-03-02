@@ -2,8 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:two_m_production/core/routes/navigation.dart';
+import 'package:two_m_production/core/routes/routes.dart';
 import 'package:two_m_production/core/utils/colors.dart';
+import 'package:two_m_production/features/pages/ProductDetails/widget/viewImage.dart';
 
+// ignore: must_be_immutable
 class PhotosProductDetails extends StatefulWidget {
   PhotosProductDetails({super.key, required this.images});
   List<dynamic> images;
@@ -12,7 +16,6 @@ class PhotosProductDetails extends StatefulWidget {
 }
 
 class _PhotosProductDetailsState extends State<PhotosProductDetails> {
-  @override
   int currentIndex = 0;
 
   @override
@@ -45,10 +48,19 @@ class _PhotosProductDetailsState extends State<PhotosProductDetails> {
             padding: const EdgeInsets.all(15),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                widget.images[currentIndex],
-                width: 300,
-                height: 300,
+              child: GestureDetector(
+                onTap: () {
+                  pushTo(
+                    context,
+                    Routes.viewImage,
+                    widget.images[currentIndex],
+                  );
+                },
+                child: Image.asset(
+                  widget.images[currentIndex],
+                  width: 300,
+                  height: 300,
+                ),
               ),
             ),
           ),

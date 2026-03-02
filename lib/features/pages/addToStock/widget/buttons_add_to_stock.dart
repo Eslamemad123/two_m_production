@@ -19,8 +19,8 @@ class ButtonsAddToStock extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               cubit.addProductStock(context, idProduct);
-              Pop(context);
-              Pop(context);
+              //Pop(context);
+              //Pop(context);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFE53935),

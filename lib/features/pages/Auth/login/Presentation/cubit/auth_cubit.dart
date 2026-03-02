@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,13 +17,16 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoadingState());
 
     var response = await authUseCase.call(email.text, password.text);
+
     response.fold(
+      
       (Failure) {
         emit(AuthErrorState(Failure.message));
+
       },
       (bool) {
         emit(AuthSuccessState());
-       
+
       },
     );
   }

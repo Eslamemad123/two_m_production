@@ -28,8 +28,8 @@ class cartItemPrice extends StatelessWidget {
             ),
             Text(
               stock.toString(),
-              style: AppFontStyles.getSize14(
-                fontColor: AppColors.success,
+              style: AppFontStyles.getSize18(
+                fontColor: (stock == 0) ? AppColors.gray400 : AppColors.success,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -37,7 +37,10 @@ class cartItemPrice extends StatelessWidget {
         ),
         Text(
           '\$$price',
-          style: AppFontStyles.getSize14(fontWeight: FontWeight.bold),
+          style: AppFontStyles.getSize14(
+            fontWeight: FontWeight.bold,
+            fontColor: (stock == 0) ? AppColors.gray400 : AppColors.black,
+          ),
         ),
       ],
     );

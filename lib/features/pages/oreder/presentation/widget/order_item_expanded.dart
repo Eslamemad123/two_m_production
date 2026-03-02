@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:two_m_production/features/pages/oreder/presentation/widget/order_card.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class OrderItemExpanded extends StatelessWidget {
   const OrderItemExpanded({
     super.key,
     required bool isExpanded,
-    required this.widget,
+    required this.nameClient,
+    required this.phone,
   }) : _isExpanded = isExpanded;
 
   final bool _isExpanded;
-  final OrderCard widget;
+  final String nameClient;
+  final String phone;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class OrderItemExpanded extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      widget.order.clientName,
+                      nameClient,
                       style: AppFontStyles.getSize14(
                         fontWeight: FontWeight.bold,
                       ),
@@ -66,7 +67,7 @@ class OrderItemExpanded extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      widget.order.clientPhone,
+                      phone,
                       style: AppFontStyles.getSize14(
                         fontWeight: FontWeight.bold,
                       ),

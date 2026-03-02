@@ -1,15 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
-import 'package:two_m_production/features/pages/oreder/presentation/widget/order_item_expanded.dart';
-import 'package:two_m_production/features/pages/oreder/presentation/widget/order_item_header.dart';
-import 'package:two_m_production/features/pages/oreder/presentation/widget/order_item_price_and_quantity.dart';
-import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
+import 'package:two_m_production/features/pages/RecordSale/Data/model/oredeModel.dart';
+import 'package:two_m_production/features/pages/oreder/presentation/widget/animated_contaner_orders.dart';
+import 'package:two_m_production/features/pages/oreder/presentation/widget/quantity_prise_section_cart.dart';
 
 class OrderCard extends StatefulWidget {
-  final order;
+  final OrderModel order;
 
   const OrderCard({super.key, required this.order});
 
@@ -17,24 +16,23 @@ class OrderCard extends StatefulWidget {
   State<OrderCard> createState() => _OrderCardState();
 }
 
-class _OrderCardState extends State<OrderCard>
-    with SingleTickerProviderStateMixin {
+class _OrderCardState extends State<OrderCard> {
   bool _isExpanded = false;
+
+  int get totalQuantity =>
+      widget.order.sizes.values.fold(0, (sum, item) => sum + item);
 
   @override
   Widget build(BuildContext context) {
-    final isDelivered = widget.order.status == 'DELIVERED';
-
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
       margin: EdgeInsets.only(bottom: 16.h),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 10.r,
             offset: Offset(0, 4.h),
           ),
@@ -51,31 +49,39 @@ class _OrderCardState extends State<OrderCard>
           },
           borderRadius: BorderRadius.circular(20.r),
           child: Padding(
-            padding: EdgeInsets.all(16.0.r),
+            padding: EdgeInsets.all(16.r),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header: Order ID + Status Dot
-                OrderItemHeader(widget: widget, isDelivered: isDelivered),
+                /// Header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Order #${widget.order.orderId}",
+                      style: AppFontStyles.getSize16(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      widget.order.date,
+                      style: AppFontStyles.getSize12(
+                        fontColor: AppColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+
                 SizedBox(height: 8.h),
 
-                // Tracking Number
-                Text(
-                  '${LocaleKeys.orders_tracking_number.tr()}: ${widget.order.trackingNumber}',
-                  style: AppFontStyles.getSize12(
-                    fontColor: AppColors.textSecondary,
-                  ),
+                /// Quantity + Subtotal
+                QuantityPriseSectionCart(
+                  totalQuantity: totalQuantity,
+                  widget: widget,
                 ),
-                SizedBox(height: 16.h),
 
-                // Quantity and Subtotal
-                OrderItemPriceAndQuantity(widget: widget),
-                SizedBox(height: 16.h),
-
-                // Status and Details Button
-
-                // Expanded Section: Client Details
-                OrderItemExpanded(isExpanded: _isExpanded, widget: widget),
+                /// Expanded Section
+                AnimatedContanerOrders(isExpanded: _isExpanded, widget: widget),
               ],
             ),
           ),

@@ -6,7 +6,7 @@ import 'package:two_m_production/features/pages/oreder/Domain/Repo/addOrder_Repo
 class getOrdersUseCase {
   final OrdersRepo ordersRepo;
   getOrdersUseCase({required this.ordersRepo});
-  Future<Either<Failure, bool>> call(OrderModel order) {
+  Future<Either<Failure, List<OrderModel>>> call() {
     return ordersRepo.getOrders();
   }
 }

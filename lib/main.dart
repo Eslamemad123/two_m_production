@@ -8,6 +8,7 @@ import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/core/utils/theme.dart';
 import 'package:two_m_production/core/bloc/theme_manager.dart';
 import 'package:two_m_production/firebase_options.dart';
+import 'package:two_m_production/features/pages/Setting/Domain/UseCase/updateLastConnectionUseCase.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +21,10 @@ Future<void> main() async {
     await setupServiceLocator(),
     await Localhelper.init(),
   ]);
+
+  // Update last connection in Firestore (fire and forget)
+  gi<UpdateLastConnectionUseCase>().call();
+
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],

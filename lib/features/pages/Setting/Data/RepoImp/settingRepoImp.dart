@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:two_m_production/core/error/failer.dart';
+import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 import 'package:two_m_production/features/pages/Setting/Data/DataSource/settingDataSource.dart';
 import 'package:two_m_production/features/pages/Setting/Domain/Repo/settingRepo.dart';
 
@@ -12,12 +13,17 @@ class SettingRepoImp extends SettingRepo {
   }
 
   @override
-  Future<Either<Failure, bool>> addNewProduct() {
-    return dataSource.addNewProduct();
+  Future<Either<Failure, bool>> addNewProduct(ProductModel product) {
+    return dataSource.addNewProduct(product);
   }
 
   @override
   Future<Either<Failure, bool>> editProfile(String name, String pathImage) {
     return dataSource.editProfile(name, pathImage);
+  }
+
+  @override
+  Future<Either<Failure, bool>> updateLastConnection() {
+    return dataSource.updateLastConnection();
   }
 }

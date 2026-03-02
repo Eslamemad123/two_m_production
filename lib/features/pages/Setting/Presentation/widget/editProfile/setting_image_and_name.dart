@@ -20,7 +20,7 @@ class SettingImageAndName extends StatelessWidget {
           ? CircleAvatar(
               backgroundColor: AppColors.primary,
               radius: 80,
-              backgroundImage: FileImage(File(path)),
+              backgroundImage: NetworkImage(path),
             )
           : Text(
               name.substring(0, 2).toUpperCase(),
