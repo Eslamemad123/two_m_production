@@ -35,6 +35,7 @@ class ItemCard extends StatelessWidget {
           children: [
             // Image Stack
             CartItemPhoto(
+              id: model.id,
               isLowStock: (model.stock == 0),
               photo: model.imagePath![0],
             ),

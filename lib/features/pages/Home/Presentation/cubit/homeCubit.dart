@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,10 @@ class HomeCubit extends Cubit<HomeState> {
     );
     response.fold(
       (Failure) {
-        showMyDialog(context, type: DialogType.error, 'error');
+        log('rthdfvc');
+        Pop(context);
+        Pop(context);
+        showMyDialog(context, type: DialogType.error, Failure.message);
         emit(HomeErrorState(Failure.message));
       },
       (bool b) {

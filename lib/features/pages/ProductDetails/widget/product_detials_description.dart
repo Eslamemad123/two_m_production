@@ -29,7 +29,7 @@ class ProductDetialsDescription extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Last Update Stock : ',
+              LocaleKeys.misc_last_update_stock.tr(),
               style: AppFontStyles.getSize14(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 6.h),
@@ -45,11 +45,11 @@ class ProductDetialsDescription extends StatelessWidget {
           ],
         ),
         SizedBox(height: 6.h),
-        if (product.note != null) ...[
+        if ((product.note ?? '').trim().isNotEmpty) ...[
           Row(
             children: [
               Text(
-                'Note :',
+                LocaleKeys.misc_note.tr(),
                 style: AppFontStyles.getSize14(fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 6.h),

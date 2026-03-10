@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -30,20 +31,35 @@ class HomeDataSourceImp extends HomeDataSource {
     String? note,
   ) async {
     try {
+
       final rawDate = date.trim();
 
       final cleanedDate = rawDate.isEmpty
           ? DateFormat('yyyy-MM-dd', 'en').format(DateTime.now())
           : normalizeDate(rawDate);
 
-      await firestore.collection('Products').doc(id).update({
-        'stock': FieldValue.increment(count),
-        'date': cleanedDate,
-        'note': note,
-      });
+      await firestore
+          .collection('Products')
+          .doc(id)
+          .update({
+            'stock': FieldValue.increment(count),
+            'date': cleanedDate,
+            'note': note,
+          })
+          .timeout(const Duration(seconds: 10));
 
       return const Right(true);
+    } on FirebaseException catch (e) {
+      if (e.code == 'unavailable' || e.code == 'network-request-failed') {
+        return Left(Failure(message: 'check internet'));
+      }
+
+      return Left(Failure(message: e.message ?? 'Firestore error'));
+    } on TimeoutException {
+
+      return Left(Failure(message: 'check internet'));
     } catch (e) {
+
       return Left(Failure(message: e.toString()));
     }
   }

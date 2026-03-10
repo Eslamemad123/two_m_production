@@ -40,10 +40,8 @@ class ProductDetailsScreen extends StatelessWidget {
               child: Center(
                 child: PhotosProductDetails(
                   images:
-                      product.imagePath ??
-                      [
-                        'https://assets.tracegains.net/resources/img/global/no_image.jpg',
-                      ],
+                      product.imagePath ??[],
+                      id:product.id ,
                 ),
               ),
             ),

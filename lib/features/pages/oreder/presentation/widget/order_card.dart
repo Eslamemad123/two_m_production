@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 import 'package:two_m_production/features/pages/RecordSale/Data/model/oredeModel.dart';
 import 'package:two_m_production/features/pages/oreder/presentation/widget/animated_contaner_orders.dart';
 import 'package:two_m_production/features/pages/oreder/presentation/widget/quantity_prise_section_cart.dart';
@@ -58,7 +59,7 @@ class _OrderCardState extends State<OrderCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Order #${widget.order.orderId}",
+                      "${LocaleKeys.misc_order.tr()} #${widget.order.orderId}",
                       style: AppFontStyles.getSize16(
                         fontWeight: FontWeight.bold,
                       ),

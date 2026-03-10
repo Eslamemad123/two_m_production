@@ -39,8 +39,7 @@ class GridItemHome extends StatelessWidget {
               context: context,
               isScrollControlled: true,
               backgroundColor: AppColors.transparent,
-              builder: (context) =>
-                  AddStockSheet(product: cubit.products[index]),
+              builder: (_) => AddStockSheet(product: cubit.products[index]),
             );
           },
           child: ItemCard(model: cubit.products[index]),

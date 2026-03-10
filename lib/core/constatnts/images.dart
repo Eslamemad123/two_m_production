@@ -83,7 +83,7 @@ class AppAssets {
   static const String large1 = 'assets/image/large1.png';
   static const String large2 = 'assets/image/large2.png';
   static const String logo = 'assets/image/logo.png';
-  static const String middle2 = 'assets/image/middle2.png';
+  static const String middle2 = 'assets/image/middle.png';
   static const String middle3 = 'assets/image/middle2.jpeg';
   static const String smallGreen = 'assets/image/smallGreen.png';
   static const String smallRed = 'assets/image/smallRed.png';

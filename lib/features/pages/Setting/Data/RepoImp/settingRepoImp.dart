@@ -8,13 +8,17 @@ class SettingRepoImp extends SettingRepo {
   final SettingdataSource dataSource;
   SettingRepoImp({required this.dataSource});
   @override
-  Future<Either<Failure, bool>> NewInjectionMolding() {
-    return dataSource.NewInjectionMolding();
+  Future<Either<Failure, bool>> NewInjectionMolding(String product) {
+    return dataSource.NewInjectionMolding(product);
   }
 
   @override
   Future<Either<Failure, bool>> addNewProduct(ProductModel product) {
     return dataSource.addNewProduct(product);
+  }
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getInjectionData(String product) {
+    return dataSource.getInjectionData(product);
   }
 
   @override

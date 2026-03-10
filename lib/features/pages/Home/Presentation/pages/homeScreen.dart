@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -27,7 +26,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final Connectivity _connectivity = Connectivity();
   StreamSubscription<List<ConnectivityResult>>? _subscription;
 
   bool? isOffline;
@@ -57,150 +55,151 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: (isOffline ?? false) ? Colors.amber : Colors.white,
-        statusBarIconBrightness: (isOffline ?? false)
-            ? Brightness.dark
-            : Brightness.dark,
-        statusBarBrightness: (isOffline ?? false)
-            ? Brightness.light
-            : Brightness.dark,
+        statusBarColor: (isOffline ?? false) ? Colors.amber : Colors.amber,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
       ),
     );
     return Scaffold(
-      backgroundColor: AppColors.background,
+      body: Stack(
+        children: [
+          BlocProvider(
+            create: (_) => HomeCubit()..getHomeSection('2M Covers'),
 
-      body: SafeArea(
-        child: Stack(
-          children: [
-            BlocProvider(
-              create: (_) => HomeCubit()..getHomeSection('2M Covers'),
-
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                LocaleKeys.home_welcome_back.tr(),
-                                style: AppFontStyles.getSize24(
-                                  fontWeight: FontWeight.bold,
-                                ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Gap(40),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              LocaleKeys.home_welcome_back.tr(),
+                              style: AppFontStyles.getSize24(
+                                fontWeight: FontWeight.bold,
                               ),
+                            ),
 
-                              Gap(4.h),
+                            Gap(4.h),
 
-                              Text(
-                                '2M Covers Fire Production',
-                                style: AppFontStyles.getSize14(
-                                  fontColor: AppColors.textSecondary,
-                                ),
+                            Text(
+                              '2M Covers Fire Production',
+                              style: AppFontStyles.getSize14(
+                                fontColor: AppColors.textSecondary,
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    Gap(35.h),
-
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        start: 10,
-                        end: 10,
-                      ),
-                      child: CategoryHome(onCategorySelected: (_) {}),
-                    ),
-
-                    Gap(10.h),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            LocaleKeys.home_inventory_overview.tr(),
-                            style: AppFontStyles.getSize18(
-                              fontWeight: FontWeight.bold,
                             ),
-                          ),
-
-                          Text(
-                            LocaleKeys.common_see_all.tr(),
-                            style: AppFontStyles.getSize14(
-                              fontColor: AppColors.primary,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                      ],
                     ),
+                  ),
 
-                    Gap(16.h),
+                  Gap(15.h),
 
-                    BlocBuilder<HomeCubit, HomeState>(
-                      builder: (context, state) {
-                        final cubit = context.watch<HomeCubit>();
+                  Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                      start: 10,
+                      end: 10,
+                    ),
+                    child: CategoryHome(onCategorySelected: (_) {}),
+                  ),
 
-                        if (state is HomeLoadingState) {
-                          return Padding(
-                            padding: EdgeInsets.only(top: 40.h),
-                            child: const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          );
-                        }
+                  Gap(10.h),
 
-                        if (state is HomeErrorState) {
-                          log(state.error);
-                          return Center(
-                            child: Lottie.asset(AppAssets.emptyRedJSON),
-                          );
-                        }
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          LocaleKeys.home_inventory_overview.tr(),
+                          style: AppFontStyles.getSize18(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
 
-                        if (cubit.products.isEmpty) {
-                          return Center(
-                            child: Lottie.asset(AppAssets.emptyRedJSON),
-                          );
-                        }
+                        Text(
+                          LocaleKeys.common_see_all.tr(),
+                          style: AppFontStyles.getSize14(
+                            fontColor: AppColors.primary,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
+                  BlocBuilder<HomeCubit, HomeState>(
+                    builder: (context, state) {
+                      final cubit = context.watch<HomeCubit>();
+
+                      if (state is HomeLoadingState) {
                         return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: GridItemHome(cubit: cubit),
+                          padding: EdgeInsets.only(top: 40.h),
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
                         );
-                      },
-                    ),
+                      }
 
-                    Gap(15),
-                  ],
-                ),
+                      if (state is HomeErrorState) {
+                        return Center(
+                          child: Lottie.asset(AppAssets.emptyRedJSON),
+                        );
+                      }
+
+                      if (cubit.products.isEmpty) {
+                        return Center(
+                          child: Lottie.asset(AppAssets.emptyRedJSON),
+                        );
+                      }
+
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: GridItemHome(cubit: cubit),
+                      );
+                    },
+                  ),
+
+                  Gap(12),
+                ],
               ),
             ),
-
-            AnimatedSlide(
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AnimatedSlide(
               offset: (isOffline ?? false)
                   ? const Offset(0, 0)
                   : const Offset(0, -1),
-              duration: const Duration(milliseconds: 350),
-              child: (isOffline ?? false)
-                  ? Container(
-                      height: 100,
-                      width: double.infinity,
-                      color: Colors.amber,
-                      alignment: Alignment.center,
-                      child: const Text("Offline mode — cached data"),
-                    )
-                  : const SizedBox(),
+              duration: const Duration(milliseconds: 700),
+              child: Container(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top,
+                ),
+                height: 70.h + MediaQuery.of(context).padding.top,
+                width: double.infinity,
+                color: Color(0xFFffc03d),
+                alignment: Alignment.center,
+                child: (isOffline ?? false)
+                    ? Text(
+                        textAlign: TextAlign.center,
+                        "Offline mode \n Check the internet; these are not the final results.",
+                        style: AppFontStyles.getSize14(),
+                      )
+                    : const SizedBox(),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

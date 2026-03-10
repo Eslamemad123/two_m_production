@@ -7,49 +7,44 @@ import 'package:http/http.dart' as http;
 import 'package:two_m_production/core/extentions/show_dialoges.dart';
 
 Future<String?> uploadImageToCloudinary(
-  File imageFile,
-  String cloudName,
-  String uploadPreset,
+  File mediaFile,
   BuildContext context,
 ) async {
-  // 1. Create the upload URL
+  const cloudName = "dislsl3sa";
+  const uploadPreset = "se77ty";
+
   final url = Uri.parse(
-    'https://api.cloudinary.com/v1_1/$cloudName/image/upload',
+    'https://api.cloudinary.com/v1_1/$cloudName/auto/upload',
   );
 
-  // 2. Create a new multipart request
   final request = http.MultipartRequest('POST', url);
 
-  // 3. Add the upload preset
   request.fields['upload_preset'] = uploadPreset;
 
-  // 4. Add the file to the request
   request.files.add(
     await http.MultipartFile.fromPath(
-      'file', // This 'file' key is required by Cloudinary
-      imageFile.path,
+      'file',
+      mediaFile.path,
     ),
   );
 
   try {
-    // 5. Send the request
     final response = await request.send();
 
     if (response.statusCode == 200) {
-      // 6. Read and decode the response
       final responseBody = await response.stream.bytesToString();
       final responseData = json.decode(responseBody);
 
-      // 7. Return the secure URL
-      log('responseData: $responseData');
+      log('Cloudinary response: $responseData');
+
       return responseData['secure_url'];
     } else {
-      showMyDialog(context, 'حدث خطا اثناء رفع الffصورة ');
+      showMyDialog(context, 'حدث خطا اثناء رفع الملف');
       return null;
     }
   } catch (e) {
-    showMyDialog(context, 'حدث خطا اثناء رفع الصورة ');
     log(e.toString());
+    showMyDialog(context, 'حدث خطا اثناء رفع الملف');
     return null;
   }
 }

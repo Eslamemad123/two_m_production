@@ -5,12 +5,12 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:two_m_production/core/routes/navigation.dart';
 import 'package:two_m_production/core/routes/routes.dart';
 import 'package:two_m_production/core/utils/colors.dart';
-import 'package:two_m_production/features/pages/ProductDetails/widget/viewImage.dart';
 
 // ignore: must_be_immutable
 class PhotosProductDetails extends StatefulWidget {
-  PhotosProductDetails({super.key, required this.images});
+  PhotosProductDetails({super.key, required this.images,required this.id});
   List<dynamic> images;
+  final String id;
   @override
   State<PhotosProductDetails> createState() => _PhotosProductDetailsState();
 }
@@ -56,10 +56,23 @@ class _PhotosProductDetailsState extends State<PhotosProductDetails> {
                     widget.images[currentIndex],
                   );
                 },
-                child: Image.asset(
-                  widget.images[currentIndex],
-                  width: 300,
-                  height: 300,
+                child: Hero(
+                  tag: widget.id,
+                  child: Image(
+                    image: widget.images[currentIndex].startsWith('http')
+                        ? NetworkImage(widget.images[currentIndex])
+                        : AssetImage(widget.images[currentIndex])
+                              as ImageProvider,
+                    width: 300,
+                    height: 300,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.network(
+                        'https://assets.tracegains.net/resources/img/global/no_image.jpg',
+                        width: 300,
+                        height: 300,
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

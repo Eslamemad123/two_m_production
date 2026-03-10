@@ -55,18 +55,28 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
         textInputAction: widget.textInputNext ?? TextInputAction.none,
         maxLines: widget.maxTextLines,
         onFieldSubmitted: widget.onFieldSubmitted,
-        style: AppFontStyles.getSize18(),
+        style: AppFontStyles.getSize18(
+          fontColor:
+              Theme.of(context).textTheme.bodyLarge?.color ??
+              AppColors.textPrimary,
+        ),
         keyboardType: widget.ketboardType,
         decoration: InputDecoration(
           label: Text(
             widget.label ?? "",
             style: AppFontStyles.getSize14(
-              fontColor: widget.textColor ?? AppColors.gray400,
+              fontColor:
+                  widget.textColor ??
+                  Theme.of(context).textTheme.bodySmall?.color ??
+                  AppColors.gray400,
             ),
           ),
 
           filled: true,
-          fillColor: widget.colorFill ?? AppColors.gray200,
+          fillColor:
+              widget.colorFill ??
+              Theme.of(context).inputDecorationTheme.fillColor ??
+              AppColors.gray200,
           suffixIcon: widget.ispassword
               ? Transform.flip(
                   flipY: true,
@@ -102,13 +112,17 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
 
           hint: Text(
             widget.hint ?? "",
-            style: AppFontStyles.getSize14(fontColor: AppColors.gray400),
+            style: AppFontStyles.getSize14(
+              fontColor:
+                  Theme.of(context).textTheme.bodySmall?.color ??
+                  AppColors.gray400,
+            ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
             borderSide: BorderSide(
               color: AppColors.gray200.withValues(alpha: 0.2),
-              width: 1,
+              width: 1.w,
             ),
           ),
           focusedBorder: OutlineInputBorder(

@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:two_m_production/core/error/failer.dart';
 import 'package:two_m_production/features/pages/RecordSale/Data/model/oredeModel.dart';
 import 'package:two_m_production/features/pages/oreder/Data/DataSource/addOrderDateSource.dart';
+import 'package:two_m_production/features/pages/oreder/Data/Model/paginated_result.dart';
 import 'package:two_m_production/features/pages/oreder/Domain/Repo/addOrder_Repo.dart';
 
 class OrdersRepoImp extends OrdersRepo {
@@ -11,6 +12,19 @@ class OrdersRepoImp extends OrdersRepo {
   @override
   Future<Either<Failure, List<OrderModel>>> filterOrders(String filter) {
     return orderDataSource.filterOrders(filter);
+  }
+
+  @override
+  Future<Either<Failure, PaginatedResult<OrderModel>>> getOrdersPaginated({
+    int limit = 10,
+    dynamic startAfterDoc,
+    dynamic endBeforeDoc,
+  }) {
+    return orderDataSource.getOrdersPaginated(
+      limit: limit,
+      startAfterDoc: startAfterDoc,
+      endBeforeDoc: endBeforeDoc,
+    );
   }
 
   @override

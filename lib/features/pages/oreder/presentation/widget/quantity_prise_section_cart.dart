@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/features/pages/oreder/presentation/widget/order_card.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class QuantityPriseSectionCart extends StatelessWidget {
   const QuantityPriseSectionCart({
@@ -23,7 +25,7 @@ class QuantityPriseSectionCart extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Quantity",
+              LocaleKeys.misc_quantity.tr(),
               style: AppFontStyles.getSize12(
                 fontColor: AppColors.textSecondary,
                 fontWeight: FontWeight.w500,
@@ -31,7 +33,7 @@ class QuantityPriseSectionCart extends StatelessWidget {
             ),
             SizedBox(height: 4.h),
             Text(
-              "$totalQuantity items",
+              "$totalQuantity ${LocaleKeys.common_items.tr()}",
               style: AppFontStyles.getSize14(fontWeight: FontWeight.w600),
             ),
           ],
@@ -40,7 +42,7 @@ class QuantityPriseSectionCart extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              "Price",
+              LocaleKeys.misc_price.tr(),
               style: AppFontStyles.getSize14(
                 fontColor: AppColors.textSecondary,
                 fontWeight: FontWeight.w600,

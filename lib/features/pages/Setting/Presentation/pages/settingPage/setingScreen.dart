@@ -2,17 +2,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/core/bloc/theme_manager.dart';
 import 'package:two_m_production/features/pages/Setting/Presentation/cubit/settingCubit.dart';
 import 'package:two_m_production/features/pages/Setting/Presentation/cubit/settingState.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/widget/button_log_out.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/widget/section_header.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting_header.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting_manager_card.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting_profile_cart.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/widget/settings_tile.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting/button_log_out.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting/section_header.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting/setting_header.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting/setting_manager_card.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting/setting_profile_cart.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting/settings_tile.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -23,12 +24,19 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  bool _notificationsEnabled = true;
+  bool _notificationsEnabled = false;
+  bool? lockEnabled;
+
+  @override
+  void initState() {
+    super.initState();
+    lockEnabled = Localhelper.getBool(Localhelper.kLock) ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
+    bool current = ThemeManager.themeMode.value == ThemeMode.dark;
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -74,17 +82,22 @@ class _SettingScreenState extends State<SettingScreen> {
                                   valueListenable: ThemeManager.themeMode,
                                   builder: (context, mode, _) {
                                     return Switch(
-                                      value: mode == ThemeMode.dark,
+                                      value: current,
                                       activeColor: AppColors.primary,
                                       onChanged: (val) {
-                                        ThemeManager.toggleTheme();
+                                        setState(() {
+                                          ThemeManager.toggleTheme(val);
+                                        });
                                       },
                                     );
                                   },
                                 ),
                               ),
                               onTap: () {
-                                ThemeManager.toggleTheme();
+                                bool newVal =
+                                    !(ThemeManager.themeMode.value ==
+                                        ThemeMode.dark);
+                                ThemeManager.toggleTheme(newVal);
                               },
                             ),
                             const Divider(
@@ -119,6 +132,31 @@ class _SettingScreenState extends State<SettingScreen> {
                               onTap: () {
                                 _showLanguageDialog(context);
                               },
+                            ),
+                            const Divider(
+                              height: 1,
+                              color: AppColors.borderLight,
+                            ),
+                            SettingsTile(
+                              icon: Icons.lock_outline_rounded,
+                              iconColor: AppColors.textPrimary,
+                              iconBackgroundColor: AppColors.textPrimary
+                                  .withValues(alpha: 0.1),
+                              title: LocaleKeys.misc_lock_app.tr(),
+                              trailing: Transform.scale(
+                                scale: 0.8,
+                                child: Switch(
+                                  value: lockEnabled ?? false,
+                                  activeColor: AppColors.primary,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      lockEnabled = val;
+                                    });
+                                    Localhelper.setBool(Localhelper.kLock, val);
+                                  },
+                                ),
+                              ),
+                              onTap: () {},
                             ),
                             const Divider(
                               height: 1,
@@ -177,7 +215,6 @@ class _SettingScreenState extends State<SettingScreen> {
     showDialog(
       context: context,
       builder: (context) {
-        final isDark = Theme.of(context).brightness == Brightness.dark;
         return AlertDialog(
           backgroundColor: Theme.of(context).cardColor,
           title: Text(
@@ -191,9 +228,7 @@ class _SettingScreenState extends State<SettingScreen> {
               RadioListTile<String>(
                 title: Text(
                   'English',
-                  style: AppFontStyles.getSize16(
-                    fontColor: isDark ? Colors.white : Colors.black,
-                  ),
+                  style: AppFontStyles.getSize16(fontColor: Colors.black),
                 ),
                 value: 'en',
                 groupValue: context.locale.languageCode,
@@ -208,9 +243,7 @@ class _SettingScreenState extends State<SettingScreen> {
               RadioListTile<String>(
                 title: Text(
                   'العربية',
-                  style: AppFontStyles.getSize16(
-                    fontColor: isDark ? Colors.white : Colors.black,
-                  ),
+                  style: AppFontStyles.getSize16(fontColor: Colors.black),
                 ),
                 value: 'ar',
                 groupValue: context.locale.languageCode,

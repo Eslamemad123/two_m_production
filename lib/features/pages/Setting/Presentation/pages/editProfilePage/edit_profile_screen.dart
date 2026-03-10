@@ -21,8 +21,6 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -30,17 +28,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: isDark ? Colors.white : Colors.black,
-          ),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           'Edit Profile',
           style: AppFontStyles.getSize18(
             fontWeight: FontWeight.bold,
-            fontColor: isDark ? Colors.white : Colors.black,
+            fontColor: Colors.black,
           ),
         ),
       ),

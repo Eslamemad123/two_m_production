@@ -1,21 +1,25 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:two_m_production/core/routes/navigation.dart';
+import 'package:two_m_production/core/routes/routes.dart';
+import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class ButtonLogOut extends StatelessWidget {
-  const ButtonLogOut({
-    super.key,
-  });
-//TODO
+  const ButtonLogOut({super.key});
+  //TODO
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () async {
+          await Localhelper.clear();
+          PupushAndRemoveUntilsh(context, Routes.login);
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: AppColors.white,

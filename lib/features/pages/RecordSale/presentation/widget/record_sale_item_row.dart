@@ -70,7 +70,7 @@ class RecordSaleItemRow extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  'Available: $availableStock',
+                  '${LocaleKeys.misc_available.tr()}: $availableStock',
                   style: TextStyle(
                     fontSize: 11.sp,
                     fontWeight: FontWeight.bold,

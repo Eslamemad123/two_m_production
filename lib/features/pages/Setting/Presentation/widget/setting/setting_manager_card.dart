@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:two_m_production/core/routes/routes.dart';
 import 'package:two_m_production/core/utils/colors.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/widget/settings_tile.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/widget/setting/settings_tile.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class SettingManagerCard extends StatelessWidget {
@@ -23,10 +23,12 @@ class SettingManagerCard extends StatelessWidget {
           SettingsTile(
             customIcon: const Icon(Icons.category, color: Colors.green),
             iconBackgroundColor: Colors.green.withValues(alpha: 0.1),
-            title: LocaleKeys.settings_product_categories.tr(),
-            onTap: () {},
+            title: LocaleKeys.settings_product_Injection.tr(),
+            onTap: () {
+              GoRouter.of(context).push(Routes.selectSize);
+            },
           ),
-          const Divider(height: 1, color: AppColors.borderLight),
+          Divider(height: 1.h, color: AppColors.borderLight),
           SettingsTile(
             icon: Icons.inventory_2_outlined,
             iconColor: AppColors.textPrimary,
@@ -37,13 +39,6 @@ class SettingManagerCard extends StatelessWidget {
               // For now, assume global context or add import
               GoRouter.of(context).push(Routes.addProduct);
             },
-          ),
-          const Divider(height: 1, color: AppColors.borderLight),
-          SettingsTile(
-            customIcon: const Icon(Icons.people, color: Colors.teal),
-            iconBackgroundColor: Colors.teal.withValues(alpha: 0.1),
-            title: LocaleKeys.settings_staff_access.tr(),
-            onTap: () {},
           ),
         ],
       ),

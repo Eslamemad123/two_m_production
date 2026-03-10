@@ -17,6 +17,8 @@ import 'package:two_m_production/features/pages/RecordSale/Data/RepoImp/addOrder
 import 'package:two_m_production/features/pages/RecordSale/Domain/Repo/addOrder_Repo.dart';
 import 'package:two_m_production/features/pages/RecordSale/Domain/Usecase/addOrder_UseCse.dart';
 import 'package:two_m_production/features/pages/Setting/Domain/UseCase/addProductUseCase.dart';
+import 'package:two_m_production/features/pages/Setting/Domain/UseCase/getInjectionUseCase.dart';
+import 'package:two_m_production/features/pages/Setting/Domain/UseCase/stopInjectionUseCase.dart';
 import 'package:two_m_production/features/pages/oreder/Data/DataSource/addOrderDateSource.dart';
 import 'package:two_m_production/features/pages/oreder/Data/RepoImp/addOrder_RepoImp.dart';
 
@@ -24,6 +26,7 @@ import 'package:two_m_production/features/pages/oreder/Domain/Repo/addOrder_Repo
 import 'package:two_m_production/features/pages/oreder/Domain/Usecase/getOrdersUseCse.dart';
 import 'package:two_m_production/features/pages/oreder/Domain/Usecase/filterOrderUseCase.dart';
 import 'package:two_m_production/features/pages/oreder/Domain/Usecase/searchOrderUseCse.dart';
+import 'package:two_m_production/features/pages/oreder/Domain/Usecase/getOrdersPaginatedUseCase.dart';
 
 import 'package:two_m_production/features/pages/Setting/Data/DataSource/settingDataSource.dart';
 import 'package:two_m_production/features/pages/Setting/Data/RepoImp/settingRepoImp.dart';
@@ -92,6 +95,12 @@ Future<void> setupServiceLocator() async {
   gi.registerLazySingleton<AddProductUseCase>(
     () => AddProductUseCase(settingRepo: gi<SettingRepo>()),
   );
+  gi.registerLazySingleton<StopInjectionUsecase>(
+    () => StopInjectionUsecase(settingRepo: gi<SettingRepo>()),
+  );
+  gi.registerLazySingleton<GetInjectionUsecase>(
+    () => GetInjectionUsecase(settingRepo: gi<SettingRepo>()),
+  );
 
   gi.registerLazySingleton<GetHomeSectionUseCase>(
     () => GetHomeSectionUseCase(homeRepo: gi<HomeRepo>()),
@@ -108,6 +117,10 @@ Future<void> setupServiceLocator() async {
   /// 🔴 Orders UseCases
   gi.registerLazySingleton<getOrdersUseCase>(
     () => getOrdersUseCase(ordersRepo: gi<OrdersRepo>()),
+  );
+
+  gi.registerLazySingleton<GetOrdersPaginatedUseCase>(
+    () => GetOrdersPaginatedUseCase(ordersRepo: gi<OrdersRepo>()),
   );
 
   gi.registerLazySingleton<FilterOrdersUseCase>(

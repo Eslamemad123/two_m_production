@@ -5,6 +5,8 @@ import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/features/pages/oreder/presentation/widget/order_card.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class AnimatedContanerOrders extends StatelessWidget {
   const AnimatedContanerOrders({
@@ -41,7 +43,7 @@ class AnimatedContanerOrders extends StatelessWidget {
               ),
               SizedBox(width: 8.w),
               Text(
-                "Client: ${widget.order.name}",
+                "${LocaleKeys.misc_client_label.tr()}: ${widget.order.name}",
                 style: AppFontStyles.getSize14(),
               ),
             ],
@@ -59,7 +61,7 @@ class AnimatedContanerOrders extends StatelessWidget {
               ),
               SizedBox(width: 8.w),
               Text(
-                "Phone: ${widget.order.Phone}",
+                "${LocaleKeys.misc_phone_label.tr()}: ${widget.order.Phone}",
                 style: AppFontStyles.getSize14(),
               ),
             ],

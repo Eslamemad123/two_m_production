@@ -38,13 +38,12 @@ class AppColors {
   static const Color surfaceAlt = Color(0xFFF1F3F5);
 
   /// Dark mode backgrounds
-  /// Dark mode backgrounds
-  static const Color darkBackground = Color(0xFF151B25); // Rich Dark Blue
+  static const Color darkBackground = Color(0xFF161925); // Rich Dark Blue/Grey
   static const Color darkSurface = Color(
-    0xFF1E2532,
+    0xFF1F2536,
   ); // Slightly lighter for cards
   static const Color darkSurfaceAlt = Color(
-    0xFF2C3444,
+    0xFF2A3145,
   ); // For input fields/secondary
 
   // ==================================================
@@ -56,7 +55,7 @@ class AppColors {
   static const Color textHint = Color(0xFF9E9E9E);
   static const Color textDisabled = Color(0xFFBDBDBD);
   static const Color textOnPrimary = Color(0xFFFFFFFF);
-  static const Color textOnDark = Color(0xFFEDEDED);
+  static const Color textOnDark = Color(0xFFF1F5F9);
 
   // ==================================================
   // STATUS COLORS
@@ -116,4 +115,11 @@ class AppColors {
   static const Color ripple = Color(0x1FE51C2A);
   static const Color hover = Color(0x14E51C2A);
   static const Color focus = Color(0x29E51C2A);
+  static const Color textSecondaryDark = Color(0xFF94A3B8);
+
+  // ICON
+  static const Color iconDark = Color(0xFFCBD5E1); // Slightly brighter
+
+  // BORDER
+  static const Color borderDark = Color(0xFF334155);
 }

@@ -17,11 +17,11 @@ class ProductDetailsButtons extends StatelessWidget {
         Expanded(
           child: ElevatedButton.icon(
             onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                backgroundColor: AppColors.transparent,
-                builder: (context) => AddStockSheet(product: product),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => AddStockSheet(product: product),
+                ),
               );
             },
             icon: const Icon(Icons.edit, color: AppColors.textPrimary),

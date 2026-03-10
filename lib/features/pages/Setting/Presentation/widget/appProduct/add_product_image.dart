@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:two_m_production/components/buttons/main_button.dart';
 import 'package:two_m_production/core/extentions/imagePicker.dart';
 import 'package:two_m_production/core/utils/colors.dart';

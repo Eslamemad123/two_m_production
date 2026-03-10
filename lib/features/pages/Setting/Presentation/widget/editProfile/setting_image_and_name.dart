@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/core/utils/colors.dart';
@@ -8,8 +7,8 @@ class SettingImageAndName extends StatelessWidget {
   SettingImageAndName({super.key, required this.radius});
 
   final double radius;
-  String name = Localhelper.getString(Localhelper.kUserName) ?? 'ES';
-  String path = Localhelper.getString(Localhelper.kUserImage) ?? '';
+  final String name = Localhelper.getString(Localhelper.kUserName) ?? 'ES';
+  final String path = Localhelper.getString(Localhelper.kUserImage) ?? '';
 
   @override
   Widget build(BuildContext context) {

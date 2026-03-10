@@ -8,5 +8,8 @@ abstract class SettingRepo {
 
   Future<Either<Failure, bool>> addNewProduct(ProductModel product);
 
-  Future<Either<Failure, bool>> NewInjectionMolding();
+  Future<Either<Failure, bool>> NewInjectionMolding(String product);
+  Future<Either<Failure, Map<String, dynamic>>> getInjectionData(
+    String product,
+  );
 }

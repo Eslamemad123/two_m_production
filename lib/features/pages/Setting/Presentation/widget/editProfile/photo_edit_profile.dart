@@ -6,7 +6,7 @@ import 'package:two_m_production/features/pages/Setting/Presentation/widget/edit
 
 class PhotoEditProfile extends StatefulWidget {
   PhotoEditProfile({super.key, required this.cubit});
-  SettingCubit cubit;
+  final SettingCubit cubit;
 
   @override
   State<PhotoEditProfile> createState() => _PhotoEditProfileState();

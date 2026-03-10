@@ -66,7 +66,7 @@
     "language": "اللغة",
     "notifications": "الإشعارات",
     "management": "الإدارة",
-    "product_categories": "فئات المنتجات",
+    "product_categories": "تتبع الحقنات",
     "add_product": "إضافة منتج",
     "staff_access": "صلاحيات الموظفين",
     "support": "الدعم",
@@ -78,8 +78,8 @@
   "profile": {
     "edit_profile": "تعديل الملف الشخصي",
     "full_name": "الاسم الكامل",
-        "edit_name": "تعديل الأسم",
-    "edit_image":   "* اضغط علي الدائرة لتغير الصورة ",
+    "edit_name": "تعديل الأسم",
+    "edit_image": "* اضغط علي الدائرة لتغير الصورة ",
     "save_changes": "حفظ التغييرات",
     "store_manager": "مدير المتجر"
   },
@@ -164,9 +164,52 @@
   "splash": {
     "text": "إدارة مخزونك بسهولة"
   },
-    "firebase":{
-    "emailPassError":"خطأ في البريد الألكتروني او كلمة المرور",
-    "invalidEmail":"برجاء ادخال بريد ألكتروني صالح",
-    "authError":"خطأ في تسجيل الدخول أعد المحاولة "
+  "firebase": {
+    "emailPassError": "خطأ في البريد الألكتروني او كلمة المرور",
+    "invalidEmail": "برجاء ادخال بريد ألكتروني صالح",
+    "authError": "خطأ في تسجيل الدخول أعد المحاولة "
+  },
+  "sizes": {
+    "select_size_title": "اختر المقاس",
+    "small": "صغير",
+    "middle": "متوسط",
+    "large": "كبير",
+    "two_m_cover": "غطاء 2M"
+  },
+  "counting_session": {
+    "vanguard_elite_chrono": "فانجارد ايليت كرونو",
+    "recent_history": "السجل الأخير",
+    "view_all": "عرض الكل",
+    "end_session": "إنهاء جلسة العد",
+    "total_pieces": "إجمالي القطع",
+    "from": "من",
+    "to": "إلى",
+    "pcs": " قطعة"
+  },
+  "misc": {
+    "no_orders": "لا توجد طلبات",
+    "prev": "السابق",
+    "next": "التالي",
+    "page": "صفحة",
+    "price": "السعر",
+    "please_enter_price": "يرجى إدخال السعر",
+    "vodafone_cash": "فودافون كاش",
+    "indrive": "إن درايف",
+    "available": "متاح",
+    "note": "ملاحظة :",
+    "last_update_stock": "آخر تحديث للمخزون :",
+    "lock_app": "قفل التطبيق",
+    "order": "طلب",
+    "quantity": "الكمية",
+    "items_count": "{} عناصر",
+    "client_label": "العميل",
+    "phone_label": "الهاتف",
+    "code_product": "كود المنتج",
+    "description_label": "الوصف",
+    "please_enter_product_name": "يرجى إدخال اسم المنتج",
+    "please_enter_code": "يرجى إدخال كود المنتج",
+    "please_enter_description": "يرجى إدخال الوصف",
+    "please_enter_stock": "يرجى إدخال المخزون",
+    "please_select_image": "يرجى اختيار صورة أو فيديو للمنتج"
   }
 }

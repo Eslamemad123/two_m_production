@@ -28,14 +28,7 @@ class conterOnTapAddToStock extends StatelessWidget {
           border: isOutlined ? Border.all(color: AppColors.borderLight) : null,
           borderRadius: BorderRadius.circular(12.r),
         ),
-        child: Icon(
-          icon,
-          color: isOutlined
-              ? (Theme.of(context).brightness == Brightness.dark
-                    ? Colors.white
-                    : Colors.black)
-              : Colors.white,
-        ),
+        child: Icon(icon, color: isOutlined ? Colors.black : Colors.white),
       ),
     );
   }

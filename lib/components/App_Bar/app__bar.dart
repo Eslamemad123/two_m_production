@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:two_m_production/core/constatnts/images.dart';
-import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
 
 class NewAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -25,7 +24,6 @@ class NewAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       scrolledUnderElevation: 0,
       automaticallyImplyLeading: false,
-      backgroundColor: AppColors.background,
       title: Text(
         title,
         style: AppFontStyles.getSize18(

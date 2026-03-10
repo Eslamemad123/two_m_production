@@ -5,20 +5,15 @@ import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 
 class productAddToStock extends StatelessWidget {
-  const productAddToStock({
-    super.key,
-    required this.isDark,
-    required this.product,
-  });
+  const productAddToStock({super.key, required this.product});
   final ProductModel product;
-  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.darkSurfaceAlt : AppColors.gray100,
+        color: AppColors.gray100,
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Row(
@@ -30,7 +25,16 @@ class productAddToStock extends StatelessWidget {
               color: AppColors.white,
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Image.asset(product.imagePath![0]),
+            child: Image(
+              image: product.imagePath![0].startsWith('http')
+                  ? NetworkImage(product.imagePath![0])
+                  : AssetImage(product.imagePath![0]) as ImageProvider,
+              errorBuilder: (context, error, stackTrace) {
+                return Image.network(
+                  'https://assets.tracegains.net/resources/img/global/no_image.jpg',
+                );
+              },
+            ),
           ),
           SizedBox(width: 16.w),
           Expanded(

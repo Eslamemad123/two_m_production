@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:two_m_production/components/inputs/main_text_form_field.dart';
 import 'package:two_m_production/core/constatnts/images.dart';
@@ -84,7 +83,7 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
           Padding(
             padding: EdgeInsetsDirectional.only(start: 8.0.w),
             child: Text(
-              'Price',
+              LocaleKeys.misc_price.tr(),
               style: AppFontStyles.getSize14(fontWeight: FontWeight.w600),
             ),
           ),
@@ -93,7 +92,7 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
             // ignore: body_might_complete_normally_nullable
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please Enter Price';
+                return LocaleKeys.misc_please_enter_price.tr();
               }
             },
             ketboardType: TextInputType.number,
@@ -104,7 +103,7 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
             prefixIcon: AppAssets.walletSVG,
             hint: '1000',
 
-            label: 'Price',
+            label: LocaleKeys.misc_price.tr(),
           ),
           SizedBox(height: 24.h),
           Gap(10.h),
@@ -114,7 +113,7 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
             runSpacing: 10.h,
             children: [
               buildPaymentChip(
-                title: 'Vodafone Cash',
+                title: LocaleKeys.misc_vodafone_cash.tr(),
                 iconPath: AppAssets.vodafone,
                 selected: widget.cubit.vodafonCash,
                 onTap: (val) {
@@ -124,7 +123,7 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
                 },
               ),
               buildPaymentChip(
-                title: 'InDrive',
+                title: LocaleKeys.misc_indrive.tr(),
                 iconPath: AppAssets.inDrive,
                 selected: widget.cubit.inDrive,
                 onTap: (val) {

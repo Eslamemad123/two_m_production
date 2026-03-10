@@ -8,8 +8,8 @@ import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.d
 
 class DateTextForm extends StatefulWidget {
   DateTextForm({super.key, this.homeCubit, this.orderCubit});
-  HomeCubit? homeCubit;
-  OrderCubit? orderCubit;
+  final HomeCubit? homeCubit;
+  final OrderCubit? orderCubit;
 
   @override
   State<DateTextForm> createState() => _DateTextFormState();

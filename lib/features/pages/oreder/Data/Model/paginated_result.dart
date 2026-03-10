@@ -1,7 +1,7 @@
 class PaginatedResult<T> {
   final List<T> items;
-  final dynamic
-  lastDocument; // Firestore DocumentSnapshot, keep dynamic to avoid import issues
+  final dynamic firstDocument; // Firestore DocumentSnapshot
+  final dynamic lastDocument; // Firestore DocumentSnapshot
 
-  PaginatedResult({required this.items, this.lastDocument});
+  PaginatedResult({required this.items, this.firstDocument, this.lastDocument});
 }

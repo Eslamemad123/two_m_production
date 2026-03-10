@@ -11,7 +11,7 @@ class ProductModel {
   final int price;
   final String? state;
   final String? note;
-  final List<dynamic>? imagePath;
+  final List<String>? imagePath;
   final String? date;
 
   const ProductModel({
@@ -31,25 +31,27 @@ class ProductModel {
     this.date,
   });
 
-  /// From API / Firebase
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      id: json['id'],
+      id: json['id'] ?? '',
       code: json['code'],
-      name: json['name'],
+      name: json['name'] ?? '',
       subName: json['subName'],
-      description: json['description'],
-      section: json['section'],
-      injectionMolding: json['injectionMolding'] ?? false,
+      description: json['description'] ?? '',
+      section: json['section'] ?? '',
+      injectionMolding: json['injectionMolding'],
       size: json['size'],
       stock: json['stock'] ?? 0,
-      price: (json['price'] as num).toInt(),
+      price: (json['price'] as num?)?.toInt() ?? 0,
       state: json['state'],
       note: json['note'],
-      imagePath: json['imagePath'],
+      imagePath: (json['imagePath'] as List?)
+          ?.map((e) => e.toString())
+          .toList(),
       date: json['date'],
     );
   }
+
   ProductModel copyWith({
     String? id,
     String? code,
@@ -63,28 +65,27 @@ class ProductModel {
     int? price,
     String? state,
     String? note,
-    List<dynamic>? imagePath,
+    List<String>? imagePath,
     String? date,
   }) {
     return ProductModel(
-      name: name ?? this.name,
-      price: price ?? this.price,
       id: id ?? this.id,
       code: code ?? this.code,
-      date: date ?? this.date,
+      name: name ?? this.name,
       subName: subName ?? this.subName,
       description: description ?? this.description,
       section: section ?? this.section,
       injectionMolding: injectionMolding ?? this.injectionMolding,
-      stock: stock ?? this.stock,
       size: size ?? this.size,
+      stock: stock ?? this.stock,
+      price: price ?? this.price,
       state: state ?? this.state,
       note: note ?? this.note,
       imagePath: imagePath ?? this.imagePath,
+      date: date ?? this.date,
     );
   }
 
-  /// To API / Firebase
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -101,7 +102,6 @@ class ProductModel {
       'note': note,
       'imagePath': imagePath,
       'date': date,
-      // if (date != null) 'date': date!.toIso8601String(),
     };
   }
 }

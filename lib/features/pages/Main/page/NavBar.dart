@@ -9,7 +9,7 @@ import 'package:two_m_production/features/pages/Main/widget/nav_item.dart';
 import 'package:two_m_production/features/pages/Main/widget/nav_item_model.dart';
 import 'package:two_m_production/features/pages/Profits/pages/ProfitsScreen.dart';
 import 'package:two_m_production/features/pages/RecordSale/presentation/page/record_sale_sheet.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/pages/setingScreen.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/pages/settingPage/setingScreen.dart';
 import 'package:two_m_production/features/pages/oreder/presentation/pages/ordersScreen.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
@@ -40,8 +40,6 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: screens[currentIndex],
@@ -56,7 +54,7 @@ class _NavBarState extends State<NavBar> {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.08),
+                color: Colors.black.withValues(alpha: 0.08),
                 blurRadius: 10.r,
                 offset: Offset(0, -3.h),
               ),
@@ -78,9 +76,7 @@ class _NavBarState extends State<NavBar> {
               showSelectedLabels: false,
               showUnselectedLabels: false,
               selectedItemColor: AppColors.primary,
-              unselectedItemColor: isDark
-                  ? AppColors.gray500
-                  : AppColors.gray400,
+              unselectedItemColor: AppColors.gray400,
               items: List.generate(navItems.length, (index) {
                 final bool isSelected = currentIndex == index;
                 final bool isAddItem = index == 2;

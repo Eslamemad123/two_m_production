@@ -8,8 +8,11 @@ import 'package:two_m_production/features/pages/Main/page/NavBar.dart';
 import 'package:two_m_production/features/pages/ProductDetails/pages/product_details_screen.dart';
 import 'package:two_m_production/features/pages/ProductDetails/widget/viewImage.dart';
 import 'package:two_m_production/features/pages/Setting/Presentation/cubit/settingCubit.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/pages/add_product_screen.dart';
-import 'package:two_m_production/features/pages/Setting/Presentation/pages/edit_profile_screen.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/pages/appProductPage/add_product_screen.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/pages/editProfilePage/edit_profile_screen.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/pages/injuctionPage/select_size_screen.dart';
+import 'package:two_m_production/features/pages/Setting/Presentation/pages/injuctionPage/counting_session_screen.dart';
+import 'package:two_m_production/features/pages/intro/splash/page/lockScreen.dart';
 import 'package:two_m_production/features/pages/intro/splash/page/splashScreen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -29,11 +32,15 @@ class Routes {
   static const String addStock = '/addStock';
   static const String notifiction = '/notifiction';
   static const String viewImage = '/imageview';
+  static const String appLock = '/lock';
+  static const String selectSize = '/selectSize';
+  static const String countingSession = '/countingSession';
 
   static final routes = GoRouter(
     navigatorKey: navigatorKey,
     routes: [
       GoRoute(path: splash, builder: (context, state) => SplashScreen()),
+      GoRoute(path: appLock, builder: (context, state) => AppLockScreen()),
       GoRoute(
         path: viewImage,
         builder: (context, state) => ViewImage(image: state.extra as String),
@@ -65,6 +72,24 @@ class Routes {
           create: (context) => SettingCubit(),
           child: const EditProfileScreen(),
         ),
+      ),
+      GoRoute(
+        path: selectSize,
+        builder: (context, state) => const SelectSizeScreen(),
+      ),
+      GoRoute(
+        path: countingSession,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, String>;
+
+          final image = extra['image'];
+          final name = extra['name'];
+
+          return CountingSessionScreen(
+            image: image ?? 'no found',
+            name: name ?? 'no foung',
+          );
+        },
       ),
     ],
   );

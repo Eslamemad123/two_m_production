@@ -10,6 +10,8 @@ class Localhelper {
   static String kUserImage = 'user_image';
   static String kUserName = 'user_name';
   static String kProducts = 'product';
+  static String kLock = 'lock';
+  static String kDarkMood = 'dark';
 
   static init() async {
     pref = await SharedPreferences.getInstance();
