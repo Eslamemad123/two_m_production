@@ -1,6 +1,4 @@
-import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:two_m_production/core/routes/navigation.dart';
@@ -28,8 +26,6 @@ class _AppLockScreenState extends State<AppLockScreen> {
   }
 
   Future<void> _unlock() async {
-    log('start biometric');
-
     bool result = await BiometricService().authenticate();
 
     if (!mounted) return;
@@ -52,7 +48,6 @@ class _AppLockScreenState extends State<AppLockScreen> {
     await auth.stopAuthentication();
 
     exit(0);
-
   }
 
   @override

@@ -75,14 +75,6 @@ class ProductDetailsSize extends StatelessWidget {
                           : AppColors.gray400,
                     ),
                   ),
-                  if (isSelected)
-                    Text(
-                      '24 ${LocaleKeys.product_details_qty.tr()}',
-                      style: TextStyle(
-                        fontSize: 8.sp,
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
                 ],
               ),
             );

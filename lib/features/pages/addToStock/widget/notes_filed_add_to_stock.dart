@@ -33,7 +33,6 @@ class NotesFiledAddToStock extends StatelessWidget {
           controller: cubit.noteController,
           hint: LocaleKeys.home_addAnyDetails.tr(),
           ispassword: false,
-          colorFill: AppColors.gray100,
           label: LocaleKeys.common_notes.tr(),
         ),
         SizedBox(height: 32.h),

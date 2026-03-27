@@ -4,5 +4,5 @@ import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dar
 
 abstract class HomeRepo {
   Stream<Either<Failure, List<ProductModel>>> getHomeSection(String section);
-  Future<Either<Failure, bool>> addProducStock(int count, String id,String date,String? note);
+  Future<Either<Failure, bool>> addProducStock(int count, String id,String date,String? note,String name);
 }

@@ -42,23 +42,24 @@ class ItemCard extends StatelessWidget {
             Gap(10.h),
             Text(
               model.name,
-
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppFontStyles.getSize14(
                 fontWeight: FontWeight.w700,
                 fontColor: (model.stock == 0)
                     ? AppColors.gray400
-                    : AppColors.black,
+                    : Theme.of(context).textTheme.bodyLarge!.color,
               ),
             ),
+
             Gap(4.h),
+
             Text(
               model.subName ?? '',
               style: AppFontStyles.getSize12(
                 fontColor: (model.stock == 0)
                     ? AppColors.gray400
-                    : AppColors.textSecondary,
+                    : Theme.of(context).textTheme.bodyMedium!.color,
               ),
             ),
             Gap(8.h),

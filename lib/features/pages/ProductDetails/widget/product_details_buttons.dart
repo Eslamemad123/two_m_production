@@ -24,10 +24,15 @@ class ProductDetailsButtons extends StatelessWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.edit, color: AppColors.textPrimary),
+            icon: Icon(
+              Icons.edit,
+              color: Theme.of(context).textTheme.bodyMedium!.color,
+            ),
             label: Text(
               LocaleKeys.common_edit.tr(),
-              style: TextStyle(color: AppColors.textPrimary),
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyMedium!.color,
+              ),
             ),
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,

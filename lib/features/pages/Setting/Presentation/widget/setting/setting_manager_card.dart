@@ -15,7 +15,9 @@ class SettingManagerCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF1f2536)
+            : AppColors.white,
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(

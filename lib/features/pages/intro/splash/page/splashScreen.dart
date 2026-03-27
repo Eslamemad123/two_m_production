@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:two_m_production/core/routes/navigation.dart';
 import 'package:two_m_production/core/routes/routes.dart';
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (isLock) {
         pushReplacement(context, Routes.appLock);
       }
-      if (isLogin) {
+      else if (isLogin) {
         pushReplacement(context, Routes.main);
       } else {
         pushReplacement(context, Routes.login);
@@ -34,17 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SplashUI(),
-      /* bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Text(
-          ' By Eslam Emad ',
-          style: AppFontStyles.getSize14(
-            fontWeight: FontWeight.w400,
-            fontColor: AppColors.gray500,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ),*/
+     
     );
   }
 }

@@ -14,7 +14,11 @@ class AddProductImage extends StatefulWidget {
   final Color inputFillColor;
   final SettingCubit cubit;
 
-  const AddProductImage({super.key, required this.inputFillColor,required this.cubit});
+  const AddProductImage({
+    super.key,
+    required this.inputFillColor,
+    required this.cubit,
+  });
 
   @override
   State<AddProductImage> createState() => _AddProductImageState();

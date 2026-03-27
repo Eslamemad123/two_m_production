@@ -24,7 +24,9 @@ class _SettingProfileCartState extends State<SettingProfileCart> {
     return Container(
       padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF1f2536)
+            : AppColors.white,
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_contact_picker_plus/model/contact_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:two_m_production/components/inputs/main_text_form_field.dart';
@@ -9,6 +10,7 @@ import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/features/pages/RecordSale/presentation/cubit/order_cubit.dart';
 import 'package:two_m_production/features/pages/addToStock/widget/date_text_form.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
+import 'package:flutter_native_contact_picker_plus/flutter_native_contact_picker_plus.dart';
 
 // ignore: must_be_immutable
 class RecordSaleTextFeild extends StatefulWidget {
@@ -20,6 +22,8 @@ class RecordSaleTextFeild extends StatefulWidget {
 }
 
 class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
+  final _contactPicker = FlutterContactPickerPlus();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -51,7 +55,6 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
 
             ispassword: false,
             controller: widget.cubit.nameController,
-            colorFill: AppColors.gray100,
             prefixIcon: AppAssets.userFiledSVG,
             hint: LocaleKeys.add_client_client_name_hint.tr(),
             label: LocaleKeys.add_client_client_name.tr(),
@@ -68,10 +71,24 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
           MainTextFormField(
             textInputNext: TextInputAction.next,
 
+            sufixIcon: IconButton(
+              icon: const Icon(Icons.contacts, color: AppColors.primary),
+
+              onPressed: () async {
+                Contact? contact = await _contactPicker.selectPhoneNumber();
+
+                if (contact != null &&
+                    contact.selectedPhoneNumber != null &&
+                    contact.fullName != null) {
+                  widget.cubit.phoneController.text =
+                      contact.selectedPhoneNumber!;
+                  widget.cubit.nameController.text = contact.fullName!;
+                }
+              },
+            ),
             ispassword: false,
             controller: widget.cubit.phoneController,
 
-            colorFill: AppColors.gray100,
             prefixIcon: AppAssets.phoneSVG,
             ketboardType: TextInputType.number,
             hint: '01XXXXXXXXX',
@@ -99,7 +116,6 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
             ispassword: false,
             controller: widget.cubit.priceController,
 
-            colorFill: AppColors.gray100,
             prefixIcon: AppAssets.walletSVG,
             hint: '1000',
 

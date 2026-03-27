@@ -16,14 +16,12 @@ class SelectSizeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: AppColors.background,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios_new,
-            color: AppColors.textPrimary,
+            color: Theme.of(context).iconTheme.color,
             size: 20.sp,
           ),
           onPressed: () {

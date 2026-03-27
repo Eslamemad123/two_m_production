@@ -47,7 +47,7 @@ class productAddToStock extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  '${product.subName} \u2022 ${product.code}',
+                  '${product.subName} \u2022 ${product.price} \$',
                   style: AppFontStyles.getSize12(
                     fontColor: AppColors.textSecondary,
                   ),

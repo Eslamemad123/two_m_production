@@ -34,6 +34,7 @@ class SettingCubit extends Cubit<SettingState> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController codeController = TextEditingController();
   var key = GlobalKey<FormState>();
+  int selectedSize = 0;
 
   editProfile(String newName, String pathImage, BuildContext context) async {
     emit(SettingLoadingState());
@@ -56,7 +57,11 @@ class SettingCubit extends Cubit<SettingState> {
       }
     }
 
-    var response = await editProfileUsecase.call(newName, finalImageUrl);
+    var response = await editProfileUsecase.call(
+      newName,
+      finalImageUrl,
+      context,
+    );
     response.fold(
       (Failure) {
         emit(SettingErrorState(Failure.message));
@@ -88,7 +93,7 @@ class SettingCubit extends Cubit<SettingState> {
       name: nameController.text,
       description: descriptionController.text,
       section: 'Acrylic Sheets',
-      size: 3,
+      size: selectedSize,
       stock: int.parse(stockController.text),
       price: int.parse(priceController.text),
       id: '',
@@ -132,31 +137,20 @@ class SettingCubit extends Cubit<SettingState> {
       (Map val) {
         openRecord = val['open'];
         closedRecords = val['closed'];
-        emit(SettingSuccessState());
+        emit(SettingSuccessInjuctionState());
       },
     );
   }
 
-  void stopInjection(BuildContext context, String product) async {
+  void stopInjection(String product) async {
     emit(SettingLoadingState());
 
     var response = await stopInjectionGI.call(product);
     response.fold(
       (Failure) {
-        showMyDialog(
-          context,
-          'حدث خطا اثناء اضافة الحقنة',
-          type: DialogType.error,
-        );
         emit(SettingErrorState(Failure.message));
       },
       (bool val) {
-        Pop(context);
-        showMyDialog(
-          context,
-          'تمت اضافة حقنة جديدة بنجاح',
-          type: DialogType.success,
-        );
         emit(SettingSuccessState());
       },
     );

@@ -5,7 +5,7 @@ class InjectionModel {
   final String? endDate;
   final String state;
   final String totalCount;
-  final String numberInjection;
+  final int numberInjection;
 
   InjectionModel({
     required this.id,

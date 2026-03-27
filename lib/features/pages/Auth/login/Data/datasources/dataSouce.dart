@@ -49,14 +49,9 @@ class AuthDataSourcImp implements AuthDataSourc {
         return Left(Failure(message: LocaleKeys.firebase_invalidEmail.tr()));
       } else if (e.code == 'invalid-credential') {
         return Left(Failure(message: LocaleKeys.firebase_emailPassError.tr()));
-      } else {
-        log("ERROR CODE: ${e.code}");
-        log("ERROR MESSAGE: ${e.message}");
-      }
+      } else {}
 
-      return Left(
-        Failure(message: e.message ?? LocaleKeys.firebase_authError.tr()),
-      );
+      return Left(Failure(message: LocaleKeys.firebase_authError.tr()));
     }
   }
 }

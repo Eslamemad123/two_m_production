@@ -24,7 +24,7 @@ class ProductDetailsTitleAndPrice extends StatelessWidget {
               Text(
                 product.subName ?? '',
                 style: AppFontStyles.getSize12(
-                  fontColor: AppColors.textSecondary,
+                  fontColor: Theme.of(context).textTheme.bodyMedium!.color,
                 ),
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,

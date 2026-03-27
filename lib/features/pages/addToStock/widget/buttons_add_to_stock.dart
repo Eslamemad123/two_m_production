@@ -6,9 +6,15 @@ import 'package:two_m_production/features/pages/Home/Presentation/cubit/homeCubi
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class ButtonsAddToStock extends StatelessWidget {
-  ButtonsAddToStock({super.key, required this.cubit, required this.idProduct});
+  ButtonsAddToStock({
+    super.key,
+    required this.cubit,
+    required this.idProduct,
+    required this.name,
+  });
   final HomeCubit cubit;
   final String idProduct;
+  final String name;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,9 +23,7 @@ class ButtonsAddToStock extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              cubit.addProductStock(context, idProduct);
-              //Pop(context);
-              //Pop(context);
+              cubit.addProductStock(context, idProduct, name);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFE53935),

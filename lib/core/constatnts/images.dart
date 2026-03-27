@@ -81,13 +81,27 @@ class AppAssets {
   static const subLableFillSVG = 'assets/icon/subLableFill.svg';
   // ================== PNG IMAGES ==================
   static const String large1 = 'assets/image/large1.png';
+  static const String large11 = 'assets/image/large11.png';
   static const String large2 = 'assets/image/large2.png';
+  static const String large22 = 'assets/image/xlarge22.png';
+  static const String sevenCm1 = 'assets/image/7cm1.png';
+  static const String sevenCm2 = 'assets/image/7cm2.png';
+  static const String sevenCm3 = 'assets/image/7cm3.png';
+  static const String f200 = 'assets/image/f200.png';
+  static const String f2001 = 'assets/image/f2002.png';
   static const String logo = 'assets/image/logo.png';
   static const String middle2 = 'assets/image/middle.png';
   static const String middle3 = 'assets/image/middle2.jpeg';
+  static const String middle4 = 'assets/image/middle3.png';
+  static const String middle5 = 'assets/image/middle4.png';
+  static const String middle6 = 'assets/image/middle5.png';
   static const String smallGreen = 'assets/image/smallGreen.png';
+  static const String smallGreen2 = 'assets/image/smallGreen2.png';
   static const String smallRed = 'assets/image/smallRed.png';
+  static const String smallRed2 = 'assets/image/smallRed3.png';
+  static const String smallRed3 = 'assets/image/smallRed4.png';
   static const String smallYellow = 'assets/image/smallYellow.png';
+  static const String smallYellow2 = 'assets/image/smallYellow2.png';
   static const inDrive = 'assets/image/inDrive.png';
   static const vodafone = 'assets/image/vodafon.png';
   // ================== LOTTIE JSON ==================

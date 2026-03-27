@@ -14,8 +14,9 @@ class HomeRepoImp extends HomeRepo {
     String id,
     String date,
     String? note,
+    String name
   ) async {
-    return homeDataSource.addProducStock(count, id, date, note);
+    return homeDataSource.addProducStock(count, id, date, note,name);
   }
 
   @override

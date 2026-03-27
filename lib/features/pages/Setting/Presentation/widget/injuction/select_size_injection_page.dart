@@ -45,7 +45,10 @@ class selectSizeInjectionPage extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: AppFontStyles.getSize16(fontWeight: FontWeight.bold),
+                  style: AppFontStyles.getSize16(
+                    fontWeight: FontWeight.bold,
+                    fontColor: AppColors.textSecondary,
+                  ),
                 ),
                 SizedBox(height: 4.h),
                 Text(

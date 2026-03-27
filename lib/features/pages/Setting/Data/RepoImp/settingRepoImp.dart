@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:two_m_production/core/error/failer.dart';
 import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 import 'package:two_m_production/features/pages/Setting/Data/DataSource/settingDataSource.dart';
@@ -22,12 +23,17 @@ class SettingRepoImp extends SettingRepo {
   }
 
   @override
-  Future<Either<Failure, bool>> editProfile(String name, String pathImage) {
-    return dataSource.editProfile(name, pathImage);
+  Future<Either<Failure, bool>> editProfile(String name, String pathImage,BuildContext context) {
+    return dataSource.editProfile(name, pathImage,context);
   }
 
   @override
   Future<Either<Failure, bool>> updateLastConnection() {
     return dataSource.updateLastConnection();
+  }
+
+  @override
+  Future<Either<Failure, Map<String, String>>> getProfileData() {
+    return dataSource.getProfileData();
   }
 }

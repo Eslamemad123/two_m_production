@@ -21,7 +21,9 @@ class ProductDetialsDescription extends StatelessWidget {
         SizedBox(height: 6.h),
         Text(
           product.description,
-          style: AppFontStyles.getSize12(fontColor: AppColors.textSecondary),
+          style: AppFontStyles.getSize12(
+            fontColor: Theme.of(context).textTheme.bodyMedium!.color,
+          ),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
         ),
@@ -36,7 +38,7 @@ class ProductDetialsDescription extends StatelessWidget {
             Text(
               product.date.toString().split(' ')[0],
               style: AppFontStyles.getSize12(
-                fontColor: AppColors.textSecondary,
+                fontColor: Theme.of(context).textTheme.bodyMedium!.color,
                 fontWeight: FontWeight.w800,
               ),
               maxLines: 3,
@@ -58,7 +60,7 @@ class ProductDetialsDescription extends StatelessWidget {
                 child: Text(
                   product.note!,
                   style: AppFontStyles.getSize12(
-                    fontColor: AppColors.textSecondary,
+                    fontColor: Theme.of(context).textTheme.bodyMedium!.color,
                   ),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,

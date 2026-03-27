@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:two_m_production/core/error/failer.dart';
 import 'package:two_m_production/core/services/cache/LocalHelper.dart';
 import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
@@ -17,6 +18,7 @@ abstract class HomeDataSource {
     String id,
     String date,
     String? note,
+    String name,
   );
 }
 
@@ -29,9 +31,9 @@ class HomeDataSourceImp extends HomeDataSource {
     String id,
     String date,
     String? note,
+    String name,
   ) async {
     try {
-
       final rawDate = date.trim();
 
       final cleanedDate = rawDate.isEmpty
@@ -47,7 +49,18 @@ class HomeDataSourceImp extends HomeDataSource {
             'note': note,
           })
           .timeout(const Duration(seconds: 10));
+      final query = await firestore
+          .collection('Injection')
+          .where('product', isEqualTo: name)
+          .get();
 
+      for (final doc in query.docs) {
+        final current = int.tryParse(doc['totalCount'].toString()) ?? 0;
+
+        await doc.reference.update({
+          'totalCount': (current + count).toString(),
+        });
+      }
       return const Right(true);
     } on FirebaseException catch (e) {
       if (e.code == 'unavailable' || e.code == 'network-request-failed') {
@@ -56,19 +69,24 @@ class HomeDataSourceImp extends HomeDataSource {
 
       return Left(Failure(message: e.message ?? 'Firestore error'));
     } on TimeoutException {
-
       return Left(Failure(message: 'check internet'));
     } catch (e) {
-
       return Left(Failure(message: e.toString()));
     }
   }
 
   @override
-  Stream<Either<Failure, List<ProductModel>>> getHomeSection(String section) {
+  Stream<Either<Failure, List<ProductModel>>> getHomeSection(
+    String section,
+  ) async* {
     try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        await FirebaseFirestore.instance.collection('Users').doc(user.uid).set({
+          'lastConnection': FieldValue.serverTimestamp(),
+        }, SetOptions(merge: true));
+      }
       Query<Map<String, dynamic>> query;
-
       if (section == 'All products 2M') {
         query = firestore.collection('Products');
       } else if (section == 'Low Stock') {
@@ -80,16 +98,16 @@ class HomeDataSourceImp extends HomeDataSource {
             .collection('Products')
             .where('section', isEqualTo: section);
       }
-
-      return query.snapshots().map((snapshot) {
+      await for (var snapshot in query.snapshots()) {
         final products = snapshot.docs
             .map((doc) => ProductModel.fromJson(doc.data()))
             .toList();
+        Localhelper.remove(Localhelper.kProducts);
         Localhelper.setProducts(Localhelper.kProducts, products);
-        return Right(products);
-      });
+        yield Right(products);
+      }
     } catch (e) {
-      return Stream.value(Left(Failure(message: e.toString())));
+      yield Left(Failure(message: e.toString()));
     }
   }
 

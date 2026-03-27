@@ -152,7 +152,11 @@ class _AddStockSheetState extends State<AddStockSheet> {
 
                 NotesFiledAddToStock(cubit: cubit),
 
-                ButtonsAddToStock(cubit: cubit, idProduct: widget.product.id),
+                ButtonsAddToStock(
+                  cubit: cubit,
+                  idProduct: widget.product.id,
+                  name: normalizeName(widget.product.name),
+                ),
               ],
             ),
           );
@@ -181,4 +185,14 @@ class _AddStockSheetState extends State<AddStockSheet> {
       ),
     );
   }
+}
+  
+String normalizeName(String name) {
+  final first = name.trim().split(' ').first;
+
+  if (first == 'X') {
+    return 'Large';
+  }
+
+  return first;
 }

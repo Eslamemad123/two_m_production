@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/features/pages/Home/Data/Model/productModel.dart';
 import 'package:two_m_production/features/pages/ProductDetails/widget/home__slider.dart';
 import 'package:two_m_production/features/pages/ProductDetails/widget/product_details_image.dart';
@@ -14,6 +15,7 @@ class ProductDetailsScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: AppColors.transparent,
         leading: Padding(
           padding: EdgeInsets.all(8.0.r),
           child: CircleAvatar(
@@ -39,9 +41,8 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
               child: Center(
                 child: PhotosProductDetails(
-                  images:
-                      product.imagePath ??[],
-                      id:product.id ,
+                  images: product.imagePath ?? [],
+                  id: product.id,
                 ),
               ),
             ),

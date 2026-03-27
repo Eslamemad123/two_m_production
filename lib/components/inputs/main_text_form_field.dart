@@ -32,10 +32,11 @@ class MainTextFormField extends StatefulWidget {
   final Color? colorFill;
   final String? label;
   final String? prefixIcon;
-  final String? sufixIcon;
+  final Widget? sufixIcon;
   final Color? textColor;
   final TextInputType? ketboardType;
   final TextInputAction? textInputNext;
+
   final void Function(String)? onFieldSubmitted;
   @override
   State<MainTextFormField> createState() => _MainTextFormFieldState();
@@ -58,7 +59,7 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
         style: AppFontStyles.getSize18(
           fontColor:
               Theme.of(context).textTheme.bodyLarge?.color ??
-              AppColors.textPrimary,
+              Theme.of(context).textTheme.bodyMedium!.color,
         ),
         keyboardType: widget.ketboardType,
         decoration: InputDecoration(
@@ -75,8 +76,9 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
           filled: true,
           fillColor:
               widget.colorFill ??
-              Theme.of(context).inputDecorationTheme.fillColor ??
-              AppColors.gray200,
+              (Theme.of(context).brightness == Brightness.dark
+                  ? const Color(0xFF161925)
+                  : AppColors.gray200),
           suffixIcon: widget.ispassword
               ? Transform.flip(
                   flipY: true,
@@ -92,7 +94,7 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
                     },
                   ),
                 )
-              : null,
+              : widget.sufixIcon,
           prefixIconConstraints: BoxConstraints(
             maxHeight: 35.w,
             maxWidth: 35.w,
@@ -112,11 +114,7 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
 
           hint: Text(
             widget.hint ?? "",
-            style: AppFontStyles.getSize14(
-              fontColor:
-                  Theme.of(context).textTheme.bodySmall?.color ??
-                  AppColors.gray400,
-            ),
+            style: AppFontStyles.getSize14(fontColor: AppColors.gray400),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),

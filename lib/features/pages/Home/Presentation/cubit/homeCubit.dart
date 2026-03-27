@@ -59,7 +59,7 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  addProductStock(BuildContext context, String id) async {
+  addProductStock(BuildContext context, String id,String name) async {
     emit(HomeLoadingState());
     String dateToSend = dateController!.text.trim().isEmpty
         ? DateFormat('yyyy-MM-dd').format(DateTime.now())
@@ -69,6 +69,7 @@ class HomeCubit extends Cubit<HomeState> {
       id,
       dateToSend,
       noteController.text,
+      name
     );
     response.fold(
       (Failure) {

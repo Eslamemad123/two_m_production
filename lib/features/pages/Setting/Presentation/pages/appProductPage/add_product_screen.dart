@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -78,7 +80,7 @@ class AddProductScreen extends StatelessWidget {
                       icon: AppAssets.subLableFillSVG,
                     ),
                     SizedBox(height: 16.h),
-                    _buildLabel(LocaleKeys.add_product_description.tr()),
+                    _buildLabel(LocaleKeys.misc_code_product.tr()),
                     _buildTextField(
                       context,
                       hint: 'ex:2002s',
@@ -111,7 +113,31 @@ class AddProductScreen extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 16.h),
+                    _buildLabel("Size"),
 
+                    DropdownButtonFormField<int>(
+                      value: cubit.selectedSize,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor:
+                            Theme.of(context).brightness == Brightness.dark
+                            ? const Color(0xFF1f2536)
+                            : AppColors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      items: const [
+                        DropdownMenuItem(value: 0, child: Text("Small")),
+                        DropdownMenuItem(value: 1, child: Text("Medium")),
+                        DropdownMenuItem(value: 2, child: Text("Large")),
+                        DropdownMenuItem(value: 3, child: Text("XLarge")),
+                      ],
+                      onChanged: (value) {
+                        cubit.selectedSize = value!;
+                      },
+                    ),
                     // Stock Quantity
                     _buildLabel(LocaleKeys.add_product_stock_quantity.tr()),
                     _buildTextField(
@@ -198,7 +224,6 @@ class AddProductScreen extends StatelessWidget {
     return MainTextFormField(
       ispassword: false,
       controller: controller,
-      colorFill: AppColors.gray200,
       hint: hint,
       label: lable,
       ketboardType: ketboardType,

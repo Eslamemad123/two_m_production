@@ -36,7 +36,10 @@ class SplashUI extends StatelessWidget {
                 ),
                 TextSpan(
                   text: ' Production',
-                  style: AppFontStyles.getSize24(fontWeight: FontWeight.w600),
+                  style: AppFontStyles.getSize24(
+                    fontWeight: FontWeight.w600,
+                    fontColor: Theme.of(context).textTheme.titleLarge?.color,
+                  ),
                 ),
               ],
             ),
