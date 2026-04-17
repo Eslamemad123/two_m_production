@@ -6,67 +6,39 @@ import 'package:two_m_production/features/pages/Profits/widget/stat_card.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class ProfitsItems extends StatelessWidget {
-  const ProfitsItems({super.key});
+  final int totalOrders;
+  final double dailyAverage;
+  final int totalPieces;
+
+  const ProfitsItems({
+    super.key,
+    required this.totalOrders,
+    required this.dailyAverage,
+    required this.totalPieces,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: StatCard(
-                icon: Icons.shopping_bag_outlined,
-                iconColor: AppColors.secondaryNavy,
-                iconBgColor: AppColors.backgroundSoft,
-                value: '1,245',
-                label: LocaleKeys.profits_total_orders.tr(),
-                percentage: '\u2191 8%',
-                isPositive: true,
-              ),
-            ),
-            SizedBox(width: 16.w),
-            Expanded(
-              child: StatCard(
-                icon: Icons.person_add_outlined,
-                iconColor: AppColors.primary,
-                iconBgColor: AppColors.backgroundSoft,
-                value: '342', // Typo fix in color below
-                label: LocaleKeys.profits_new_customers.tr(),
-                percentage: '\u2193 2%',
-                isPositive: false,
-              ),
-            ),
-          ],
+        Expanded(
+          child: StatCard(
+            icon: Icons.shopping_bag_outlined,
+            iconColor: AppColors.secondaryNavy,
+            iconBgColor: AppColors.backgroundSoft,
+            value: totalOrders.toString(),
+            label: LocaleKeys.profits_total_orders.tr(),
+          ),
         ),
-        // Bottom spacing for navigation bar safety
-        SizedBox(height: 16.h),
-        Row(
-          children: [
-            Expanded(
-              child: StatCard(
-                icon: Icons.production_quantity_limits,
-                iconColor: AppColors.secondaryNavy,
-                iconBgColor: AppColors.backgroundSoft,
-                value: '1,245',
-                label: LocaleKeys.profits_total_orders.tr(),
-                percentage: '\u2191 8%',
-                isPositive: true,
-              ),
-            ),
-            SizedBox(width: 16.w),
-            Expanded(
-              child: StatCard(
-                icon: Icons.category_outlined,
-                iconColor: AppColors.primary,
-                iconBgColor: AppColors.backgroundSoft,
-                value: '342', // Typo fix in color below
-                label: LocaleKeys.profits_new_customers.tr(),
-                percentage: '\u2193 2%',
-                isPositive: false,
-              ),
-            ),
-          ],
+        SizedBox(width: 16.w),
+        Expanded(
+          child: StatCard(
+            icon: Icons.show_chart_rounded,
+            iconColor: AppColors.primary,
+            iconBgColor: AppColors.primarySoft,
+            value: dailyAverage.toStringAsFixed(1),
+            label: LocaleKeys.profits_daily_average.tr(),
+          ),
         ),
       ],
     );

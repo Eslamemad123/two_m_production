@@ -138,9 +138,17 @@
     "revenue": "الإيرادات",
     "expenses": "المصاريف",
     "sales_overview": "نظرة عامة على المبيعات",
-    "weekly_abbr": "أ",
-    "monthly_abbr": "ش",
-    "yearly_abbr": "س"
+    "weekly_abbr": "أسبوع",
+    "monthly_abbr": "شهر",
+    "yearly_abbr": "س",
+    "all_products": "كل المنتجات",
+    "filter_product": "فلتر المنتج",
+    "pieces_sold": "قطعة مباعة",
+    "total_pieces": "إجمالي القطع",
+    "total_revenue": "إجمالي الإيرادات",
+    "daily_average": "المعدل اليومي",
+    "pieces": "قطعة",
+    "no_data": "لا توجد بيانات"
   },
   "orders": {
     "order_id": "طلب رقم",

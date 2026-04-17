@@ -140,9 +140,17 @@
     "revenue": "Revenue",
     "expenses": "Expenses",
     "sales_overview": "Sales Overview",
-    "weekly_abbr": "W",
-    "monthly_abbr": "M",
-    "yearly_abbr": "Y"
+    "weekly_abbr": "Week",
+    "monthly_abbr": "Month",
+    "yearly_abbr": "Y",
+    "all_products": "All Products",
+    "filter_product": "Filter Product",
+    "pieces_sold": "Pieces Sold",
+    "total_pieces": "Total Pieces",
+    "total_revenue": "Total Revenue",
+    "daily_average": "Daily Average",
+    "pieces": "pcs",
+    "no_data": "No data available"
   },
   "orders": {
     "order_id": "Order #",

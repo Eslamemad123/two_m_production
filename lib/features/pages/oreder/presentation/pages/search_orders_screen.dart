@@ -52,7 +52,6 @@ class _SearchOrdersScreenState extends State<SearchOrdersScreen> {
     return BlocProvider(
       create: (context) => OrderCubit(),
       child: Scaffold(
-        backgroundColor: AppColors.background,
         appBar: AppBar(
           title: Text(
             LocaleKeys.nav_bar_orders
@@ -87,22 +86,17 @@ class _SearchOrdersScreenState extends State<SearchOrdersScreen> {
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(
-                          color: AppColors.borderLight,
-                        ),
+                        borderSide: const BorderSide(),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(
-                          color: AppColors.borderLight,
-                        ),
+                        borderSide: const BorderSide(),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: const BorderSide(color: AppColors.primary),
                       ),
                       filled: true,
-                      fillColor: Colors.white,
                     ),
                   ),
                 ),

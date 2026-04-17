@@ -1,239 +1,276 @@
-import 'dart:ui' as ui;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
+import 'package:two_m_production/features/pages/Profits/Presentation/cubit/profitsState.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class SalesChart extends StatelessWidget {
-  const SalesChart({super.key});
+  final List<DailySalesData> dailySales;
+  final bool isWeekly;
+  final VoidCallback onToggleWeekly;
+  final VoidCallback onToggleMonthly;
+
+  const SalesChart({
+    super.key,
+    required this.dailySales,
+    required this.isWeekly,
+    required this.onToggleWeekly,
+    required this.onToggleMonthly,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Column(
       children: [
-        // Tab Header for Chart
+        // Header with title and toggle
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              LocaleKeys.profits_sales_overview.tr(),
-              style: AppFontStyles.getSize18(fontWeight: FontWeight.bold),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.gray100,
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              child: Row(
-                children: [
-                  _buildTab(LocaleKeys.profits_weekly_abbr.tr(), true),
-                  _buildTab(LocaleKeys.profits_monthly_abbr.tr(), false),
-                  _buildTab(LocaleKeys.profits_yearly_abbr.tr(), false),
-                ],
+            Flexible(
+              child: Text(
+                LocaleKeys.profits_sales_overview.tr(),
+                style: AppFontStyles.getSize18(fontWeight: FontWeight.bold),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
+            SizedBox(width: 8.w),
+            _buildToggle(isDark),
           ],
         ),
         SizedBox(height: 24.h),
 
-        // Chart container
+        // Chart
         SizedBox(
           height: 220.h,
-          width: double.infinity,
-          child: CustomPaint(painter: SalesChartPainter()),
+          child: dailySales.isEmpty
+              ? Center(
+                  child: Text(
+                    LocaleKeys.profits_no_data.tr(),
+                    style: AppFontStyles.getSize14(
+                      fontColor: AppColors.textSecondary,
+                    ),
+                  ),
+                )
+              : _buildChart(isDark),
         ),
       ],
     );
   }
 
-  Widget _buildTab(String text, bool isSelected) {
+  Widget _buildToggle(bool isDark) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.white : AppColors.transparent,
-        borderRadius: BorderRadius.circular(8.r),
-        boxShadow: isSelected
-            ? [
-                BoxShadow(
-                  color: AppColors.black.withOpacity(0.05),
-                  blurRadius: 4.r,
+        color: isDark ? AppColors.darkSurfaceAlt : AppColors.gray100,
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      padding: EdgeInsets.all(3.r),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildTab(
+            LocaleKeys.profits_weekly_abbr.tr(),
+            isWeekly,
+            onToggleWeekly,
+            isDark,
+          ),
+          _buildTab(
+            LocaleKeys.profits_monthly_abbr.tr(),
+            !isWeekly,
+            onToggleMonthly,
+            isDark,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTab(
+    String text,
+    bool isSelected,
+    VoidCallback onTap,
+    bool isDark,
+  ) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? (isDark ? AppColors.primary : AppColors.white)
+              : AppColors.transparent,
+          borderRadius: BorderRadius.circular(8.r),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: AppColors.black.withOpacity(0.08),
+                    blurRadius: 4.r,
+                    offset: Offset(0, 2.h),
+                  ),
+                ]
+              : [],
+        ),
+        child: Text(
+          text,
+          style: AppFontStyles.getSize12(
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+            fontColor: isSelected
+                ? (isDark ? AppColors.white : AppColors.textPrimary)
+                : AppColors.textSecondary,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChart(bool isDark) {
+    final maxPieces = dailySales
+        .map((e) => e.totalPieces)
+        .fold<int>(0, (a, b) => a > b ? a : b);
+    final maxY = maxPieces == 0 ? 10.0 : (maxPieces * 1.3).ceilToDouble();
+
+    return BarChart(
+      BarChartData(
+        alignment: BarChartAlignment.spaceAround,
+        maxY: maxY,
+        minY: 0,
+        barTouchData: BarTouchData(
+          enabled: true,
+          touchTooltipData: BarTouchTooltipData(
+            tooltipRoundedRadius: 12.r,
+            getTooltipItem: (group, groupIndex, rod, rodIndex) {
+              final data = dailySales[groupIndex];
+              return BarTooltipItem(
+                '${data.dayLabel}\n${data.totalPieces} ${LocaleKeys.profits_pieces.tr()}',
+                AppFontStyles.getSize12(
+                  fontColor: AppColors.white,
+                  fontWeight: FontWeight.w600,
                 ),
-              ]
-            : [],
-      ),
-      child: Text(
-        text,
-        style: AppFontStyles.getSize12(
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-          fontColor: isSelected
-              ? AppColors.textPrimary
-              : AppColors.textSecondary,
+              );
+            },
+          ),
         ),
+        titlesData: FlTitlesData(
+          show: true,
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              reservedSize: 30.h,
+              getTitlesWidget: (value, meta) {
+                final index = value.toInt();
+                if (index < 0 || index >= dailySales.length) {
+                  return const SizedBox.shrink();
+                }
+
+                // For monthly view, show every 5th day label
+                if (!isWeekly &&
+                    index % 5 != 0 &&
+                    index != dailySales.length - 1) {
+                  return const SizedBox.shrink();
+                }
+
+                return Padding(
+                  padding: EdgeInsets.only(top: 8.h),
+                  child: Text(
+                    dailySales[index].dayLabel,
+                    style: TextStyle(
+                      color: isDark
+                          ? AppColors.textSecondaryDark
+                          : AppColors.textSecondary.withOpacity(0.7),
+                      fontSize: isWeekly ? 11.sp : 9.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          leftTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              reservedSize: 40.w,
+              interval: maxY > 0 ? (maxY / 4).ceilToDouble() : 1,
+              getTitlesWidget: (value, meta) {
+                return Text(
+                  value.toInt().toString(),
+                  style: TextStyle(
+                    color: isDark
+                        ? AppColors.textSecondaryDark
+                        : AppColors.textSecondary.withOpacity(0.5),
+                    fontSize: 10.sp,
+                  ),
+                );
+              },
+            ),
+          ),
+          topTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+        ),
+        gridData: FlGridData(
+          show: true,
+          drawVerticalLine: false,
+          horizontalInterval: maxY > 0 ? (maxY / 4).ceilToDouble() : 1,
+          getDrawingHorizontalLine: (value) {
+            return FlLine(
+              color: isDark
+                  ? AppColors.borderDark.withOpacity(0.3)
+                  : AppColors.borderLight,
+              strokeWidth: 1,
+            );
+          },
+        ),
+        borderData: FlBorderData(show: false),
+        barGroups: _buildBarGroups(isDark, maxY),
       ),
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOutCubic,
     );
   }
-}
 
-class SalesChartPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-    const paddingBottom = 20.0;
-    const paddingLeft = 30.0;
+  List<BarChartGroupData> _buildBarGroups(bool isDark, double maxY) {
+    return List.generate(dailySales.length, (index) {
+      final data = dailySales[index];
+      final barWidth = isWeekly ? 24.0.w : 8.0.w;
 
-    final paintLine = Paint()
-      ..color = AppColors.primary
-      ..strokeWidth = 3
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    final paintDot = Paint()
-      ..color = AppColors.white
-      ..style = PaintingStyle.fill;
-
-    final paintDotBorder = Paint()
-      ..color = AppColors.primary
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-
-    //  final paintGrid = Paint()
-    //    ..color = AppColors.borderLight
-    //   ..strokeWidth = 1;
-
-    // Grid lines & Y-Axis Labels
-    final yLabels = [
-      '\$1k',
-      '\$1.5k',
-      '\$2k',
-      '\$2.5k',
-      '\$3k',
-      '\$3.5k',
-      '\$4k',
-    ];
-    for (int i = 0; i < yLabels.length; i++) {
-      final y =
-          h - paddingBottom - (i * (h - paddingBottom) / (yLabels.length - 1));
-      // Draw grid line
-      // canvas.drawLine(Offset(paddingLeft, y), Offset(w, y), paintGrid); // Optional: if design has full grid
-
-      // Draw labels
-      final textSpan = TextSpan(
-        text: yLabels[i],
-        style: TextStyle(
-          color: AppColors.textSecondary.withOpacity(0.5),
-          fontSize: 10,
-        ),
+      return BarChartGroupData(
+        x: index,
+        barRods: [
+          BarChartRodData(
+            toY: data.totalPieces.toDouble(),
+            width: barWidth,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(6.r),
+              topRight: Radius.circular(6.r),
+            ),
+            gradient: LinearGradient(
+              colors: data.totalPieces > 0
+                  ? [AppColors.primary, AppColors.primaryLight]
+                  : [
+                      (isDark ? AppColors.darkSurfaceAlt : AppColors.gray200),
+                      (isDark ? AppColors.darkSurfaceAlt : AppColors.gray200),
+                    ],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+            ),
+            backDrawRodData: BackgroundBarChartRodData(
+              show: true,
+              toY: maxY,
+              color: isDark
+                  ? AppColors.darkSurfaceAlt.withOpacity(0.5)
+                  : AppColors.gray100.withOpacity(0.5),
+            ),
+          ),
+        ],
       );
-      final textPainter = TextPainter(
-        text: textSpan,
-        textDirection: ui.TextDirection.ltr,
-      );
-      textPainter.layout();
-      textPainter.paint(canvas, Offset(0, y - textPainter.height / 2));
-    }
-
-    // X-Axis Labels
-    final xLabels = [
-      LocaleKeys.common_mon.tr(),
-      LocaleKeys.common_tue.tr(),
-      LocaleKeys.common_wed.tr(),
-      LocaleKeys.common_thu.tr(),
-      LocaleKeys.common_fri.tr(),
-      LocaleKeys.common_sat.tr(),
-      LocaleKeys.common_sun.tr(),
-    ];
-
-    // Data Points (normalized 0.0 to 1.0) simulating the curve in image
-    // Mon: low, Tue: mid-high, Wed: dip, Thu: high, Fri: slight dip, Sat: higher, Sun: peak
-    final data = [0.1, 0.4, 0.3, 0.6, 0.5, 0.75, 1.0];
-
-    final path = Path();
-    final stepX = (w - paddingLeft) / (data.length - 1);
-
-    // Gradient fill setup
-    final pathScan = Path();
-
-    List<Offset> points = [];
-
-    for (int i = 0; i < data.length; i++) {
-      final x = paddingLeft + (i * stepX);
-      final y = (h - paddingBottom) - (data[i] * (h - paddingBottom));
-      points.add(Offset(x, y));
-
-      // Draw X Label
-      final textSpan = TextSpan(
-        text: xLabels[i],
-        style: TextStyle(
-          color: AppColors.textSecondary.withOpacity(0.5),
-          fontSize: 10,
-        ),
-      );
-      final textPainter = TextPainter(
-        text: textSpan,
-        textDirection: ui.TextDirection.ltr,
-      );
-      textPainter.layout();
-      textPainter.paint(canvas, Offset(x - textPainter.width / 2, h - 10));
-    }
-
-    // Move to first point
-    path.moveTo(points[0].dx, points[0].dy);
-    pathScan.moveTo(points[0].dx, points[0].dy);
-
-    // Quadratic Bezier interpolation for smooth curve
-    for (int i = 0; i < points.length - 1; i++) {
-      final p1 = points[i];
-      final p2 = points[i + 1];
-      // final controlPoint = Offset(
-      //   (p1.dx + p2.dx) / 2,
-      //    (p1.dy + p2.dy) /
-      //        2, // Simple midpoint for control, or could use advanced spline
-      //  );
-
-      // Using catmull-rom or simple cubic usually looks better, but simple line + rounded corners is easiest "smooth" look.
-      // Actually for the "wave" look, QuadraticBezierTo halfway is standard.
-      // Let's use simple lineTo for now or quadratic if needed. The image shows smooth curves.
-      // A simple smoothing technique: use control points based on neighbors.
-
-      // Approximation:
-      final cp1 = Offset(p1.dx + (p2.dx - p1.dx) / 2, p1.dy);
-      final cp2 = Offset(p1.dx + (p2.dx - p1.dx) / 2, p2.dy);
-      path.cubicTo(cp1.dx, cp1.dy, cp2.dx, cp2.dy, p2.dx, p2.dy);
-    }
-
-    // Draw Shadow/Gradient fill
-    final pathFill = Path.from(path);
-    pathFill.lineTo(points.last.dx, h - paddingBottom);
-    pathFill.lineTo(points.first.dx, h - paddingBottom);
-    pathFill.close();
-
-    final gradient = LinearGradient(
-      colors: [
-        AppColors.primary.withOpacity(0.2),
-        AppColors.primary.withOpacity(0.0),
-      ],
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-    );
-
-    canvas.drawPath(
-      pathFill,
-      Paint()..shader = gradient.createShader(Rect.fromLTWH(0, 0, w, h)),
-    );
-
-    // Draw Line
-    canvas.drawPath(path, paintLine);
-
-    // Draw Dots
-    for (var p in points) {
-      canvas.drawCircle(p, 4, paintDot);
-      canvas.drawCircle(p, 4, paintDotBorder);
-    }
+    });
   }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

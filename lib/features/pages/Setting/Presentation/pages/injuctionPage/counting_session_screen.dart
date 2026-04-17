@@ -115,7 +115,18 @@ class CountingSessionScreen extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: AppColors.gray200,
                       ),
-                      child: Image.asset(image),
+                      child: CircleAvatar(
+                        backgroundColor: AppColors.background,
+                        radius: 20,
+                        child: ClipOval(
+                          child: Image.asset(
+                            image,
+                            width: 30,
+                            height: 30,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(width: 8.w),
                     Expanded(

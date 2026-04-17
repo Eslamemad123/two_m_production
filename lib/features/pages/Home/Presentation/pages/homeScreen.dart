@@ -87,13 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
 
                             Gap(4.h),
-
-                            Text(
-                              '2M Covers Fire Production',
-                              style: AppFontStyles.getSize14(
-                                fontColor: AppColors.textSecondary,
-                              ),
-                            ),
                           ],
                         ),
                       ],

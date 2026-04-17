@@ -141,9 +141,13 @@ class _SettingScreenState extends State<SettingScreen> {
                             ),
                             SettingsTile(
                               icon: Icons.lock_outline_rounded,
-                              iconColor: AppColors.textPrimary,
-                              iconBackgroundColor: AppColors.textPrimary
-                                  .withValues(alpha: 0.1),
+                              iconColor: const Color.fromARGB(255, 7, 123, 40),
+                              iconBackgroundColor: const Color.fromARGB(
+                                255,
+                                16,
+                                255,
+                                8,
+                              ).withValues(alpha: 0.1),
                               title: LocaleKeys.misc_lock_app.tr(),
                               trailing: Transform.scale(
                                 scale: 0.8,

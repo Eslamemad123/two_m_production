@@ -136,6 +136,14 @@ abstract class LocaleKeys {
   static const profits_weekly_abbr = 'profits.weekly_abbr';
   static const profits_monthly_abbr = 'profits.monthly_abbr';
   static const profits_yearly_abbr = 'profits.yearly_abbr';
+  static const profits_all_products = 'profits.all_products';
+  static const profits_filter_product = 'profits.filter_product';
+  static const profits_pieces_sold = 'profits.pieces_sold';
+  static const profits_total_pieces = 'profits.total_pieces';
+  static const profits_total_revenue = 'profits.total_revenue';
+  static const profits_daily_average = 'profits.daily_average';
+  static const profits_pieces = 'profits.pieces';
+  static const profits_no_data = 'profits.no_data';
   static const profits = 'profits';
   static const orders_order_id = 'orders.order_id';
   static const orders_tracking_number = 'orders.tracking_number';

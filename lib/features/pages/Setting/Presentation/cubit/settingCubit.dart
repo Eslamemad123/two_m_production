@@ -69,7 +69,7 @@ class SettingCubit extends Cubit<SettingState> {
       },
       (bool val) {
         emit(SettingSuccessState());
-
+        Pop(context);
         Future.delayed(Duration(seconds: 2), () {
           isLoading = false;
           Pop(context);

@@ -34,7 +34,7 @@ class OrderCubit extends Cubit<OrderState> {
   void addOrder(Map<String, int> orderSizes, BuildContext context) async {
     final order = OrderModel(
       name: nameController.text,
-      price: double.parse(priceController.text),
+      price: double.tryParse(priceController.text) ?? 0.0,
       Phone: phoneController.text,
       orderId: '10',
       date: dateController.text,

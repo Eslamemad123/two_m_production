@@ -227,22 +227,9 @@ class SettingDataSourceImp extends SettingdataSource {
       }
 
       if (pathImage.isNotEmpty) {
-        // 1. تحويل المسار إلى File
-
-        File imageFile = File(pathImage);
-
-        // 2. رفع الصورة على Cloudinary
-        String? imageUrl = await uploadImageToCloudinary(
-          imageFile,
-          context, // لو مش متاح احذفه من الفنكشن
-        );
-
-        // 3. تأكد إن الرفع تم
-        if (imageUrl != null && imageUrl.isNotEmpty) {
-          // خزّن اللينك بدل الباث
-          Localhelper.setString(Localhelper.kUserImage, imageUrl);
-          updateData['image'] = imageUrl;
-        }
+        await user?.updatePhotoURL(pathImage);
+        Localhelper.setString(Localhelper.kUserImage, pathImage);
+        updateData['image'] = pathImage;
       }
 
       if (user != null && updateData.isNotEmpty) {

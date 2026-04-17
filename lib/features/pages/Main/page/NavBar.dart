@@ -40,6 +40,34 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final List<NavItemModel> navItems = [
+      NavItemModel(
+        selectedIcon: AppAssets.homeFiledSVG,
+        unselectedIcon: AppAssets.homeLineSVG,
+        label: LocaleKeys.nav_bar_home.tr(),
+      ),
+      NavItemModel(
+        selectedIcon: AppAssets.profitsFiledSVG,
+        unselectedIcon: AppAssets.profitsLineSVG,
+        label: LocaleKeys.nav_bar_profit.tr(),
+      ),
+      NavItemModel(
+        selectedIcon: AppAssets.addFiledSVG,
+        unselectedIcon: AppAssets.addLineSVG,
+        label: LocaleKeys.common_add.tr(),
+      ),
+      NavItemModel(
+        selectedIcon: AppAssets.categoryFiledSVG,
+        unselectedIcon: AppAssets.categoryLineSVG,
+        label: LocaleKeys.nav_bar_orders.tr(),
+      ),
+      NavItemModel(
+        selectedIcon: AppAssets.settingFiledSVG,
+        unselectedIcon: AppAssets.settingLineSVG,
+        label: LocaleKeys.nav_bar_settings.tr(),
+      ),
+    ];
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: screens[currentIndex],
@@ -106,31 +134,3 @@ class _NavBarState extends State<NavBar> {
     );
   }
 }
-
-final List<NavItemModel> navItems = [
-  NavItemModel(
-    selectedIcon: AppAssets.homeFiledSVG,
-    unselectedIcon: AppAssets.homeLineSVG,
-    label: LocaleKeys.nav_bar_home.tr(),
-  ),
-  NavItemModel(
-    selectedIcon: AppAssets.profitsFiledSVG,
-    unselectedIcon: AppAssets.profitsLineSVG,
-    label: LocaleKeys.nav_bar_profit.tr(),
-  ),
-  NavItemModel(
-    selectedIcon: AppAssets.addFiledSVG,
-    unselectedIcon: AppAssets.addLineSVG,
-    label: LocaleKeys.common_add.tr(),
-  ),
-  NavItemModel(
-    selectedIcon: AppAssets.categoryFiledSVG,
-    unselectedIcon: AppAssets.categoryLineSVG,
-    label: LocaleKeys.nav_bar_orders.tr(),
-  ),
-  NavItemModel(
-    selectedIcon: AppAssets.settingFiledSVG,
-    unselectedIcon: AppAssets.settingLineSVG,
-    label: LocaleKeys.nav_bar_settings.tr(),
-  ),
-];

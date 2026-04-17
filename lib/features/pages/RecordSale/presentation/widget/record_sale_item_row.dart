@@ -82,28 +82,62 @@ class RecordSaleItemRow extends StatelessWidget {
             SizedBox(width: 16.w),
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
-                  color: AppColors.gray100,
-                  borderRadius: BorderRadius.circular(12.r),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Color(0xFF1E1E2C) // لون دارك
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey.shade700),
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     isExpanded: true,
+                    dropdownColor:
+                        Theme.of(context).brightness == Brightness.dark
+                        ? Color(0xFF2A2A3D) // لون القائمة نفسها
+                        : Colors.white,
                     value: ispathFromDetailsProduct ? item.size : nameProduct,
+                    style: TextStyle(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
+                    ),
+                    iconEnabledColor:
+                        Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black,
                     items: ispathFromDetailsProduct
                         ? availableProducts
                               .map(
                                 (name) => DropdownMenuItem(
                                   value: name,
-                                  child: Text(name),
+                                  child: Text(
+                                    name,
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
+                                  ),
                                 ),
                               )
                               .toList()
                         : [
                             DropdownMenuItem(
                               value: nameProduct,
-                              child: Text(nameProduct!),
+                              child: Text(
+                                nameProduct!,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ),
                             ),
                           ],
                     onChanged: ispathFromDetailsProduct

@@ -106,21 +106,13 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
           ),
           Gap(10.h),
           MainTextFormField(
-            // ignore: body_might_complete_normally_nullable
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return LocaleKeys.misc_please_enter_price.tr();
-              }
-            },
             ketboardType: TextInputType.number,
             ispassword: false,
             controller: widget.cubit.priceController,
-
             prefixIcon: AppAssets.walletSVG,
             hint: '1000',
-
             label: LocaleKeys.misc_price.tr(),
-          ),
+           ),
           SizedBox(height: 24.h),
           Gap(10.h),
 

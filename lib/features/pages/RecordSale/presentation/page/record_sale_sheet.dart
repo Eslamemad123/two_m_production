@@ -203,12 +203,11 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
                             buttonText: LocaleKeys.record_sale_confirm_sale
                                 .tr(),
                             onPressed: () {
-                              if (orderCubit.formKey.currentState!.validate()) {
                                 orderCubit.addOrder(
                                   _buildProductsMap(),
                                   context,
                                 );
-                              }
+                              
                             },
                           ),
                         ),

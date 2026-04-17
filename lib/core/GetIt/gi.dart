@@ -34,6 +34,12 @@ import 'package:two_m_production/features/pages/Setting/Domain/Repo/settingRepo.
 import 'package:two_m_production/features/pages/Setting/Domain/UseCase/editProfileUseCase.dart';
 import 'package:two_m_production/features/pages/Setting/Domain/UseCase/updateLastConnectionUseCase.dart';
 
+import 'package:two_m_production/features/pages/Profits/Data/DataSource/profitsDataSource.dart';
+import 'package:two_m_production/features/pages/Profits/Data/RepoImp/profitsRepoImp.dart';
+import 'package:two_m_production/features/pages/Profits/Domain/Repo/profitsRepo.dart';
+import 'package:two_m_production/features/pages/Profits/Domain/UseCase/getSalesDataUseCase.dart';
+import 'package:two_m_production/features/pages/Profits/Domain/UseCase/getProductNamesUseCase.dart';
+
 final gi = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
@@ -129,5 +135,22 @@ Future<void> setupServiceLocator() async {
 
   gi.registerLazySingleton<SearchOrdersUseCase>(
     () => SearchOrdersUseCase(ordersRepo: gi<OrdersRepo>()),
+  );
+
+  /// 🔹 Profits
+  gi.registerLazySingleton<ProfitsDataSource>(
+    () => ProfitsDataSourceImp(gi<FirebaseFirestore>()),
+  );
+
+  gi.registerLazySingleton<ProfitsRepo>(
+    () => ProfitsRepoImp(dataSource: gi<ProfitsDataSource>()),
+  );
+
+  gi.registerLazySingleton<GetSalesDataUseCase>(
+    () => GetSalesDataUseCase(profitsRepo: gi<ProfitsRepo>()),
+  );
+
+  gi.registerLazySingleton<GetProductNamesUseCase>(
+    () => GetProductNamesUseCase(profitsRepo: gi<ProfitsRepo>()),
   );
 }

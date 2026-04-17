@@ -25,7 +25,10 @@ class _PhotoEditProfileState extends State<PhotoEditProfile> {
                 widget.cubit.patImage = image ?? '';
               });
             },
-            child: SettingImageAndName(radius: 60),
+            child: SettingImageAndName(
+              radius: 60,
+              imagePath: widget.cubit.patImage!.isNotEmpty ? widget.cubit.patImage : null,
+            ),
           ),
           Positioned(
             bottom: 2,
