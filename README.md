@@ -11,8 +11,7 @@
 ---
 
 ## 📊 Project Statistics
-* **19 Screens / Screenshots**
-* **10+ Features**
+* **10+ Features/Screens**
 * **Firebase Backend** (Auth & Firestore)
 * **Clean Architecture**
 * **Arabic & English Support**
@@ -39,55 +38,30 @@
 
 ## 📸 Screenshots
 
-### Authentication
+### Onboarding & Authentication
 <p align="center">
   <img src="App Screens/splash.jpeg" width="200"/>
   <img src="App Screens/Login.jpeg" width="200"/>
 </p>
 
-### Home & Dashboard
+### Main & Dashboard
 <p align="center">
   <img src="App Screens/home.jpeg" width="200"/>
   <img src="App Screens/productdetails.jpeg" width="200"/>
+  <img src="App Screens/profits.jpeg" width="200"/>
 </p>
 
-### Sales & Orders
+### Sales & Operations
 <p align="center">
   <img src="App Screens/recordSale.jpeg" width="200"/>
-  <img src="App Screens/recordsale2.jpeg" width="200"/>
-  <img src="App Screens/orders.jpeg" width="200"/>
-  <img src="App Screens/clintHistory.jpeg" width="200"/>
-</p>
-
-### Production Tracking
-<p align="center">
   <img src="App Screens/injuction.jpeg" width="200"/>
-</p>
-
-### Inventory Management
-<p align="center">
   <img src="App Screens/addProduct.jpeg" width="200"/>
-  <img src="App Screens/addStock.jpeg" width="200"/>
-</p>
-
-### Analytics & Profits
-<p align="center">
-  <img src="App Screens/profits.jpeg" width="200"/>
 </p>
 
 ### Settings & Localization
 <p align="center">
-  <img src="App Screens/setting.jpeg" width="200"/>
   <img src="App Screens/arabic.jpeg" width="200"/>
-</p>
-
-### Dark Mode
-<p align="center">
   <img src="App Screens/dark0.jpeg" width="200"/>
-  <img src="App Screens/dark1.jpeg" width="200"/>
-  <img src="App Screens/dark2.jpeg" width="200"/>
-  <img src="App Screens/dark3.jpeg" width="200"/>
-  <img src="App Screens/dark4.jpeg" width="200"/>
 </p>
 
 ---
