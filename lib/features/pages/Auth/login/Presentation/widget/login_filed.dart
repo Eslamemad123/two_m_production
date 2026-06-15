@@ -16,7 +16,7 @@ class LoginFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: cubit.KeyLogin,
+      key: cubit.keyLogin,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -43,6 +43,7 @@ class LoginFiled extends StatelessWidget {
               },
               controller: cubit.email,
               ispassword: false,
+              label: "Email",
               prefixIcon: AppAssets.emailSVG,
               hint: LocaleKeys.auth_enter_email.tr(),
               textInputNext: TextInputAction.next,
@@ -73,6 +74,7 @@ class LoginFiled extends StatelessWidget {
                 }
                 return null;
               },
+              label: 'password',
               ispassword: true,
               prefixIcon: AppAssets.lock2SVG,
               hint: LocaleKeys.auth_enter_password.tr(),

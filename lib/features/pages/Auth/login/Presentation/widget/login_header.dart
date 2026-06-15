@@ -14,12 +14,11 @@ class LoginHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Gap(20.h),
+        Gap(10.h),
         Text(
           LocaleKeys.auth_welcome_back.tr(),
           style: AppFontStyles.getSize24(fontWeight: FontWeight.w600),
         ),
-        Gap(10.h),
         Text(
           LocaleKeys.auth_welcome_back_subtitle.tr(),
           style: AppFontStyles.getSize14(fontColor: AppColors.gray400),
@@ -41,12 +40,14 @@ class LoginHeader extends StatelessWidget {
               ),
               TextSpan(
                 text: ' Covers',
-                style: AppFontStyles.getSize18(fontWeight: FontWeight.w600),
+                style: AppFontStyles.getSize18(
+                  fontWeight: FontWeight.w600,
+                  fontColor: AppColors.black,
+                ),
               ),
             ],
           ),
         ),
-        Gap(20.h),
       ],
     );
   }

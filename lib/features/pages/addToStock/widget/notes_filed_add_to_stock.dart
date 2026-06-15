@@ -4,11 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:two_m_production/components/inputs/main_text_form_field.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
+import 'package:two_m_production/features/pages/Home/Presentation/cubit/homeCubit.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class NotesFiledAddToStock extends StatelessWidget {
-  const NotesFiledAddToStock({super.key});
-
+  NotesFiledAddToStock({super.key, required this.cubit});
+  final HomeCubit cubit;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,10 +29,10 @@ class NotesFiledAddToStock extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         MainTextFormField(
-          maxTextLines: 4,
+          maxTextLines: 3,
+          controller: cubit.noteController,
           hint: LocaleKeys.home_addAnyDetails.tr(),
           ispassword: false,
-          colorFill: AppColors.gray100,
           label: LocaleKeys.common_notes.tr(),
         ),
         SizedBox(height: 32.h),

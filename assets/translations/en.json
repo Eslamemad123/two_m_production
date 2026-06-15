@@ -1,3 +1,4 @@
+
 {
   "common": {
     "add": "Add",
@@ -67,7 +68,7 @@
     "language": "Language",
     "notifications": "Notifications",
     "management": "MANAGEMENT",
-    "product_categories": "Product Categories",
+    "product_categories": "Manage Injection",
     "add_product": "Add Product",
     "staff_access": "Staff Access",
     "support": "SUPPORT",
@@ -79,6 +80,8 @@
   "profile": {
     "edit_profile": "Edit Profile",
     "full_name": "Full Name",
+    "edit_name": "Edit Name",
+    "edit_image": "click icon to edit photo *",
     "save_changes": "Save Changes",
     "store_manager": "Store Manager"
   },
@@ -137,9 +140,17 @@
     "revenue": "Revenue",
     "expenses": "Expenses",
     "sales_overview": "Sales Overview",
-    "weekly_abbr": "W",
-    "monthly_abbr": "M",
-    "yearly_abbr": "Y"
+    "weekly_abbr": "Week",
+    "monthly_abbr": "Month",
+    "yearly_abbr": "Y",
+    "all_products": "All Products",
+    "filter_product": "Filter Product",
+    "pieces_sold": "Pieces Sold",
+    "total_pieces": "Total Pieces",
+    "total_revenue": "Total Revenue",
+    "daily_average": "Daily Average",
+    "pieces": "pcs",
+    "no_data": "No data available"
   },
   "orders": {
     "order_id": "Order #",
@@ -163,9 +174,52 @@
   "splash": {
     "text": "Manage your inventory with ease"
   },
-    "firebase":{
+  "firebase":{
     "emailPassError":"Email or password is incorrect",
     "invalidEmail":"Email format is not valid",
     "authError":"Authentication error"
+  },
+  "sizes": {
+    "select_size_title": "Select Size",
+    "small": "Small",
+    "middle": "Middle",
+    "large": "Large",
+    "two_m_cover": "2M Cover"
+  },
+  "counting_session": {
+    "vanguard_elite_chrono": "Vanguard Elite Chrono",
+    "recent_history": "RECENT HISTORY",
+    "view_all": "View All",
+    "end_session": "End Counting Session",
+    "total_pieces": "TOTAL PIECES",
+    "from": "FROM",
+    "to": "TO",
+    "pcs": " PCS"
+  },
+  "misc": {
+    "no_orders": "No Orders",
+    "prev": "Prev",
+    "next": "Next",
+    "page": "Page",
+    "price": "Price",
+    "please_enter_price": "Please Enter Price",
+    "vodafone_cash": "Vodafone Cash",
+    "indrive": "InDrive",
+    "available": "Available",
+    "note": "Note :",
+    "last_update_stock": "Last Update Stock :",
+    "lock_app": "Lock App",
+    "order": "Order",
+    "quantity": "Quantity",
+    "items_count": "{} items",
+    "client_label": "Client",
+    "phone_label": "Phone",
+    "code_product": "Code Product",
+    "description_label": "Description",
+    "please_enter_product_name": "Please Enter Product Name",
+    "please_enter_code": "Please Enter Code Product",
+    "please_enter_description": "Please Enter Description",
+    "please_enter_stock": "Please Enter Stock",
+    "please_select_image": "Please select Image or video for Product"
   }
 }

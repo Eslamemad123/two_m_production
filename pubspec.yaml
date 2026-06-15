@@ -7,7 +7,7 @@ environment:
   sdk: ^3.9.2
 
 dependencies:
-  cloud_firestore: ^6.0.3
+  cloud_firestore: ^6.1.1
   dartz: ^0.10.1
   device_preview: ^1.2.0
   easy_localization: ^3.0.8
@@ -15,7 +15,10 @@ dependencies:
   firebase_core: ^4.3.0
   flutter:
     sdk: flutter
+  fl_chart: ^0.70.2
   flutter_bloc: ^9.1.0
+  flutter_native_contact_picker_plus: ^1.3.1
+  permission_handler: ^11.0.0
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.9
   gap: ^3.0.1
@@ -24,16 +27,27 @@ dependencies:
   image_picker: ^1.2.0
   intl: ^0.20.2
   lottie: ^3.3.2
+  photo_view: ^0.15.0
   shared_preferences: ^2.5.4
   smooth_page_indicator: ^1.2.1
-
+  carousel_slider: ^5.1.1
+  connectivity_plus: ^7.0.0
+  local_auth: ^3.0.1
 dev_dependencies:
   build_runner: ^2.10.4
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
   mockito: ^5.6.1
+flutter_native_splash:
+  color: "#FFe64a19" # شفاف تمامًا
+  image: null # مفيش صورة
 
+  android_12:
+    color: "#FFe64a19"
+    image: null
+
+  fullscreen: true
 flutter:
   uses-material-design: true
   assets:

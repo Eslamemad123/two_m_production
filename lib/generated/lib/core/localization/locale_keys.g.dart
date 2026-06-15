@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const common_add = 'common.add';
   static const common_edit = 'common.edit';
   static const common_delete = 'common.delete';
@@ -50,13 +50,16 @@ abstract class  LocaleKeys {
   static const home_categories_low_stock = 'home.categories.low_stock';
   static const home_categories = 'home.categories';
   static const home = 'home';
-  static const product_details_available_sizes = 'product_details.available_sizes';
+  static const product_details_available_sizes =
+      'product_details.available_sizes';
   static const product_details_in_stock = 'product_details.in_stock';
   static const product_details_qty = 'product_details.qty';
   static const product_details_description = 'product_details.description';
   static const product_details_sell_product = 'product_details.sell_product';
-  static const product_details_premium_sportswear = 'product_details.premium_sportswear';
-  static const product_details_sportswear_desc = 'product_details.sportswear_desc';
+  static const product_details_premium_sportswear =
+      'product_details.premium_sportswear';
+  static const product_details_sportswear_desc =
+      'product_details.sportswear_desc';
   static const product_details = 'product_details';
   static const settings_title = 'settings.title';
   static const settings_app_preferences = 'settings.app_preferences';
@@ -64,7 +67,7 @@ abstract class  LocaleKeys {
   static const settings_language = 'settings.language';
   static const settings_notifications = 'settings.notifications';
   static const settings_management = 'settings.management';
-  static const settings_product_categories = 'settings.product_categories';
+  static const settings_product_Injection = 'settings.product_categories';
   static const settings_add_product = 'settings.add_product';
   static const settings_staff_access = 'settings.staff_access';
   static const settings_support = 'settings.support';
@@ -75,6 +78,8 @@ abstract class  LocaleKeys {
   static const settings = 'settings';
   static const profile_edit_profile = 'profile.edit_profile';
   static const profile_full_name = 'profile.full_name';
+  static const profile_edit_name = 'profile.edit_name';
+  static const profile_edit_image = 'profile.edit_image';
   static const profile_save_changes = 'profile.save_changes';
   static const profile_store_manager = 'profile.store_manager';
   static const profile = 'profile';
@@ -99,7 +104,8 @@ abstract class  LocaleKeys {
   static const add_product_description = 'add_product.description';
   static const add_product_stock_quantity = 'add_product.stock_quantity';
   static const add_product_price = 'add_product.price';
-  static const add_product_enter_product_name = 'add_product.enter_product_name';
+  static const add_product_enter_product_name =
+      'add_product.enter_product_name';
   static const add_product_enter_description = 'add_product.enter_description';
   static const add_product_upload_image = 'add_product.upload_image';
   static const add_product_select_image = 'add_product.select_image';
@@ -130,6 +136,14 @@ abstract class  LocaleKeys {
   static const profits_weekly_abbr = 'profits.weekly_abbr';
   static const profits_monthly_abbr = 'profits.monthly_abbr';
   static const profits_yearly_abbr = 'profits.yearly_abbr';
+  static const profits_all_products = 'profits.all_products';
+  static const profits_filter_product = 'profits.filter_product';
+  static const profits_pieces_sold = 'profits.pieces_sold';
+  static const profits_total_pieces = 'profits.total_pieces';
+  static const profits_total_revenue = 'profits.total_revenue';
+  static const profits_daily_average = 'profits.daily_average';
+  static const profits_pieces = 'profits.pieces';
+  static const profits_no_data = 'profits.no_data';
   static const profits = 'profits';
   static const orders_order_id = 'orders.order_id';
   static const orders_tracking_number = 'orders.tracking_number';
@@ -155,4 +169,48 @@ abstract class  LocaleKeys {
   static const firebase_authError = 'firebase.authError';
   static const firebase = 'firebase';
 
+  static const sizes_select_size_title = 'sizes.select_size_title';
+  static const sizes_small = 'sizes.small';
+  static const sizes_middle = 'sizes.middle';
+  static const sizes_large = 'sizes.large';
+  static const sizes_two_m_cover = 'sizes.two_m_cover';
+  static const sizes = 'sizes';
+  static const counting_session_vanguard_elite_chrono =
+      'counting_session.vanguard_elite_chrono';
+  static const counting_session_recent_history =
+      'counting_session.recent_history';
+  static const counting_session_view_all = 'counting_session.view_all';
+  static const counting_session_end_session = 'counting_session.end_session';
+  static const counting_session_total_pieces = 'counting_session.total_pieces';
+  static const counting_session_from = 'counting_session.from';
+  static const counting_session_to = 'counting_session.to';
+  static const counting_session_pcs = 'counting_session.pcs';
+  static const counting_session = 'counting_session';
+
+  static const misc_no_orders = 'misc.no_orders';
+  static const misc_prev = 'misc.prev';
+  static const misc_next = 'misc.next';
+  static const misc_page = 'misc.page';
+  static const misc_price = 'misc.price';
+  static const misc_please_enter_price = 'misc.please_enter_price';
+  static const misc_vodafone_cash = 'misc.vodafone_cash';
+  static const misc_indrive = 'misc.indrive';
+  static const misc_available = 'misc.available';
+  static const misc_note = 'misc.note';
+  static const misc_last_update_stock = 'misc.last_update_stock';
+  static const misc_lock_app = 'misc.lock_app';
+  static const misc_order = 'misc.order';
+  static const misc_quantity = 'misc.quantity';
+  static const misc_items_count = 'misc.items_count';
+  static const misc_client_label = 'misc.client_label';
+  static const misc_phone_label = 'misc.phone_label';
+  static const misc_code_product = 'misc.code_product';
+  static const misc_description_label = 'misc.description_label';
+  static const misc_please_enter_product_name =
+      'misc.please_enter_product_name';
+  static const misc_please_enter_code = 'misc.please_enter_code';
+  static const misc_please_enter_description = 'misc.please_enter_description';
+  static const misc_please_enter_stock = 'misc.please_enter_stock';
+  static const misc_please_select_image = 'misc.please_select_image';
+  static const misc = 'misc';
 }

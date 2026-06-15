@@ -37,7 +37,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.setLocale(Locale('en'));
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: ThemeManager.themeMode,
       builder: (context, themeMode, _) {
@@ -46,7 +45,7 @@ class MainApp extends StatelessWidget {
           minTextAdapt: true,
           splitScreenMode: true,
           child: MaterialApp.router(
-            // locale: context.locale,
+            locale: context.locale,
             routerConfig: Routes.routes,
             debugShowCheckedModeBanner: false,
             localizationsDelegates: context.localizationDelegates,

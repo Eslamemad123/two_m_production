@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
+import 'package:two_m_production/core/constatnts/images.dart';
 import 'package:two_m_production/core/utils/colors.dart';
 import 'package:two_m_production/core/utils/textStyles.dart';
 
@@ -15,6 +17,7 @@ class MainButton extends StatelessWidget {
     this.borderColor,
     this.borderRadius,
     this.alph = 0.4,
+    this.isLoading=false,
   });
   final Color buttomColor;
   final double? borderRadius;
@@ -24,12 +27,13 @@ class MainButton extends StatelessWidget {
   final double? width;
   final double? height;
   final double? alph;
+  final bool isLoading;
 
   final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 15.r), // مساحة للشادو
+      padding: EdgeInsets.symmetric(horizontal: 15.r), // مساحة للشادو
       child: Container(
         width: width ?? double.infinity,
         height: height ?? 55.h,
@@ -54,7 +58,8 @@ class MainButton extends StatelessWidget {
             ),
           ),
           onPressed: onPressed,
-          child: Text(
+          child: isLoading ? Lottie.asset(AppAssets.loadingSplashJSON)
+          :Text(
             buttonText,
             style: AppFontStyles.getSize18(
               fontColor: textColor,

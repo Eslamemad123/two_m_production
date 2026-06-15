@@ -22,7 +22,9 @@ void showMyDialog(
     DialogType.success => AppColors.success,
   };
 
-  ScaffoldMessenger.of(context).showSnackBar(
+  final messenger = ScaffoldMessenger.of(context);
+
+  messenger.showSnackBar(
     SnackBar(
       duration: const Duration(seconds: 3),
       behavior: SnackBarBehavior.floating,
@@ -32,16 +34,9 @@ void showMyDialog(
       content: Row(
         children: [
           Icon(icon, color: Colors.white),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Expanded(
-            child: Text(
-              message,
-              style: TextStyle(
-                color: (type == DialogType.warning)
-                    ? AppColors.white
-                    : AppColors.white,
-              ),
-            ),
+            child: Text(message, style: const TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -49,7 +44,7 @@ void showMyDialog(
         label: '✕',
         textColor: Colors.white,
         onPressed: () {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          messenger.hideCurrentSnackBar();
         },
       ),
     ),

@@ -17,14 +17,14 @@ class CenterAddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset: const Offset(0, -5),
+      offset: const Offset(0, -0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           GestureDetector(
             onTap: onTap,
             child: Container(
-              width: 40.w,
+              width: 45.w,
               height: 40.w,
               decoration: BoxDecoration(
                 color: isSelected ? Colors.white : AppColors.primary,
@@ -34,7 +34,7 @@ class CenterAddButton extends StatelessWidget {
                     : null,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primary.withOpacity(0.35),
+                    color: AppColors.primary.withValues(alpha:0.28),
                     blurRadius: 15.r,
                     spreadRadius: 2.r,
                   ),

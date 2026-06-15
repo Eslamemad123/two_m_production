@@ -19,42 +19,67 @@ class AppTheme {
     ),
     cardColor: AppColors.white,
   );
-
   static final darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: AppColors.darkBackground,
     fontFamily: 'Manrope',
-    colorScheme: ColorScheme.dark(
+
+    scaffoldBackgroundColor: AppColors.darkBackground,
+
+    colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
-      secondary: AppColors.secondaryNavyLight,
       surface: AppColors.darkSurface,
       background: AppColors.darkBackground,
+      onSurface: AppColors.textOnDark,
     ),
+
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.darkBackground,
       elevation: 0,
-      iconTheme: IconThemeData(color: AppColors.white),
-      titleTextStyle: TextStyle(
-        color: AppColors.white,
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
+      iconTheme: IconThemeData(color: AppColors.textOnDark),
+    ),
+
+    cardColor: AppColors.darkSurface,
+
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(color: AppColors.textOnDark),
+      bodyMedium: TextStyle(color: AppColors.textOnDark),
+      bodySmall: TextStyle(color: AppColors.textSecondaryDark),
+      titleLarge: TextStyle(color: AppColors.textOnDark),
+      titleMedium: TextStyle(color: AppColors.textOnDark),
+      titleSmall: TextStyle(color: AppColors.textSecondaryDark),
+    ),
+
+    iconTheme: const IconThemeData(color: AppColors.iconDark),
+
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.darkSurfaceAlt,
+
+      hintStyle: const TextStyle(color: AppColors.textSecondaryDark),
+
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: AppColors.borderDark),
+      ),
+
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
       ),
     ),
-    cardColor: AppColors.darkSurface,
-    dialogBackgroundColor: AppColors.darkSurface,
-    bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: AppColors.darkSurface,
-      modalBackgroundColor: AppColors.darkSurface,
-    ),
-    textTheme: const TextTheme(
-      bodyMedium: TextStyle(color: AppColors.textOnDark),
-      titleMedium: TextStyle(color: AppColors.textOnDark),
-    ),
+
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.darkSurface,
       selectedItemColor: AppColors.primary,
-      unselectedItemColor: AppColors.gray500,
+      unselectedItemColor: AppColors.textSecondaryDark,
+      elevation: 0,
     ),
+
+    listTileTheme: const ListTileThemeData(
+      iconColor: AppColors.iconDark,
+      textColor: AppColors.textOnDark,
+    ),
+
+    dividerColor: AppColors.borderDark,
   );
 }

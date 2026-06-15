@@ -21,6 +21,7 @@ class MainTextFormField extends StatefulWidget {
     this.sufixIcon,
     this.textColor,
     this.textInputNext,
+    this.ketboardType,
     this.onFieldSubmitted,
   });
   bool ispassword = false;
@@ -31,9 +32,11 @@ class MainTextFormField extends StatefulWidget {
   final Color? colorFill;
   final String? label;
   final String? prefixIcon;
-  final String? sufixIcon;
+  final Widget? sufixIcon;
   final Color? textColor;
+  final TextInputType? ketboardType;
   final TextInputAction? textInputNext;
+
   final void Function(String)? onFieldSubmitted;
   @override
   State<MainTextFormField> createState() => _MainTextFormFieldState();
@@ -53,17 +56,29 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
         textInputAction: widget.textInputNext ?? TextInputAction.none,
         maxLines: widget.maxTextLines,
         onFieldSubmitted: widget.onFieldSubmitted,
-        style: AppFontStyles.getSize18(),
-
+        style: AppFontStyles.getSize18(
+          fontColor:
+              Theme.of(context).textTheme.bodyLarge?.color ??
+              Theme.of(context).textTheme.bodyMedium!.color,
+        ),
+        keyboardType: widget.ketboardType,
         decoration: InputDecoration(
           label: Text(
             widget.label ?? "",
             style: AppFontStyles.getSize14(
-              fontColor: widget.textColor ?? AppColors.gray400,
+              fontColor:
+                  widget.textColor ??
+                  Theme.of(context).textTheme.bodySmall?.color ??
+                  AppColors.gray400,
             ),
           ),
+
           filled: true,
-          fillColor: widget.colorFill ?? AppColors.gray200,
+          fillColor:
+              widget.colorFill ??
+              (Theme.of(context).brightness == Brightness.dark
+                  ? const Color(0xFF161925)
+                  : AppColors.gray200),
           suffixIcon: widget.ispassword
               ? Transform.flip(
                   flipY: true,
@@ -79,7 +94,7 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
                     },
                   ),
                 )
-              : null,
+              : widget.sufixIcon,
           prefixIconConstraints: BoxConstraints(
             maxHeight: 35.w,
             maxWidth: 35.w,
@@ -99,13 +114,13 @@ class _MainTextFormFieldState extends State<MainTextFormField> {
 
           hint: Text(
             widget.hint ?? "",
-            style: AppFontStyles.getSize18(fontColor: AppColors.gray400),
+            style: AppFontStyles.getSize14(fontColor: AppColors.gray400),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
             borderSide: BorderSide(
               color: AppColors.gray200.withValues(alpha: 0.2),
-              width: 1,
+              width: 1.w,
             ),
           ),
           focusedBorder: OutlineInputBorder(

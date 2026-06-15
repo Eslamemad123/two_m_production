@@ -6,8 +6,10 @@ class AppAssets {
   static const String addLineSVG = 'assets/icon/addLine.svg';
   static const String addSquareSVG = 'assets/icon/addSquare.svg';
   static const String addUserSVG = 'assets/icon/addUser.svg';
-  static const String addUserCircleFilledSVG = 'assets/icon/addUserCirclerFilled.svg';
-  static const String addUserCircleLineSVG = 'assets/icon/addUserCirclerLine.svg';
+  static const String addUserCircleFilledSVG =
+      'assets/icon/addUserCirclerFilled.svg';
+  static const String addUserCircleLineSVG =
+      'assets/icon/addUserCirclerLine.svg';
   static const String alertSVG = 'assets/icon/alert.svg';
   static const String backCircleSVG = 'assets/icon/backCircle.svg';
   static const String backSquareSVG = 'assets/icon/backSquare.svg';
@@ -71,20 +73,41 @@ class AppAssets {
   static const facebookLogoSVG = 'assets/icon/facebook_logo.svg';
   static const appleLogoSVG = 'assets/icon/apple_logo.svg';
   static const googleLogoSVG = 'assets/icon/google_logo.svg';
-
+  static const inDriveSVG = 'assets/icon/inDrive.svg';
+  static const vodafoneSVG = 'assets/icon/vodafon.svg';
+  static const lableSVG = 'assets/icon/lable.svg';
+  static const lableFillSVG = 'assets/icon/lableFill.svg';
+  static const subLableSVG = 'assets/icon/subLable.svg';
+  static const subLableFillSVG = 'assets/icon/subLableFill.svg';
   // ================== PNG IMAGES ==================
   static const String large1 = 'assets/image/large1.png';
+  static const String large11 = 'assets/image/large11.png';
   static const String large2 = 'assets/image/large2.png';
+  static const String large22 = 'assets/image/xlarge22.png';
+  static const String sevenCm1 = 'assets/image/7cm1.png';
+  static const String sevenCm2 = 'assets/image/7cm2.png';
+  static const String sevenCm3 = 'assets/image/7cm3.png';
+  static const String f200 = 'assets/image/f200.png';
+  static const String f2001 = 'assets/image/f2002.png';
   static const String logo = 'assets/image/logo.png';
-  static const String middle = 'assets/image/middle.png';
-  static const String middle2 = 'assets/image/middle2.png';
+  static const String middle2 = 'assets/image/middle.png';
+  static const String middle3 = 'assets/image/middle2.jpeg';
+  static const String middle4 = 'assets/image/middle3.png';
+  static const String middle5 = 'assets/image/middle4.png';
+  static const String middle6 = 'assets/image/middle5.png';
   static const String smallGreen = 'assets/image/smallGreen.png';
+  static const String smallGreen2 = 'assets/image/smallGreen2.png';
   static const String smallRed = 'assets/image/smallRed.png';
+  static const String smallRed2 = 'assets/image/smallRed3.png';
+  static const String smallRed3 = 'assets/image/smallRed4.png';
   static const String smallYellow = 'assets/image/smallYellow.png';
-
+  static const String smallYellow2 = 'assets/image/smallYellow2.png';
+  static const inDrive = 'assets/image/inDrive.png';
+  static const vodafone = 'assets/image/vodafon.png';
   // ================== LOTTIE JSON ==================
   static const String doneJSON = 'assets/lottie/done.json';
-  static const String emptyNotificationsJSON = 'assets/lottie/Empty Notifications.json';
+  static const String emptyNotificationsJSON =
+      'assets/lottie/Empty Notifications.json';
   static const String emptyRedJSON = 'assets/lottie/Empty red.json';
   static const String loaderCirclerJSON = 'assets/lottie/loaderCircler.json';
   static const String loadingSplashJSON = 'assets/lottie/loadingSplash.json';

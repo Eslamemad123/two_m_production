@@ -6,15 +6,35 @@ import 'package:two_m_production/core/utils/textStyles.dart';
 import 'package:two_m_production/generated/lib/core/localization/locale_keys.g.dart';
 
 class ProfitSummaryCard extends StatelessWidget {
-  const ProfitSummaryCard({super.key});
+  final int totalPieces;
+  final double totalRevenue;
+  final int totalOrders;
+
+  const ProfitSummaryCard({
+    super.key,
+    required this.totalPieces,
+    required this.totalRevenue,
+    required this.totalOrders,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(24.r),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E1E2C), // Dark navy background matching design
+        gradient: const LinearGradient(
+          colors: [Color(0xFF1E1E2C), Color(0xFF2B2040)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(24.r),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF1E1E2C).withOpacity(0.4),
+            blurRadius: 20.r,
+            offset: Offset(0, 8.h),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,46 +47,69 @@ class ProfitSummaryCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    LocaleKeys.profits_total_profit.tr(),
-                    style: AppFontStyles.getSize14(fontColor: AppColors.white),
+                    LocaleKeys.profits_total_pieces.tr(),
+                    style: AppFontStyles.getSize14(
+                      fontColor: AppColors.white.withOpacity(0.7),
+                    ),
                   ),
                   SizedBox(height: 8.h),
-                  Text(
-                    '\$21,350.54',
-                    style: AppFontStyles.getSize32(
-                      fontWeight: FontWeight.bold,
-                      fontColor: AppColors.white,
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        _formatNumber(totalPieces),
+                        style: AppFontStyles.getSize32(
+                          fontWeight: FontWeight.bold,
+                          fontColor: AppColors.white,
+                        ),
+                      ),
+                      SizedBox(width: 6.w),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 4.h),
+                        child: Text(
+                          LocaleKeys.profits_pieces.tr(),
+                          style: AppFontStyles.getSize14(
+                            fontColor: AppColors.white.withOpacity(0.5),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
               Container(
-                width: 40.w,
-                height: 40.w,
+                width: 44.w,
+                height: 44.w,
                 decoration: BoxDecoration(
-                  color: AppColors.white.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12.r),
+                  color: AppColors.primary.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(14.r),
                 ),
-                child: const Icon(Icons.more_horiz, color: AppColors.white),
+                child: Icon(
+                  Icons.trending_up_rounded,
+                  color: AppColors.primaryLight,
+                  size: 24.sp,
+                ),
               ),
             ],
           ),
-
           SizedBox(height: 24.h),
           Row(
             children: [
               Expanded(
                 child: _buildSubStat(
-                  LocaleKeys.profits_revenue.tr(),
-                  '\$45,231',
+                  LocaleKeys.profits_total_revenue.tr(),
+                  '${_formatNumber(totalRevenue.toInt())} EGP',
+                  Icons.attach_money_rounded,
+                  const Color(0xFF4CAF50),
                 ),
               ),
-              SizedBox(width: 16.w),
+              SizedBox(width: 12.w),
               Expanded(
                 child: _buildSubStat(
-                  LocaleKeys.profits_expenses.tr(),
-                  '\$23,880',
-                  isExpense: true,
+                  LocaleKeys.profits_total_orders.tr(),
+                  _formatNumber(totalOrders),
+                  Icons.shopping_bag_outlined,
+                  const Color(0xFF42A5F5),
                 ),
               ),
             ],
@@ -76,32 +119,57 @@ class ProfitSummaryCard extends StatelessWidget {
     );
   }
 
-  Widget _buildSubStat(String label, String value, {bool isExpense = false}) {
+  Widget _buildSubStat(
+    String label,
+    String value,
+    IconData icon,
+    Color accentColor,
+  ) {
     return Container(
-      padding: EdgeInsets.all(16.r),
+      padding: EdgeInsets.all(14.r),
       decoration: BoxDecoration(
-        color: const Color(0xFF2B2B3D),
+        color: AppColors.white.withOpacity(0.07),
         borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(
+          color: AppColors.white.withOpacity(0.05),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: AppFontStyles.getSize12(
-              fontColor: AppColors.textSecondary.withOpacity(0.7),
-            ),
+          Row(
+            children: [
+              Icon(icon, color: accentColor, size: 16.sp),
+              SizedBox(width: 6.w),
+              Flexible(
+                child: Text(
+                  label,
+                  style: AppFontStyles.getSize12(
+                    fontColor: AppColors.white.withOpacity(0.5),
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 8.h),
           Text(
             value,
-            style: AppFontStyles.getSize18(
+            style: AppFontStyles.getSize16(
               fontWeight: FontWeight.bold,
-              fontColor: isExpense ? const Color(0xFFFF8A80) : AppColors.white,
+              fontColor: AppColors.white,
             ),
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
     );
+  }
+
+  String _formatNumber(int number) {
+    if (number >= 1000) {
+      return '${(number / 1000).toStringAsFixed(1)}k';
+    }
+    return number.toString();
   }
 }
