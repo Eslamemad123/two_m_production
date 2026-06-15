@@ -79,13 +79,18 @@ class HomeCubit extends Cubit<HomeState> {
         showMyDialog(context, type: DialogType.error, Failure.message);
         emit(HomeErrorState(Failure.message));
       },
-      (bool b) {
+      (bool isOnlineSuccess) {
         Pop(context);
         Pop(context);
+
+        final msg = isOnlineSuccess
+            ? 'تم إضافة ${int.parse(addProductController.text)} قطعة بنجاح إلى المخزون'
+            : 'تم حفظ التعديلات محلياً وستتم المزامنة تلقائياً عند عودة الإنترنت';
+
         showMyDialog(
           context,
-          type: DialogType.success,
-          'Sucsecc Add Product count ${int.parse(addProductController.text)} in stock',
+          type: isOnlineSuccess ? DialogType.success : DialogType.warning,
+          msg,
         );
         emit(HomeSuccessState());
       },

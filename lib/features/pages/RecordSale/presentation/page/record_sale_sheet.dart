@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -98,16 +100,27 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
     final map = <String, int>{};
 
     for (var item in _items) {
-      if (item.quantity > 0) {
-        map.update(
-          item.size,
-          (value) => value + item.quantity,
-          ifAbsent: () => item.quantity,
-        );
-      }
+      map.update(
+        item.size,
+        (value) => value + item.quantity,
+        ifAbsent: () => item.quantity,
+      );
     }
 
     return map;
+  }
+
+  bool checkItemsNumber(Map<String, int> map) {
+    if (map.isEmpty) return false;
+
+    for (var v in map.values) {
+      if (v == 0) return false;
+    }
+    return true;
+  }
+
+  bool _hasValidItems() {
+    return _items.any((item) => item.quantity > 0);
   }
 
   @override
@@ -198,17 +211,32 @@ class _RecordSaleSheetState extends State<RecordSaleSheet> {
                               showLoadingDialog(context);
                             }
                           },
-                          child: MainButton(
-                            isLoading: orderCubit.isLoading,
-                            buttonText: LocaleKeys.record_sale_confirm_sale
-                                .tr(),
-                            onPressed: () {
-                                orderCubit.addOrder(
-                                  _buildProductsMap(),
-                                  context,
-                                );
-                              
-                            },
+                          child: Opacity(
+                            opacity: _hasValidItems() ? 1.0 : 0.5,
+                            child: MainButton(
+                              isLoading: orderCubit.isLoading,
+                              buttonText: LocaleKeys.record_sale_confirm_sale
+                                  .tr(),
+                              onPressed: () {
+                                if (orderCubit.formKey.currentState?.validate() ?? false) {
+                                  final productsMap = _buildProductsMap();
+
+                                  if (checkItemsNumber(productsMap)) {
+                                    log('gggg $productsMap');
+
+                                    orderCubit.addOrder(productsMap, context);
+                                  } else {
+                                    log('ghhhh');
+
+                                    showMyDialog(
+                                      context,
+                                      'تحقق من عدد المنتجات',
+                                      type: DialogType.error,
+                                    );
+                                  }
+                                }
+                              },
+                            ),
                           ),
                         ),
                         Gap(10),

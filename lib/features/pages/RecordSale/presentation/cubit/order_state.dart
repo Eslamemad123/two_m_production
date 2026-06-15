@@ -1,4 +1,4 @@
-import 'package:two_m_production/features/pages/RecordSale/Data/model/oredeModel.dart';
+import 'package:two_m_production/features/pages/RecordSale/Data/model/customer_model.dart';
 
 class OrderState {}
 
@@ -16,6 +16,6 @@ class OrderSuccessState extends OrderState {}
 class OrderSearchLoadingState extends OrderState {}
 
 class OrderSearchSuccessState extends OrderState {
-  final List<OrderModel> orders;
+  final List<CustomerModel> orders;
   OrderSearchSuccessState(this.orders);
 }

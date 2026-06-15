@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_m_production/core/GetIt/gi.dart';
 import 'package:two_m_production/core/extentions/show_dialoges.dart';
 import 'package:two_m_production/features/pages/RecordSale/Data/model/oredeModel.dart';
+import 'package:two_m_production/features/pages/RecordSale/Data/model/customer_model.dart';
 import 'package:two_m_production/features/pages/RecordSale/Domain/Usecase/addOrder_UseCse.dart';
 import 'package:two_m_production/features/pages/RecordSale/presentation/cubit/order_state.dart';
 import 'package:two_m_production/features/pages/oreder/Domain/Usecase/getOrdersUseCse.dart';
@@ -26,7 +27,7 @@ class OrderCubit extends Cubit<OrderState> {
   TextEditingController dateController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   bool isLoading = false;
-  List<OrderModel> orders = [];
+  List<CustomerModel> orders = [];
   dynamic firstDoc;
   dynamic lastDoc;
   int currentPage = 1;
@@ -77,7 +78,7 @@ class OrderCubit extends Cubit<OrderState> {
 
         emit(OrderErrorState(failure.message));
       },
-      (List<OrderModel> data) {
+      (List<CustomerModel> data) {
         orders = data;
         emit(OrderSuccessState());
       },
@@ -136,7 +137,7 @@ class OrderCubit extends Cubit<OrderState> {
       (failure) {
         emit(OrderErrorState(failure.message));
       },
-      (List<OrderModel> data) {
+      (List<CustomerModel> data) {
         emit(OrderSearchSuccessState(data));
       },
     );
@@ -151,7 +152,7 @@ class OrderCubit extends Cubit<OrderState> {
       (failure) {
         emit(OrderErrorState(failure.message));
       },
-      (List<OrderModel> data) {
+      (List<CustomerModel> data) {
         emit(OrderSearchSuccessState(data));
       },
     );

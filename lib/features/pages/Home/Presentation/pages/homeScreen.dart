@@ -53,15 +53,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: (isOffline ?? false) ? Colors.amber : Colors.amber,
+    final bool offline = isOffline ?? false;
+    
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        // Set transparent to let the banner or background show through.
+        statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
       ),
-    );
-    return Scaffold(
-      body: Stack(
+      child: Scaffold(
+        body: Stack(
         children: [
           BlocProvider(
             create: (_) => HomeCubit()..getHomeSection('2M Covers'),
@@ -194,6 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

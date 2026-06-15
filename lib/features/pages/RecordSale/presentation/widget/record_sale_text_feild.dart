@@ -52,7 +52,12 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
           Gap(10.h),
           MainTextFormField(
             textInputNext: TextInputAction.next,
-
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Name';
+              }
+              return null;
+            },
             ispassword: false,
             controller: widget.cubit.nameController,
             prefixIcon: AppAssets.userFiledSVG,
@@ -70,7 +75,12 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
           Gap(10.h),
           MainTextFormField(
             textInputNext: TextInputAction.next,
-
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Phone';
+              }
+              return null;
+            },
             sufixIcon: IconButton(
               icon: const Icon(Icons.contacts, color: AppColors.primary),
 
@@ -108,11 +118,17 @@ class _RecordSaleTextFeildState extends State<RecordSaleTextFeild> {
           MainTextFormField(
             ketboardType: TextInputType.number,
             ispassword: false,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please Enter Price';
+              }
+              return null;
+            },
             controller: widget.cubit.priceController,
             prefixIcon: AppAssets.walletSVG,
             hint: '1000',
             label: LocaleKeys.misc_price.tr(),
-           ),
+          ),
           SizedBox(height: 24.h),
           Gap(10.h),
 

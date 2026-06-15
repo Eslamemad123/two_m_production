@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:two_m_production/core/error/failer.dart';
-import 'package:two_m_production/features/pages/RecordSale/Data/model/oredeModel.dart';
+import 'package:two_m_production/features/pages/RecordSale/Data/model/customer_model.dart';
 import 'package:two_m_production/features/pages/oreder/Data/Model/paginated_result.dart';
 import 'package:two_m_production/features/pages/oreder/Domain/Repo/addOrder_Repo.dart';
 
@@ -9,7 +9,7 @@ class GetOrdersPaginatedUseCase {
 
   GetOrdersPaginatedUseCase({required this.ordersRepo});
 
-  Future<Either<Failure, PaginatedResult<OrderModel>>> call({
+  Future<Either<Failure, PaginatedResult<CustomerModel>>> call({
     int limit = 10,
     dynamic startAfterDoc,
     dynamic endBeforeDoc,
